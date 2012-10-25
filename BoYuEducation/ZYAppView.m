@@ -39,8 +39,6 @@
         _name.text = name;
         _name.textAlignment = UITextAlignmentCenter;
         [self addSubview:_name];
-        
-//        self.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }
