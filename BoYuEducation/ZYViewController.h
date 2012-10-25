@@ -10,7 +10,7 @@
 #import "ZYAppView.h"
 #import "ZYGridView.h"
 
-@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> 
+@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate> 
 {
     UITableView *_menuTable;
     NSArray *_cellContents;
@@ -22,6 +22,8 @@
     CGPoint _beginPoint;
     
     NSMutableArray *_cellTabViews;
+    
+    NSInteger _skinId;
 }
 
 @property(nonatomic, strong) UITableView *menuTable;

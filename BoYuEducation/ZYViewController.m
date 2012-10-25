@@ -7,6 +7,7 @@
 //
 
 #import "ZYViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 ////菜单table宽高
 //#define BY_MENU_HEIGHT 50.f
@@ -48,8 +49,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
     
     NSLog(@"load example view, frame: %@", NSStringFromCGRect(self.view.frame));
+    _skinId = 0;
     
-    self.view.exclusiveTouch = YES;
+    [self changeSkinId:_skinId];
+    
     [self initMenuTableView];
     [self initBackView];
     [self initCenterView];
@@ -132,6 +135,7 @@
     [appViewsArray addObject:appView_4];
     
     _gridView = [[ZYGridView alloc]initWithZYAppViews:appViewsArray];
+    _gridView.delegate = self;
     _gridView.exclusiveTouch = YES;
     
     //水平对齐
@@ -394,6 +398,45 @@
     cellTabFrame.origin.x += BY_MENUCELL_MOVE_LENGHT;
     [cellTabView setFrame:cellTabFrame];
     
+    [UIView commitAnimations];
+}
+
+//ZYAppView代理
+- (void)pressButton:(NSString *)buttonName
+{
+    NSLog(@"press button %@", buttonName);
+    if ([buttonName isEqualToString:@"更换皮肤"]) {
+        [self changeSkinId:++_skinId];
+    }
+}
+
+//更换皮肤
+- (void)changeSkinId: (NSInteger)skinId
+{
+    NSArray *skinNameArray = [[NSArray alloc]initWithObjects:
+                              @"background_01.png", 
+                              @"background_02.png", 
+                              @"background_03.png", 
+                              @"background_04.png", 
+                              @"background_05.png", nil];
+    
+    // 准备动画
+    CATransition *animation = [CATransition animation];
+    //动画播放持续时间
+    [animation setDuration:0.5f];
+    //动画速度,何时快、慢
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
+    /*动画效果
+     kCATransitionFade      淡出
+     kCATransitionMoveIn    覆盖原图
+     kCATransitionPush      推出
+     kCATransitionReveal    底部显出来
+     */
+    [animation setType:kCATransitionFade];
+    [self.view.layer addAnimation:animation forKey:nil];
+    
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[skinNameArray objectAtIndex:(skinId % skinNameArray.count)]]];
+    // 结束动画
     [UIView commitAnimations];
 }
 

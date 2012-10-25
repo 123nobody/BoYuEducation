@@ -7,17 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYAppView.h"
 
 //小应用水平垂直间距
 #define BY_GRIDVIEW_HORIZONTAL_PADDING 30
 #define BY_GRIDVIEW_VERTICAL_PADDING 30
 
-@interface ZYGridView : UIView
+@protocol ZYGridViewDelegate <NSObject>
+
+- (void) pressButton: (NSString *)buttonName;
+
+@end
+
+@interface ZYGridView : UIView <ZYAppViewDelegate>
 {
+    id<ZYGridViewDelegate> _delegate;
     BOOL _isInitStatic;
 }
 
-@property (assign, nonatomic) BOOL isInitStatic;
+@property (nonatomic, strong) id<ZYGridViewDelegate> delegate;
+@property (nonatomic, assign) BOOL isInitStatic;
 
 - (id)initWithZYAppViews:(NSArray *)appViews;
 

@@ -19,13 +19,21 @@
 #define BY_APP_NAME_WIDTH 80
 #define BY_APP_NAME_HEIGHT 15
 
+@protocol ZYAppViewDelegate <NSObject>
+
+- (void)pressButton: (NSString *)buttonName;
+
+@end
+
 @interface ZYAppView : UIView 
 {
+    id<ZYAppViewDelegate> _delegate;
     UIImageView *_image;
     UIButton *_button;
     UILabel *_name;
 }
 
+@property (nonatomic, strong) id<ZYAppViewDelegate> delegate;
 @property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, strong) UILabel *name;

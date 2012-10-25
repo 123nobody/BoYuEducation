@@ -10,6 +10,7 @@
 
 @implementation ZYAppView
 
+@synthesize delegate = _delegate;
 @synthesize image = _image;
 @synthesize button = _button;
 @synthesize name = _name;
@@ -32,6 +33,8 @@
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
         [_button setFrame:frame];
         [_button setBackgroundImage:image forState:UIControlStateNormal];
+        [_button addTarget:self action:@selector(pressButton:) forControlEvents:UIControlEventTouchUpInside];
+        _button.accessibilityValue = name;
         [self addSubview:_button];
         
         _name = [[UILabel alloc]initWithFrame:CGRectMake(0, (BY_APP_IMAGE_HEIGHT + BY_APP_PADDING_OF_IMAGE_AND_NAME), BY_APP_NAME_WIDTH, BY_APP_NAME_HEIGHT)];
@@ -41,6 +44,13 @@
         [self addSubview:_name];
     }
     return self;
+}
+
+- (void)pressButton:(id)sender
+{
+    UIButton *button = (UIButton *)sender;
+    NSString *buttonName = button.accessibilityValue;
+    [_delegate pressButton:buttonName];
 }
 
 /*

@@ -7,10 +7,10 @@
 //
 
 #import "ZYGridView.h"
-#import "ZYAppView.h"
 
 @implementation ZYGridView
 
+@synthesize delegate = _delegate;
 @synthesize isInitStatic = _isInitStatic;
 
 - (id)initWithZYAppViews:(NSArray *)appViews
@@ -38,8 +38,14 @@
         frame = CGRectMake(x, y, aView.frame.size.width, aView.frame.size.height);
         NSLog(@"appframe_%d:%@", i, NSStringFromCGRect(frame));
         [aView setFrame:frame];
+        aView.delegate = self;
         [self addSubview:aView];
     }
+}
+
+- (void)pressButton:(NSString *)buttonName
+{
+    [_delegate pressButton:buttonName];
 }
 
 /*
