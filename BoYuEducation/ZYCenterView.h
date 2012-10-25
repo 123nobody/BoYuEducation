@@ -13,10 +13,25 @@
 #define BY_CENTERVIEW_HEIGHT 748.f
 #define BY_CENTERVIEW_WIDTH 450.f
 //centerView平移步长
-#define BY_CENTERVIEW_MOVE_LENGHT 120.f
+#define BY_CENTERVIEW_MOVE_LENGHT 110.f
 //centerView覆盖menuView的长度
-#define BY_CENTERVIEW_OVER_LENGHT 100.f
+#define BY_CENTERVIEW_OVER_LENGHT 117.f
+//topView高
+#define BY_CENTERVIEW_TOP_HEIGHT 54.f
+//bottomView高
+#define BY_CENTERVIEW_BOTTOM_HEIGHT 46.f
+//阴影宽度
+#define BY_CENTERVIEW_SHADOW_WIDTH 7.f
 
 @interface ZYCenterView : UIView
+{
+    UIView *_topView;
+    UITableView *_tableView;
+    UIView *_bottomView;
+    //contentView包含了_topView,_tableView,_bottomView
+    UIView *_contentView;
+    UIView *_leftShadowView;
+    UIView *_rightShadowView;
+}
 
 @end

@@ -445,7 +445,7 @@
     [_cellTabViews release];
 //    [_cellTabViews dealloc];
     [_centerView release];
-//    [_centerView dealloc];
+    [_centerView dealloc];
     [_backView release];
 //    [_backView dealloc];
     [_gridView release];
