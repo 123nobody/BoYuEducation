@@ -11,7 +11,7 @@
 @implementation ZYAppView
 
 @synthesize delegate = _delegate;
-@synthesize image = _image;
+//@synthesize image = _image;
 @synthesize button = _button;
 @synthesize name = _name;
 
@@ -24,10 +24,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        _image = [[UIImageView alloc]initWithImage:image];
+//        _image = [[UIImageView alloc]initWithImage:image];
         frame = CGRectMake(0, 0, BY_APP_IMAGE_WIDTH, BY_APP_IMAGE_HEIGHT);
-        [_image setFrame:frame];
-        _image.backgroundColor = [UIColor brownColor];
+//        [_image setFrame:frame];
+//        _image.backgroundColor = [UIColor brownColor];
 //        [self addSubview:_image];
         
         _button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -38,9 +38,14 @@
         [self addSubview:_button];
         
         _name = [[UILabel alloc]initWithFrame:CGRectMake(0, (BY_APP_IMAGE_HEIGHT + BY_APP_PADDING_OF_IMAGE_AND_NAME), BY_APP_NAME_WIDTH, BY_APP_NAME_HEIGHT)];
-        _name.backgroundColor = [UIColor yellowColor];
+        [_name setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"button_word.png"]]];
         _name.text = name;
+        _name.textColor = [UIColor whiteColor];
+        _name.font = [UIFont fontWithName:@"Verdana-Bold" size:14.f];
         _name.textAlignment = UITextAlignmentCenter;
+        CGRect frame = _name.frame;
+        frame.origin.x = (self.frame.size.width - frame.size.width) / 2;
+        [_name setFrame:frame];
         [self addSubview:_name];
     }
     return self;

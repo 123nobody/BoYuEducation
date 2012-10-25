@@ -9,15 +9,15 @@
 #import <UIKit/UIKit.h>
 
 //小应用图片宽高
-#define BY_APP_IMAGE_WIDTH 80
-#define BY_APP_IMAGE_HEIGHT 80
+#define BY_APP_IMAGE_WIDTH 85.f
+#define BY_APP_IMAGE_HEIGHT 85.f
 
 //图片与名称间距
-#define BY_APP_PADDING_OF_IMAGE_AND_NAME 5
+#define BY_APP_PADDING_OF_IMAGE_AND_NAME 0.f
 
 //小应用名称宽高
-#define BY_APP_NAME_WIDTH 80
-#define BY_APP_NAME_HEIGHT 15
+#define BY_APP_NAME_WIDTH 76.f
+#define BY_APP_NAME_HEIGHT 26.f
 
 @protocol ZYAppViewDelegate <NSObject>
 
@@ -28,13 +28,13 @@
 @interface ZYAppView : UIView 
 {
     id<ZYAppViewDelegate> _delegate;
-    UIImageView *_image;
+//    UIImageView *_image;
     UIButton *_button;
     UILabel *_name;
 }
 
 @property (nonatomic, strong) id<ZYAppViewDelegate> delegate;
-@property (nonatomic, strong) UIImageView *image;
+//@property (nonatomic, strong) UIImageView *image;
 @property (nonatomic, strong) UIButton *button;
 @property (nonatomic, strong) UILabel *name;
 

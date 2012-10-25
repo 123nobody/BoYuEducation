@@ -10,8 +10,8 @@
 #import "ZYAppView.h"
 
 //小应用水平垂直间距
-#define BY_GRIDVIEW_HORIZONTAL_PADDING 30
-#define BY_GRIDVIEW_VERTICAL_PADDING 30
+#define BY_GRIDVIEW_HORIZONTAL_PADDING 30.f
+#define BY_GRIDVIEW_VERTICAL_PADDING 30.f
 
 @protocol ZYGridViewDelegate <NSObject>
 

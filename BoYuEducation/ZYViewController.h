@@ -7,15 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZYMenuView.h"
+#import "ZYCenterView.h"
 #import "ZYAppView.h"
 #import "ZYGridView.h"
 
 @interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate> 
 {
-    UITableView *_menuTable;
     NSArray *_cellContents;
     
-    UIView *_centerView;
+    ZYMenuView *_menuView;
+    ZYCenterView *_centerView;
     UIView *_backView;
     ZYGridView *_gridView;
     
@@ -26,10 +28,8 @@
     NSInteger _skinId;
 }
 
-@property(nonatomic, strong) UITableView *menuTable;
 @property(nonatomic, strong) NSArray *cellContents;
 @property(nonatomic, strong) NSMutableArray *cellTabViews;
-@property(nonatomic, strong) UIView *centerView;
 @property(nonatomic, strong) UIView *backView;
 @property(nonatomic, strong) UIView *gridView;
 

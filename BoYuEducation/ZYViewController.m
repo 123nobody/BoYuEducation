@@ -9,36 +9,14 @@
 #import "ZYViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-////菜单table宽高
-//#define BY_MENU_HEIGHT 50.f
-//#define BY_MENU_WIDTH 200.f
-//菜单table cell宽高
-#define BY_MENUCELL_HEIGHT 50.f
-#define BY_MENUCELL_WIDTH 200.f
-//菜单cell平移步长
-#define BY_MENUCELL_MOVE_LENGHT 30.f
-//菜单table cell tab宽高
-#define BY_MENUCELL_TAB_HEIGHT 15.f
-#define BY_MENUCELL_TAB_WIDTH 40.f
-//menutable 左上边距
-#define BY_MENUTABLE_MARGIN_LEFT 0.f
-#define BY_MENUTABLE_MARGIN_TOP 50.f
-//centerView宽高
-#define BY_CENTERVIEW_HEIGHT 748.f
-#define BY_CENTERVIEW_WIDTH 450.f
-//centerView平移步长
-#define BY_CENTERVIEW_MOVE_LENGHT 100.f
-
 @interface ZYViewController ()
 
 @end
 
 @implementation ZYViewController
 
-@synthesize menuTable = _menuTable;
 @synthesize cellContents = _cellContents;
 @synthesize cellTabViews = _cellTabViews;
-@synthesize centerView = _centerView;
 @synthesize backView = _backView;
 @synthesize gridView = _gridView;
 
@@ -51,86 +29,92 @@
     NSLog(@"load example view, frame: %@", NSStringFromCGRect(self.view.frame));
     _skinId = 0;
     
+    UIView *logoView = [[UIView alloc]initWithFrame:CGRectMake(25, 15, 164, 60)];
+    UIImage *logoImage = [UIImage imageNamed:@"logo.png"];
+    logoView.backgroundColor = [UIColor colorWithPatternImage:logoImage];
+    [self.view addSubview:logoView];
+    [logoView release];
+    
     [self changeSkinId:_skinId];
     
-    [self initMenuTableView];
+    
+    _menuView = [[ZYMenuView alloc]init];
+    [self.view addSubview:_menuView];
+    
     [self initBackView];
-    [self initCenterView];
+    
+    _centerView = [[ZYCenterView alloc]init];
+    [self.view addSubview:_centerView];
+    
+//    [self initMenuTableView];
+//    [self initCenterView];
     
 
     return;
 }
 
-//初始化menuTableView
-- (void)initMenuTableView
-{
-    _cellTabViews = [[NSMutableArray alloc]init];
-    
-    _cellContents = [[NSArray alloc]initWithObjects:@"", @"     培训课程", @"     在线调查", @"     在线考试", nil];
-    
-    _menuTable = [[UITableView alloc]initWithFrame:CGRectMake(BY_MENUTABLE_MARGIN_LEFT, BY_MENUTABLE_MARGIN_TOP, BY_MENUCELL_WIDTH, (BY_MENUCELL_HEIGHT * (_cellContents.count - 1) + BY_MENUCELL_TAB_HEIGHT)) style:UITableViewStylePlain];
-    _menuTable.delegate = self;
-    _menuTable.dataSource = self;
-    _menuTable.exclusiveTouch = YES;
-    
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
-//    [_menuTable selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-//    NSLog(@"begin select %d", [_menuTable indexPathForSelectedRow].row);
-    
-    _menuTable.backgroundColor = [UIColor lightGrayColor];
-    
-    
-    [self.view addSubview:_menuTable];
-    [_menuTable reloadData];
-}
+////初始化menuTableView
+//- (void)initMenuTableView
+//{
+//    _cellTabViews = [[NSMutableArray alloc]init];
+//    
+//    _cellContents = [[NSArray alloc]initWithObjects:@"", @"     培训课程", @"     在线调查", @"     在线考试", nil];
+//    
+//    _menuView = [[UITableView alloc]initWithFrame:CGRectMake(BY_MENUVIEW_MARGIN_LEFT, BY_MENUVIEW_MARGIN_TOP, BY_MENUCELL_WIDTH, (BY_MENUCELL_HEIGHT * (_cellContents.count - 1) + BY_MENUCELL_TAB_HEIGHT)) style:UITableViewStylePlain];
+////    _menuView.delegate = self;
+////    _menuView.dataSource = self;
+//    _menuView.exclusiveTouch = YES;
+////    _menuView.scrollEnabled = NO;
+//    //清除UITableView分割线
+////    _menuView.separatorStyle = UITableViewCellSeparatorStyleNone;
+//    
+////    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
+////    [_menuView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+////    NSLog(@"begin select %d", [_menuView indexPathForSelectedRow].row);
+//    
+////    UIView *view =[ [UIView alloc]init];
+////    view.backgroundColor = [UIColor clearColor];
+////    [_menuView setTableFooterView:view];
+////    [view release];
+//    
+//    _menuView.backgroundColor = [UIColor clearColor];
+//    
+//    [self.view addSubview:_menuView];
+//}
 
-//初始化centerView
-- (void)initCenterView
-{
-    _centerView = [[UIView alloc]initWithFrame:CGRectMake(200, 0, 450, 748)];
-    _centerView.backgroundColor = [UIColor greenColor];
-    _centerView.userInteractionEnabled = YES;
-    _centerView.exclusiveTouch = YES;
-    
-//    //添加手势
-//    UISwipeGestureRecognizer *recognizer;
+////初始化centerView
+//- (void)initCenterView
+//{
+//    _centerView = [[UIView alloc]initWithFrame:CGRectMake((BY_menuView_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT), 0, 450, 748)];
+//    _centerView.backgroundColor = [UIColor greenColor];
+//    _centerView.exclusiveTouch = YES;
 //    
-//    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-//    recognizer.direction = UISwipeGestureRecognizerDirectionLeft;
-//    [_centerView addGestureRecognizer:recognizer];
-//    [recognizer release];
+//    [self.view addSubview:_centerView];
 //    
-//    recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-//    recognizer.direction = UISwipeGestureRecognizerDirectionRight;
-//    [_centerView addGestureRecognizer:recognizer];
-//    [recognizer release];
-    
-    [self.view addSubview:_centerView];
-    
-}
+//}
 
 //初始化backView
 - (void)initBackView
 {
-    _backView = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUTABLE_MARGIN_LEFT + BY_MENUCELL_WIDTH + BY_CENTERVIEW_WIDTH), 0, (1024 - BY_MENUTABLE_MARGIN_LEFT - BY_MENUCELL_WIDTH - BY_CENTERVIEW_WIDTH), 748)];
+    _backView = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH + BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_OVER_LENGHT), 0, (1024 - BY_MENUVIEW_MARGIN_LEFT - BY_MENUCELL_WIDTH - BY_CENTERVIEW_WIDTH + BY_CENTERVIEW_OVER_LENGHT), 748)];
     _backView.exclusiveTouch = YES;
 //    _backView.backgroundColor = [UIColor darkGrayColor];
     
     NSMutableArray *appViewsArray = [[NSMutableArray alloc]init];
     
-    UIImage *image_1 = [[UIImage imageNamed:@"08-chat.png"]autorelease];
+    UIImage *image_1 = [[UIImage imageNamed:@"button_01.png"]autorelease];
     ZYAppView *appView_1 = [[[ZYAppView alloc]initWithImage:image_1 Name:@"营销工具"]autorelease];
     [appViewsArray addObject:appView_1];
     
-    UIImage *image_2 = [[UIImage imageNamed:@"11-clock.png"]autorelease];
+    UIImage *image_2 = [[UIImage imageNamed:@"button_02.png"]autorelease];
     ZYAppView *appView_2 = [[[ZYAppView alloc]initWithImage:image_2 Name:@"金融产品"]autorelease];
     [appViewsArray addObject:appView_2];
     
-    UIImage *image_3 = [[UIImage imageNamed:@"15-tags.png"]autorelease];
+    UIImage *image_3 = [[UIImage imageNamed:@"button_03.png"]autorelease];
     ZYAppView *appView_3 = [[[ZYAppView alloc]initWithImage:image_3 Name:@"计算器"]autorelease];
     [appViewsArray addObject:appView_3];
     
-    UIImage *image_4 = [[UIImage imageNamed:@"11-clock.png"]autorelease];
+    UIImage *image_4 = [[UIImage imageNamed:@"button_04.png"]autorelease];
     ZYAppView *appView_4 = [[[ZYAppView alloc]initWithImage:image_4 Name:@"更换皮肤"]autorelease];
     [appViewsArray addObject:appView_4];
     
@@ -183,11 +167,11 @@
         [UIView setAnimationDuration:0.5];
         
         if (_centerView.frame.origin.x >= 150) {
-            frame.origin.x = BY_MENUTABLE_MARGIN_LEFT + BY_MENUCELL_WIDTH;
+            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT;
             [_centerView setFrame:frame];
             [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionRight];
         } else {
-            frame.origin.x = BY_MENUTABLE_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_MOVE_LENGHT;
+            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_MOVE_LENGHT - BY_CENTERVIEW_OVER_LENGHT;
             [_centerView setFrame:frame];
             [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionLeft];
         }
@@ -304,24 +288,34 @@
     cell.textLabel.text = [_cellContents objectAtIndex:index];
     
     CGRect frame;
+    NSString *titleImageName;
     
-    frame = cell.textLabel.frame;
-    frame.size.width += BY_MENUCELL_MOVE_LENGHT;
-    [cell.textLabel setFrame:frame];
+//    frame = cell.textLabel.frame;
+//    frame.size.width += BY_MENUCELL_MOVE_LENGHT;
+//    [cell.textLabel setFrame:frame];
     
     if (_cellTabViews.count < _cellContents.count) {
-        frame = CGRectMake(50, (BY_MENUCELL_HEIGHT * (index - 1)), BY_MENUCELL_TAB_WIDTH, BY_MENUCELL_TAB_HEIGHT);
+        frame = CGRectMake(0, (BY_MENUCELL_HEIGHT * (index - 1)), BY_MENUCELL_TAB_WIDTH, BY_MENUCELL_TAB_HEIGHT);
         UIView *tabView = [[UIView alloc]initWithFrame:frame];
-        tabView.backgroundColor = [UIColor blueColor];
+        titleImageName = [[NSString alloc]initWithFormat:@"title_%da.png", index];
+        tabView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:titleImageName]];
+        
+//        cell.textLabel.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:titleImageName]];
         
         [_cellTabViews addObject:tabView];
         
-        [_menuTable addSubview:tabView];
+        
+        [_menuView addSubview:tabView];
         
         [tabView release];
 
     }
     
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BY_MENUCELL_WIDTH, BY_MENUCELL_HEIGHT)];
+    titleImageName = [NSString stringWithFormat:@"title_%db.png", index];
+    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:titleImageName]];
+//    NSLog(@"titleImageName:%@", titleImageName);
+    [cell addSubview:view];
         
     return cell;
 }
@@ -329,7 +323,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        return 15.f;
+        return BY_MENUCELL_TAB_HEIGHT;
     }
     return BY_MENUCELL_HEIGHT;
 }
@@ -357,7 +351,7 @@
     NSLog(@"selected row %d.", indexPath.row);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.textLabel.frame = CGRectMake(0, 0, (BY_MENUCELL_WIDTH + BY_MENUCELL_MOVE_LENGHT), BY_MENUCELL_HEIGHT);
-    cell.textLabel.backgroundColor = [UIColor redColor];
+//    cell.textLabel.backgroundColor = [UIColor redColor];
     
     //动画开始
     [UIView beginAnimations:nil context:nil];
@@ -384,7 +378,7 @@
     NSLog(@"deselected row %d.", indexPath.row);
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [tableView cellForRowAtIndexPath:indexPath].textLabel.backgroundColor = [UIColor lightGrayColor];
+//    [tableView cellForRowAtIndexPath:indexPath].textLabel.backgroundColor = [UIColor lightGrayColor];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.5];
@@ -444,18 +438,18 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    [_menuTable release];
-    [_menuTable dealloc];
+    [_menuView release];
+    [_menuView dealloc];
     [_cellContents release];
-    [_cellContents dealloc];
+//    [_cellContents dealloc];
     [_cellTabViews release];
-    [_cellTabViews dealloc];
+//    [_cellTabViews dealloc];
     [_centerView release];
-    [_centerView dealloc];
+//    [_centerView dealloc];
     [_backView release];
-    [_backView dealloc];
+//    [_backView dealloc];
     [_gridView release];
-    [_gridView dealloc];
+//    [_gridView dealloc];
     
 }
 

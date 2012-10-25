@@ -36,7 +36,7 @@
         y = (BY_APP_IMAGE_HEIGHT + BY_APP_PADDING_OF_IMAGE_AND_NAME + BY_APP_NAME_HEIGHT + BY_GRIDVIEW_VERTICAL_PADDING) * (i / 3);
         aView = [appViews objectAtIndex:i];
         frame = CGRectMake(x, y, aView.frame.size.width, aView.frame.size.height);
-        NSLog(@"appframe_%d:%@", i, NSStringFromCGRect(frame));
+//        NSLog(@"appframe_%d:%@", i, NSStringFromCGRect(frame));
         [aView setFrame:frame];
         aView.delegate = self;
         [self addSubview:aView];
