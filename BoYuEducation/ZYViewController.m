@@ -118,6 +118,10 @@
     ZYAppView *appView_4 = [[[ZYAppView alloc]initWithImage:image_4 Name:@"更换皮肤"]autorelease];
     [appViewsArray addObject:appView_4];
     
+    UIImage *image_5 = [[UIImage imageNamed:@"button_plus.png"]autorelease];
+    ZYAppView *appView_5 = [[[ZYAppView alloc]initWithImage:image_5 Name:@""]autorelease];
+    [appViewsArray addObject:appView_5];
+    
     _gridView = [[ZYGridView alloc]initWithZYAppViews:appViewsArray];
     _gridView.delegate = self;
     _gridView.exclusiveTouch = YES;
@@ -128,7 +132,15 @@
     gridViewFrame = CGRectMake(((backViewFrame.size.width - gridViewFrame.size.width) / 2), gridViewFrame.origin.y, gridViewFrame.size.width, gridViewFrame.size.height);
     [_gridView setFrame:gridViewFrame];
     
+    //向右滑动关闭窗口
+    UIImage *closeImage = [UIImage imageNamed:@"close.png"];
+    UIView *hintImageView = [[UIView alloc]initWithFrame:CGRectMake(40, 450, closeImage.size.width, closeImage.size.height)];
+    hintImageView.backgroundColor = [UIColor colorWithPatternImage:closeImage];
+    [_gridView addSubview:hintImageView];
+    [hintImageView release];
+    
     [_backView addSubview:_gridView];
+    
     
 //    [image release];
 //    [appView release];

@@ -38,7 +38,11 @@
         [self addSubview:_button];
         
         _name = [[UILabel alloc]initWithFrame:CGRectMake(0, (BY_APP_IMAGE_HEIGHT + BY_APP_PADDING_OF_IMAGE_AND_NAME), BY_APP_NAME_WIDTH, BY_APP_NAME_HEIGHT)];
-        [_name setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"button_word.png"]]];
+        if ([name isEqualToString:@""]) {
+            _name.backgroundColor = [UIColor clearColor];
+        } else {
+            _name.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"button_word.png"]];
+        }
         _name.text = name;
         _name.textColor = [UIColor whiteColor];
         _name.font = [UIFont fontWithName:@"Verdana-Bold" size:14.f];

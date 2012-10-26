@@ -42,9 +42,36 @@
 - (UIView *)getTopView
 {
     UIView *topView;
+    UIImage *image;
     CGRect frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), BY_CENTERVIEW_TOP_HEIGHT);
     topView = [[[UIView alloc]initWithFrame:frame]autorelease];
-    topView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_top.png"]];
+    image = [UIImage imageNamed:@"background01_top.png"];
+    topView.backgroundColor = [UIColor colorWithPatternImage:image];
+    
+    UIView *view;
+    
+    image = [UIImage imageNamed:@"course.png"];
+    view = [[UIView alloc]initWithFrame:CGRectMake(20, ((BY_CENTERVIEW_TOP_HEIGHT - image.size.height) / 2), image.size.width, image.size.height)];
+    view.backgroundColor = [UIColor colorWithPatternImage:image];
+    [topView addSubview:view];
+//    [view release];
+    
+//    image = [UIImage imageNamed:@"course.png"];
+//    view = [[UIView alloc]initWithFrame:CGRectMake(10, 10, image.size.width, image.size.height)];
+//    [topView addSubview:view];
+//    [view release];
+//    
+//    image = [UIImage imageNamed:@"course.png"];
+//    view = [[UIView alloc]initWithFrame:CGRectMake(10, 10, image.size.width, image.size.height)];
+//    [topView addSubview:view];
+//    [view release];
+    
+//    image = [UIImage imageNamed:@"button_plus.png"];
+//    view = [[UIView alloc]initWithFrame:CGRectMake(400, 10, image.size.width, image.size.height)];
+//    view.backgroundColor = [UIColor colorWithPatternImage:image];
+//    [topView addSubview:view];
+//    [view release];
+    
     
     return topView;
 }
