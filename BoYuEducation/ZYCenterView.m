@@ -31,12 +31,7 @@
         [self addSubview:_leftShadowView];
         _rightShadowView = [self getRightShadowView];
         [self addSubview:_rightShadowView];
-//        _topView = [self getTopView];
-//        [self addSubview:_topView];
-//        _tableView = [self getTableView];
-//        [self addSubview:_tableView];
-//        _bottomView = [self getBottomView];
-//        [self addSubview:_bottomView];
+        
     }
     return self;
 }
@@ -74,11 +69,16 @@
     return bottomView;
 }
 
-- (UITableView *)getTableView
+- (ZYCenterTableView *)getTableView
 {
-    UITableView *tableView;
+//    UITableView *tableView;
     CGRect frame = CGRectMake(0, BY_CENTERVIEW_TOP_HEIGHT, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), (BY_CENTERVIEW_HEIGHT - BY_CENTERVIEW_TOP_HEIGHT - BY_CENTERVIEW_BOTTOM_HEIGHT));
-    tableView = [[[UITableView alloc]initWithFrame:frame]autorelease];
+//    tableView = [[[UITableView alloc]initWithFrame:frame]autorelease];
+    
+    ZYCenterTableView *tableView = [[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStylePlain];
+    tableView.touchDelegate = self;
+//    _tableViewController = tableViewController;
+//    [tableViewController release];
     
     return tableView;
 }
@@ -96,9 +96,9 @@
     _topView = [self getTopView];
     [contentView addSubview:_topView];
     _tableView = [self getTableView];
-    [contentView addSubview:[self getTableView]];
+    [contentView addSubview:_tableView];
     _bottomView = [self getBottomView];
-    [contentView addSubview:[self getBottomView]];
+    [contentView addSubview: _bottomView];
     
     return contentView;
 }
@@ -125,6 +125,7 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"centerView touch began.");
     _beginPoint = [[touches anyObject] locationInView:self];
     if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
         //记录第一个点，以便计算移动距离
@@ -134,6 +135,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"centerView touch moved.");
     if (self.tag == 1) {
         CGPoint pt = [[touches anyObject] locationInView:self];
         // 计算移动距离，并更新图像的frame
@@ -141,11 +143,14 @@
         frame.origin.x += pt.x - _beginPoint.x;
         //    frame.origin.y += pt.y - _beginPoint.y;
         [self setFrame:frame]; 
+        //设置tableView不可滚动
+        _tableView.scrollEnabled = NO;
     }
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    NSLog(@"centerView touch ended.");
     if (self.tag == 1) {
         CGRect frame = self.frame;
         
@@ -163,7 +168,26 @@
         }
         [UIView commitAnimations];
         self.tag = 0;
+        _tableView.scrollEnabled = YES;
     }        
+}
+
+- (void)ZYCenterTableViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    NSLog(@"ZYCenterTableViewTouchesBegan");
+    [self touchesBegan:touches withEvent:event];
+}
+
+- (void)ZYCenterTableViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    NSLog(@"ZYCenterTableViewTouchesMoved");
+    [self touchesMoved:touches withEvent:event];
+}
+
+- (void)ZYCenterTableViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+//    NSLog(@"ZYCenterTableViewTouchesEnded");
+    [self touchesEnded:touches withEvent:event];
 }
 
 - (void)dealloc

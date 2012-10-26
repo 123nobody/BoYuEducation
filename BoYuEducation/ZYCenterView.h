@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZYMenuView.h"
+#import "ZYCenterTableView.h"
 
 //centerView宽高
 #define BY_CENTERVIEW_HEIGHT 748.f
@@ -29,12 +30,12 @@
 
 @end
 
-@interface ZYCenterView : UIView
+@interface ZYCenterView : UIView <ZYCenterTableViewDelegate>
 {
     id<ZYCenterViewDelegate> _delegate;
     
     UIView *_topView;
-    UITableView *_tableView;
+    ZYCenterTableView *_tableView;
     UIView *_bottomView;
     //contentView包含了_topView,_tableView,_bottomView
     UIView *_contentView;
