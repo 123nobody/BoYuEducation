@@ -11,6 +11,8 @@
 
 @implementation ZYCenterView
 
+@synthesize delegate = _delegate;
+
 - (id)init
 {
     CGRect frame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT), 0, BY_CENTERVIEW_WIDTH, BY_CENTERVIEW_HEIGHT);
@@ -45,6 +47,7 @@
     UIImage *image;
     CGRect frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), BY_CENTERVIEW_TOP_HEIGHT);
     topView = [[[UIView alloc]initWithFrame:frame]autorelease];
+    topView.exclusiveTouch = YES;
     image = [UIImage imageNamed:@"background01_top.png"];
     topView.backgroundColor = [UIColor colorWithPatternImage:image];
     
@@ -54,23 +57,7 @@
     view = [[UIView alloc]initWithFrame:CGRectMake(20, ((BY_CENTERVIEW_TOP_HEIGHT - image.size.height) / 2), image.size.width, image.size.height)];
     view.backgroundColor = [UIColor colorWithPatternImage:image];
     [topView addSubview:view];
-//    [view release];
-    
-//    image = [UIImage imageNamed:@"course.png"];
-//    view = [[UIView alloc]initWithFrame:CGRectMake(10, 10, image.size.width, image.size.height)];
-//    [topView addSubview:view];
-//    [view release];
-//    
-//    image = [UIImage imageNamed:@"course.png"];
-//    view = [[UIView alloc]initWithFrame:CGRectMake(10, 10, image.size.width, image.size.height)];
-//    [topView addSubview:view];
-//    [view release];
-    
-//    image = [UIImage imageNamed:@"button_plus.png"];
-//    view = [[UIView alloc]initWithFrame:CGRectMake(400, 10, image.size.width, image.size.height)];
-//    view.backgroundColor = [UIColor colorWithPatternImage:image];
-//    [topView addSubview:view];
-//    [view release];
+    [view release];
     
     
     return topView;
@@ -81,6 +68,7 @@
     UIView *bottomView;
     CGRect frame = CGRectMake(0, (BY_CENTERVIEW_HEIGHT - BY_CENTERVIEW_BOTTOM_HEIGHT), (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), BY_CENTERVIEW_BOTTOM_HEIGHT);
     bottomView = [[[UIView alloc]initWithFrame:frame]autorelease];
+    bottomView.exclusiveTouch = YES;
     bottomView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_bottom.png"]];
     
     return bottomView;
@@ -133,6 +121,49 @@
     rightShadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_right.png"]];
     
     return rightShadowView;
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    _beginPoint = [[touches anyObject] locationInView:self];
+    if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
+        //记录第一个点，以便计算移动距离
+        self.tag = 1;
+    }
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.tag == 1) {
+        CGPoint pt = [[touches anyObject] locationInView:self];
+        // 计算移动距离，并更新图像的frame
+        CGRect frame = self.frame;
+        frame.origin.x += pt.x - _beginPoint.x;
+        //    frame.origin.y += pt.y - _beginPoint.y;
+        [self setFrame:frame]; 
+    }
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.tag == 1) {
+        CGRect frame = self.frame;
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        
+        if (self.frame.origin.x >= 150) {
+            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT;
+            [self setFrame:frame];
+            [_delegate didMoveCenterViewToDirection:@"right"];
+        } else {
+            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_MOVE_LENGHT - BY_CENTERVIEW_OVER_LENGHT;
+            [self setFrame:frame];
+            [_delegate didMoveCenterViewToDirection:@"left"];
+        }
+        [UIView commitAnimations];
+        self.tag = 0;
+    }        
 }
 
 - (void)dealloc

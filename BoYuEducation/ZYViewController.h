@@ -12,7 +12,7 @@
 #import "ZYAppView.h"
 #import "ZYGridView.h"
 
-@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate> 
+@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYCenterViewDelegate> 
 {
     NSArray *_cellContents;
     

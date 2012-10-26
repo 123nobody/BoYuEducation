@@ -148,50 +148,50 @@
     [self.view addSubview:_backView];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    _beginPoint = [[touches anyObject] locationInView:_centerView];
-    if (_beginPoint.x > 0 && _beginPoint.x < _centerView.frame.size.width) {
-        //记录第一个点，以便计算移动距离
-        _centerView.tag = 1;
-        NSLog(@"1111111");
-    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (_centerView.tag == 1) {
-        CGPoint pt = [[touches anyObject] locationInView:_centerView];
-        // 计算移动距离，并更新图像的frame
-        CGRect frame = _centerView.frame;
-        frame.origin.x += pt.x - _beginPoint.x;
-        //    frame.origin.y += pt.y - _beginPoint.y;
-        [_centerView setFrame:frame]; 
-    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (_centerView.tag == 1) {
-        CGRect frame = _centerView.frame;
-        
-        [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.5];
-        
-        if (_centerView.frame.origin.x >= 150) {
-            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT;
-            [_centerView setFrame:frame];
-            [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionRight];
-        } else {
-            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_MOVE_LENGHT - BY_CENTERVIEW_OVER_LENGHT;
-            [_centerView setFrame:frame];
-            [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionLeft];
-        }
-        
-        [UIView commitAnimations];
-        _centerView.tag = 0;
-    }        
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    _beginPoint = [[touches anyObject] locationInView:_centerView];
+//    if (_beginPoint.x > 0 && _beginPoint.x < _centerView.frame.size.width) {
+//        //记录第一个点，以便计算移动距离
+//        _centerView.tag = 1;
+//        NSLog(@"1111111");
+//    }
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    if (_centerView.tag == 1) {
+//        CGPoint pt = [[touches anyObject] locationInView:_centerView];
+//        // 计算移动距离，并更新图像的frame
+//        CGRect frame = _centerView.frame;
+//        frame.origin.x += pt.x - _beginPoint.x;
+//        //    frame.origin.y += pt.y - _beginPoint.y;
+//        [_centerView setFrame:frame]; 
+//    }
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    if (_centerView.tag == 1) {
+//        CGRect frame = _centerView.frame;
+//        
+//        [UIView beginAnimations:nil context:nil];
+//        [UIView setAnimationDuration:0.5];
+//        
+//        if (_centerView.frame.origin.x >= 150) {
+//            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT;
+//            [_centerView setFrame:frame];
+//            [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionRight];
+//        } else {
+//            frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_MOVE_LENGHT - BY_CENTERVIEW_OVER_LENGHT;
+//            [_centerView setFrame:frame];
+//            [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionLeft];
+//        }
+//        
+//        [UIView commitAnimations];
+//        _centerView.tag = 0;
+//    }        
+//}
 
 //centerView手势识别
 //- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer 
@@ -255,30 +255,37 @@
 }
 
 //centerView动画
-- (void)doCenterViewAnimationWithRecognizer: (UISwipeGestureRecognizer *)recognizer
+//- (void)doCenterViewAnimationWithRecognizer: (UISwipeGestureRecognizer *)recognizer
+//{
+//    //动画开始
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.5];
+//    
+//    CGRect frame = _centerView.frame;
+//    NSLog(@"frame:%@", NSStringFromCGRect(frame));
+//    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft && frame.origin.x == 200) {
+//        frame.origin.x -= 100;
+//        [_centerView setFrame:frame];
+////        [self doBackViewAnimationWithRecognizer:recognizer];
+//        NSLog(@"do left");
+//    } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight && frame.origin.x == 100) {
+//        frame.origin.x += 100;
+//        [_centerView setFrame:frame];
+////        [self doBackViewAnimationWithRecognizer:recognizer];
+//        NSLog(@"do right");
+//    }
+//    
+//    //执行动画
+//    [UIView commitAnimations];
+//}
+
+- (void)didMoveCenterViewToDirection:(NSString *)direction
 {
-    //动画开始
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    CGRect frame = _centerView.frame;
-    NSLog(@"frame:%@", NSStringFromCGRect(frame));
-    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft && frame.origin.x == 200) {
-        frame.origin.x -= 100;
-        [_centerView setFrame:frame];
-//        [self doBackViewAnimationWithRecognizer:recognizer];
-        NSLog(@"do left");
-    } else if (recognizer.direction == UISwipeGestureRecognizerDirectionRight && frame.origin.x == 100) {
-        frame.origin.x += 100;
-        [_centerView setFrame:frame];
-//        [self doBackViewAnimationWithRecognizer:recognizer];
-        NSLog(@"do right");
+    if ([direction isEqualToString:@"left"]) {
+        [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionLeft];
+    } else {
+        [self doBackViewAnimationWithRecognizerDirection:UISwipeGestureRecognizerDirectionRight];
     }
-    
-    //执行动画
-    [UIView commitAnimations];
-    
-    
 }
 
 

@@ -23,8 +23,16 @@
 //阴影宽度
 #define BY_CENTERVIEW_SHADOW_WIDTH 7.f
 
+@protocol ZYCenterViewDelegate <NSObject>
+
+- (void)didMoveCenterViewToDirection: (NSString *)direction;
+
+@end
+
 @interface ZYCenterView : UIView
 {
+    id<ZYCenterViewDelegate> _delegate;
+    
     UIView *_topView;
     UITableView *_tableView;
     UIView *_bottomView;
@@ -32,6 +40,10 @@
     UIView *_contentView;
     UIView *_leftShadowView;
     UIView *_rightShadowView;
+    
+    CGPoint _beginPoint;
 }
+
+@property (nonatomic, strong) id<ZYCenterViewDelegate> delegate;
 
 @end
