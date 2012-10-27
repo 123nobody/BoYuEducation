@@ -68,6 +68,7 @@
 		B69DAC3B163665C700CB4AA7 /* ZYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC3A163665C700CB4AA7 /* ZYAppDelegate.m */; };
 		B69DAC3E163665C700CB4AA7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69DAC3C163665C700CB4AA7 /* MainStoryboard.storyboard */; };
 		B69DAC41163665C700CB4AA7 /* ZYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC40163665C700CB4AA7 /* ZYViewController.m */; };
+		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +144,8 @@
 		B69DAC3D163665C700CB4AA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B69DAC3F163665C700CB4AA7 /* ZYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYViewController.h; sourceTree = "<group>"; };
 		B69DAC40163665C700CB4AA7 /* ZYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYViewController.m; sourceTree = "<group>"; };
+		B6D652B8163B9E6100F888DF /* ZYRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRightViewController.h; sourceTree = "<group>"; };
+		B6D652B9163B9E6100F888DF /* ZYRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,8 @@
 				B6647846163A4BCA00EEB5D9 /* ZYCenterTableView.m */,
 				B619DBCE163A9CFD00D0CEAB /* ZYRightView.h */,
 				B619DBCF163A9CFD00D0CEAB /* ZYRightView.m */,
+				B6D652B8163B9E6100F888DF /* ZYRightViewController.h */,
+				B6D652B9163B9E6100F888DF /* ZYRightViewController.m */,
 				B6126AF51637AFDC00F2FDF0 /* ZYAppView.h */,
 				B6126AF61637AFDC00F2FDF0 /* ZYAppView.m */,
 				B6126AF91637B4C000F2FDF0 /* ZYGridView.h */,
@@ -420,6 +425,7 @@
 				B667D86A1639287E003262E4 /* ZYCenterView.m in Sources */,
 				B6647847163A4BCA00EEB5D9 /* ZYCenterTableView.m in Sources */,
 				B619DBD0163A9CFD00D0CEAB /* ZYRightView.m in Sources */,
+				B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

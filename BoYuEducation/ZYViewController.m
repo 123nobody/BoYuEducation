@@ -47,6 +47,16 @@
     _centerView.delegate = self;
     [self.view addSubview:_centerView];
     
+    _rightViewController = [[ZYRightViewController alloc]init];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(650, 0, 300, 748)];
+    view.backgroundColor = [UIColor lightGrayColor];
+    _rightViewController.view = view;
+//    _rightViewController.superView = self.view;
+    [view release];
+    
+    [_rightViewController addPanGesture];
+    [self.view addSubview:_rightViewController.view];
+    
 //    _rightView = [[ZYRightView alloc]initWithFrame:CGRectMake((_centerView.frame.origin.x + _centerView.frame.size.width), 0, 560, 748)];
 //    _rightView.backgroundColor = [UIColor grayColor];
 //    [self.view addSubview:_rightView];

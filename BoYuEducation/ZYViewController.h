@@ -12,7 +12,8 @@
 #import "ZYCenterView.h"
 #import "ZYAppView.h"
 #import "ZYGridView.h"
-#import "ZYRightView.h"
+//#import "ZYRightView.h"
+#import "ZYRightViewController.h"
 
 @interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYCenterViewDelegate> 
 {
@@ -22,7 +23,7 @@
     ZYCenterView *_centerView;
     UIView *_backView;
     ZYGridView *_gridView;
-    ZYRightView *_rightView;
+    ZYRightViewController *_rightViewController;
     
     CGPoint _beginPoint;
     

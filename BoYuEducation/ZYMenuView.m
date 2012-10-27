@@ -35,7 +35,7 @@
             y = (BY_MENUCELL_MARGIN_TOP * i + BY_MENUCELL_HEIGHT * i);
             width = BY_MENUCELL_WIDTH;
             height = BY_MENUCELL_HEIGHT;
-            NSLog(@"x = %f", x);
+            
             cellView = [[UIControl alloc]initWithFrame:CGRectMake(x, y, width, height)];
             cellView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[_cellArray objectAtIndex:i]]];
             cellView.tag = i;
