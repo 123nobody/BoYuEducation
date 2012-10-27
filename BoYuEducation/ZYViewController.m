@@ -44,6 +44,8 @@
     [self initBackView];
     
     _centerView = [[ZYCenterView alloc]init];
+    //添加拖动手势
+    [_centerView addPanGesture];
     _centerView.delegate = self;
     [self.view addSubview:_centerView];
     

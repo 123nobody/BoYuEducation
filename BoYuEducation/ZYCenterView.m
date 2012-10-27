@@ -171,58 +171,58 @@
     return rightShadowView;
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"centerView touch began.");
-    _beginPoint = [[touches anyObject] locationInView:self];
-//    if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
-        //记录第一个点，以便计算移动距离
-        self.tag = 1;
-//    }
-    
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"centerView touch moved.");
-//    if (self.tag == 1) {
-        CGPoint pt = [[touches anyObject] locationInView:self];
-        // 计算移动距离，并更新图像的frame
-        CGRect frame = self.frame;
-        frame.origin.x += pt.x - _beginPoint.x;
-        //    frame.origin.y += pt.y - _beginPoint.y;
-        [self setFrame:frame]; 
-        //设置tableView不可滚动、不可选中
-        _tableView.scrollEnabled = NO;
-        _tableView.allowsSelection = NO;
-//    }
-//    self.tag = 2;
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    NSLog(@"centerView touch ended.");
-//    if (self.tag == 2) {
-        if (self.frame.origin.x >= 150) {
-            [self moveCenterViewToDirection:@"right"];
-//            [_delegate didMoveCenterViewToDirection:@"right"];
-            NSLog(@"doright!!!!!");
-        } else {
-            [self moveCenterViewToDirection:@"left"];
-//            [_delegate didMoveCenterViewToDirection:@"left"];
-            NSLog(@"doleft!!!!!");
-        }
-        
-        self.tag = 0;
-//    }        
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"centerView touch began.");
+//    _beginPoint = [[touches anyObject] locationInView:self];
+////    if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
+//        //记录第一个点，以便计算移动距离
+//        self.tag = 1;
+////    }
+//    
+//}
+//
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"centerView touch moved.");
+////    if (self.tag == 1) {
+//        CGPoint pt = [[touches anyObject] locationInView:self];
+//        // 计算移动距离，并更新图像的frame
+//        CGRect frame = self.frame;
+//        frame.origin.x += pt.x - _beginPoint.x;
+//        //    frame.origin.y += pt.y - _beginPoint.y;
+//        [self setFrame:frame]; 
+//        //设置tableView不可滚动、不可选中
+//        _tableView.scrollEnabled = NO;
+//        _tableView.allowsSelection = NO;
+////    }
+////    self.tag = 2;
+//}
+//
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    NSLog(@"centerView touch ended.");
+////    if (self.tag == 2) {
+//        if (self.frame.origin.x >= 150) {
+//            [self moveCenterViewToDirection:@"right"];
+////            [_delegate didMoveCenterViewToDirection:@"right"];
+//            NSLog(@"doright!!!!!");
+//        } else {
+//            [self moveCenterViewToDirection:@"left"];
+////            [_delegate didMoveCenterViewToDirection:@"left"];
+//            NSLog(@"doleft!!!!!");
+//        }
+//        
+//        self.tag = 0;
+////    }        
+//}
 
 - (void)moveCenterViewToDirection: (NSString *)direction
 {
     //当tableView可选的时候，视为点击了cell，不移动它。
-    if (_tableView.allowsSelection && (self.tag != 2)) {
-        return;
-    }
+//    if (_tableView.allowsSelection && (self.tag != 2)) {
+//        return;
+//    }
     CGRect frame = self.frame;
     
     [UIView beginAnimations:nil context:nil];
@@ -478,6 +478,37 @@
     
     // 结束动画
     [UIView commitAnimations];
+}
+
+- (void)addPanGesture
+{
+    UIPanGestureRecognizer *panGes = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handelPan:)];
+    [self addGestureRecognizer:panGes];
+    [panGes release];
+}
+
+- (void)handelPan: (UIPanGestureRecognizer*)gestureRecognizer
+{
+    if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
+        _beginPoint = [gestureRecognizer locationInView:self];
+    }
+    CGPoint curPoint = [gestureRecognizer locationInView:self];
+    CGRect frame = self.frame;
+    frame.origin.x += curPoint.x - _beginPoint.x;
+    //    frame.origin.y += curPoint.y - _beginPoint.y;
+    [self setFrame:frame];
+    
+    if (gestureRecognizer.state == UIGestureRecognizerStateEnded) {
+        if (self.frame.origin.x >= 150) {
+            [self moveCenterViewToDirection:@"right"];
+//            [_delegate didMoveCenterViewToDirection:@"right"];
+            NSLog(@"doright!!!!!");
+        } else {
+            [self moveCenterViewToDirection:@"left"];
+//            [_delegate didMoveCenterViewToDirection:@"left"];
+            NSLog(@"doleft!!!!!");
+        }
+    }
 }
 
 - (void)dealloc

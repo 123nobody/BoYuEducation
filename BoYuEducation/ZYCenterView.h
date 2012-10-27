@@ -53,5 +53,6 @@
 
 - (id)initWithMenuCellIndex: (NSInteger)index;
 - (void)changeContentViewWithMenuIndex: (NSInteger)index;
+- (void)addPanGesture;
 
 @end
