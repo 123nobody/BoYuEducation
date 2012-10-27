@@ -175,16 +175,17 @@
 {
     NSLog(@"centerView touch began.");
     _beginPoint = [[touches anyObject] locationInView:self];
-    if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
+//    if (_beginPoint.x > 0 && _beginPoint.x < self.frame.size.width) {
         //记录第一个点，以便计算移动距离
         self.tag = 1;
-    }
+//    }
+    
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"centerView touch moved.");
-    if (self.tag == 1) {
+//    if (self.tag == 1) {
         CGPoint pt = [[touches anyObject] locationInView:self];
         // 计算移动距离，并更新图像的frame
         CGRect frame = self.frame;
@@ -194,33 +195,32 @@
         //设置tableView不可滚动、不可选中
         _tableView.scrollEnabled = NO;
         _tableView.allowsSelection = NO;
-    }
+//    }
+//    self.tag = 2;
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"centerView touch ended.");
-    if (self.tag == 1) {
+//    if (self.tag == 2) {
         if (self.frame.origin.x >= 150) {
             [self moveCenterViewToDirection:@"right"];
-            [_delegate didMoveCenterViewToDirection:@"right"];
+//            [_delegate didMoveCenterViewToDirection:@"right"];
             NSLog(@"doright!!!!!");
         } else {
             [self moveCenterViewToDirection:@"left"];
-            [_delegate didMoveCenterViewToDirection:@"left"];
+//            [_delegate didMoveCenterViewToDirection:@"left"];
             NSLog(@"doleft!!!!!");
         }
         
         self.tag = 0;
-        _tableView.scrollEnabled = YES;
-        _tableView.allowsSelection = YES;
-    }        
+//    }        
 }
 
 - (void)moveCenterViewToDirection: (NSString *)direction
 {
     //当tableView可选的时候，视为点击了cell，不移动它。
-    if (_tableView.allowsSelection) {
+    if (_tableView.allowsSelection && (self.tag != 2)) {
         return;
     }
     CGRect frame = self.frame;
@@ -240,6 +240,8 @@
         NSLog(@"doleft!!!!!123123");
     }
     [UIView commitAnimations];
+    _tableView.scrollEnabled = YES;
+    _tableView.allowsSelection = YES;
 }
 
 - (void)ZYCenterTableViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -296,19 +298,19 @@
     switch (_currentViewIndex) {
         case 0:
         {
-            label.text = @"金融理财概述和CFP制度 - 培训课程";
+            label.text = @"金融理财概述和CFP制度";
         }
             break;
             
         case 1:
         {
-            label.text = @"金融理财概述和CFP制度 - 在线调查";
+            label.text = @"倾向时间价值与财务计算器操作";
         }
             break;
             
         case 2:
         {
-            label.text = @"金融理财概述和CFP制度 - 在线考试";
+            label.text = @"居住规划与房间投资";
         }
             break;
             
@@ -387,6 +389,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 12.f;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"will will");
+    self.tag = 2;
+    return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

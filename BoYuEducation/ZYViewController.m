@@ -47,7 +47,9 @@
     _centerView.delegate = self;
     [self.view addSubview:_centerView];
     
-    _rightView = [[ZYRightView alloc]initWithFrame:CGRectMake((_centerView.frame.origin.x + _centerView.frame.size.width), 0, 560, 748)];
+//    _rightView = [[ZYRightView alloc]initWithFrame:CGRectMake((_centerView.frame.origin.x + _centerView.frame.size.width), 0, 560, 748)];
+//    _rightView.backgroundColor = [UIColor grayColor];
+//    [self.view addSubview:_rightView];
     
 //    [self initMenuTableView];
 //    [self initCenterView];
