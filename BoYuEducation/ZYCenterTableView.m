@@ -25,21 +25,21 @@
 {
 //    NSLog(@"tableView touchesBegan.");
     [_touchDelegate ZYCenterTableViewTouchesBegan:touches withEvent:event];
-//    [super touchesBegan:touches withEvent:event];
+    [super touchesBegan:touches withEvent:event];
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
 //    NSLog(@"tableView touchesMoved.");
     [_touchDelegate ZYCenterTableViewTouchesMoved:touches withEvent:event];
-//    [super touchesMoved:touches withEvent:event];
+    [super touchesMoved:touches withEvent:event];
 }
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
 //    NSLog(@"tableView touchesEnded.");
     [_touchDelegate ZYCenterTableViewTouchesEnded:touches withEvent:event];
-//    [super touchesEnded:touches withEvent:event];
+    [super touchesEnded:touches withEvent:event];
 }
 
 

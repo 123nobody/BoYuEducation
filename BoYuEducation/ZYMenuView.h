@@ -26,13 +26,20 @@
 #define BY_MENUCELL_MARGIN_LEFT 10.f
 #define BY_MENUCELL_MARGIN_TOP -38.f
 
+@protocol ZYMenuViewDelegate <NSObject>
+
+- (void)didSelectMenuCellAtIndex: (NSInteger)index;
+
+@end
+
 @interface ZYMenuView : UIView
 {
+    id<ZYMenuViewDelegate> _delegate;
     NSArray *_cells;
     NSArray *_cellArray;
     NSInteger _currentCellIndex;
 }
 
-//- (id)init;
+@property (nonatomic, strong) id<ZYMenuViewDelegate> delegate;
 
 @end

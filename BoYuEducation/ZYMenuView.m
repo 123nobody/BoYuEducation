@@ -10,12 +10,17 @@
 
 @implementation ZYMenuView
 
+@synthesize delegate = _delegate;
+
 - (id)init
 {
     _cellArray = [[NSArray alloc]initWithObjects:@"title_1.png", @"title_2.png", @"title_3.png", nil];
     _currentCellIndex = 0;
     
-    CGRect frame = CGRectMake(BY_MENUVIEW_MARGIN_LEFT, BY_MENUVIEW_MARGIN_TOP, BY_MENUCELL_WIDTH + BY_MENUCELL_MARGIN_LEFT, (BY_MENUCELL_HEIGHT * _cellArray.count + BY_MENUCELL_MARGIN_TOP * (_cellArray.count - 1)));
+    //这种高度为菜单按钮的总高度
+//    CGRect frame = CGRectMake(BY_MENUVIEW_MARGIN_LEFT, BY_MENUVIEW_MARGIN_TOP, BY_MENUCELL_WIDTH + BY_MENUCELL_MARGIN_LEFT, (BY_MENUCELL_HEIGHT * _cellArray.count + BY_MENUCELL_MARGIN_TOP * (_cellArray.count - 1)));
+    //这种高度为(屏幕高度 - 菜单上边距)
+    CGRect frame = CGRectMake(BY_MENUVIEW_MARGIN_LEFT, BY_MENUVIEW_MARGIN_TOP, BY_MENUCELL_WIDTH + BY_MENUCELL_MARGIN_LEFT, (748 - BY_MENUVIEW_MARGIN_TOP));
     
     self = [super initWithFrame:frame];
     if (self) {
@@ -30,9 +35,11 @@
             y = (BY_MENUCELL_MARGIN_TOP * i + BY_MENUCELL_HEIGHT * i);
             width = BY_MENUCELL_WIDTH;
             height = BY_MENUCELL_HEIGHT;
+            NSLog(@"x = %f", x);
             cellView = [[UIControl alloc]initWithFrame:CGRectMake(x, y, width, height)];
             cellView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[_cellArray objectAtIndex:i]]];
             cellView.tag = i;
+            cellView.exclusiveTouch = YES;
             
             [cellView addTarget:self action:@selector(pressMenuCell:) forControlEvents:UIControlEventTouchUpInside];
             
@@ -40,6 +47,26 @@
             [cellView release];
         }
         
+        UIImage *image;
+        UIButton *button;
+        
+        image = [UIImage imageNamed:@"refresh.png"];
+        frame = CGRectMake(20, 530, image.size.width, image.size.height);
+        button = [[UIButton alloc]initWithFrame:frame];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pressRefreshButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.exclusiveTouch = YES;
+        [self addSubview:button];
+        [button release];
+        
+        image = [UIImage imageNamed:@"set-up.png"];
+        frame = CGRectMake(20, (530 + 15 + frame.size.height), image.size.width, image.size.height);
+        button = [[UIButton alloc]initWithFrame:frame];
+        [button setBackgroundImage:image forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(pressSetupButton:) forControlEvents:UIControlEventTouchUpInside];
+        button.exclusiveTouch = YES;
+        [self addSubview:button];
+        [button release];
         
     }
     return self;
@@ -67,17 +94,31 @@
     
     [UIView commitAnimations];
     
-    switch (view.tag) {
-        case 0:
-        {
-            NSLog(@"press cell index %d do something.", view.tag);
-        }
-            break;
-            
-        default:
-            break;
-    }
+    //切换centerView
+    [_delegate didSelectMenuCellAtIndex:view.tag];
+    
+//    switch (view.tag) {
+//        case 0:
+//        {
+//            NSLog(@"press cell index %d do something.", view.tag);
+//        }
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    
     _currentCellIndex = view.tag;
+}
+
+- (void)pressRefreshButton:sender
+{
+    NSLog(@"press refreshButton");
+}
+
+- (void)pressSetupButton:sender
+{
+    NSLog(@"press setupButton");
 }
 
 - (id)initWithFrame:(CGRect)frame

@@ -27,10 +27,11 @@
 @protocol ZYCenterViewDelegate <NSObject>
 
 - (void)didMoveCenterViewToDirection: (NSString *)direction;
+//- (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
-@interface ZYCenterView : UIView <ZYCenterTableViewDelegate>
+@interface ZYCenterView : UIView <UITableViewDelegate, UITableViewDataSource, ZYCenterTableViewDelegate>
 {
     id<ZYCenterViewDelegate> _delegate;
     
@@ -42,9 +43,15 @@
     UIView *_leftShadowView;
     UIView *_rightShadowView;
     
+    //当前显示内容的菜单index
+    NSInteger _currentViewIndex;
+    
     CGPoint _beginPoint;
 }
 
 @property (nonatomic, strong) id<ZYCenterViewDelegate> delegate;
+
+- (id)initWithMenuCellIndex: (NSInteger)index;
+- (void)changeContentViewWithMenuIndex: (NSInteger)index;
 
 @end

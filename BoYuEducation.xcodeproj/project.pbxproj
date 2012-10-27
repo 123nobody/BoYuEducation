@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B6126AF71637AFDC00F2FDF0 /* ZYAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6126AF61637AFDC00F2FDF0 /* ZYAppView.m */; };
 		B6126AFB1637B4C000F2FDF0 /* ZYGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6126AFA1637B4C000F2FDF0 /* ZYGridView.m */; };
+		B619DBD0163A9CFD00D0CEAB /* ZYRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = B619DBCF163A9CFD00D0CEAB /* ZYRightView.m */; };
 		B6647847163A4BCA00EEB5D9 /* ZYCenterTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6647846163A4BCA00EEB5D9 /* ZYCenterTableView.m */; };
 		B667D8241638CA45003262E4 /* background01_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = B667D7FB1638CA45003262E4 /* background01_bottom.png */; };
 		B667D8251638CA45003262E4 /* background01_column.png in Resources */ = {isa = PBXBuildFile; fileRef = B667D7FC1638CA45003262E4 /* background01_column.png */; };
@@ -74,6 +75,8 @@
 		B6126AF61637AFDC00F2FDF0 /* ZYAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYAppView.m; sourceTree = "<group>"; };
 		B6126AF91637B4C000F2FDF0 /* ZYGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYGridView.h; sourceTree = "<group>"; };
 		B6126AFA1637B4C000F2FDF0 /* ZYGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYGridView.m; sourceTree = "<group>"; };
+		B619DBCE163A9CFD00D0CEAB /* ZYRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRightView.h; sourceTree = "<group>"; };
+		B619DBCF163A9CFD00D0CEAB /* ZYRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightView.m; sourceTree = "<group>"; };
 		B6647845163A4BCA00EEB5D9 /* ZYCenterTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCenterTableView.h; sourceTree = "<group>"; };
 		B6647846163A4BCA00EEB5D9 /* ZYCenterTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCenterTableView.m; sourceTree = "<group>"; };
 		B667D7FB1638CA45003262E4 /* background01_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background01_bottom.png; sourceTree = "<group>"; };
@@ -275,6 +278,8 @@
 				B667D8691639287E003262E4 /* ZYCenterView.m */,
 				B6647845163A4BCA00EEB5D9 /* ZYCenterTableView.h */,
 				B6647846163A4BCA00EEB5D9 /* ZYCenterTableView.m */,
+				B619DBCE163A9CFD00D0CEAB /* ZYRightView.h */,
+				B619DBCF163A9CFD00D0CEAB /* ZYRightView.m */,
 				B6126AF51637AFDC00F2FDF0 /* ZYAppView.h */,
 				B6126AF61637AFDC00F2FDF0 /* ZYAppView.m */,
 				B6126AF91637B4C000F2FDF0 /* ZYGridView.h */,
@@ -414,6 +419,7 @@
 				B667D86116390DFC003262E4 /* ZYMenuView.m in Sources */,
 				B667D86A1639287E003262E4 /* ZYCenterView.m in Sources */,
 				B6647847163A4BCA00EEB5D9 /* ZYCenterTableView.m in Sources */,
+				B619DBD0163A9CFD00D0CEAB /* ZYRightView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

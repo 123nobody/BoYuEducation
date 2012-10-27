@@ -7,7 +7,6 @@
 //
 
 #import "ZYViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
 @interface ZYViewController ()
 
@@ -15,10 +14,10 @@
 
 @implementation ZYViewController
 
-@synthesize cellContents = _cellContents;
-@synthesize cellTabViews = _cellTabViews;
-@synthesize backView = _backView;
-@synthesize gridView = _gridView;
+//@synthesize cellContents = _cellContents;
+//@synthesize cellTabViews = _cellTabViews;
+//@synthesize backView = _backView;
+//@synthesize gridView = _gridView;
 
 
 - (void)viewDidLoad
@@ -39,12 +38,16 @@
     
     
     _menuView = [[ZYMenuView alloc]init];
+    _menuView.delegate = self;
     [self.view addSubview:_menuView];
     
     [self initBackView];
     
     _centerView = [[ZYCenterView alloc]init];
+    _centerView.delegate = self;
     [self.view addSubview:_centerView];
+    
+    _rightView = [[ZYRightView alloc]initWithFrame:CGRectMake((_centerView.frame.origin.x + _centerView.frame.size.width), 0, 560, 748)];
     
 //    [self initMenuTableView];
 //    [self initCenterView];
@@ -451,6 +454,44 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[skinNameArray objectAtIndex:(skinId % skinNameArray.count)]]];
     // 结束动画
     [UIView commitAnimations];
+}
+
+//menuView代理
+- (void)didSelectMenuCellAtIndex:(NSInteger)index
+{
+    switch (index) {
+        case 0:
+        {
+            NSLog(@"00000000000000");
+        }
+            break;
+            
+        case 1:
+        {
+            NSLog(@"11111111111111");
+        }
+            break;
+            
+        case 2:
+        {
+            NSLog(@"22222222222222");
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    [_centerView changeContentViewWithMenuIndex:index];
+    
+//    CGRect frame = _centerView.frame;
+//    [_centerView removeFromSuperview];
+//    frame = _centerView.frame;
+//    [_centerView release];
+//    _centerView = [[ZYCenterView alloc]initWithMenuCellIndex:index];
+//    _centerView.delegate = self;
+//    [_centerView setFrame:frame];
+//    [self.view addSubview:_centerView];    
 }
 
 - (void)viewDidUnload
