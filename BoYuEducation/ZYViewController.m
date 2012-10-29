@@ -42,22 +42,24 @@
     [self.view addSubview:_menuView];
     
     [self initBackView];
-    
-    _centerView = [[ZYCenterView alloc]init];
+    //初始化centerView
+    _centerView = [[ZYCenterView alloc]initWithMenuCellIndex:0];
     //添加拖动手势
     [_centerView addPanGesture];
     _centerView.delegate = self;
     [self.view addSubview:_centerView];
     
-    _rightViewController = [[ZYRightViewController alloc]init];
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(650, 0, 300, 748)];
-    view.backgroundColor = [UIColor lightGrayColor];
-    _rightViewController.view = view;
-//    _rightViewController.superView = self.view;
-    [view release];
-    
-    [_rightViewController addPanGesture];
-    [self.view addSubview:_rightViewController.view];
+//    _rightViewController = [[ZYRightViewController alloc]init];
+//    _rightViewController.delegate = self;
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748)];
+//    view.backgroundColor = [UIColor lightGrayColor];
+//    _rightViewController.view = view;
+//    _rightViewController.putInFrame = view.frame;
+////    _rightViewController.superView = self.view;
+//    [view release];
+//    
+//    [_rightViewController addPanGesture];
+//    [self.view addSubview:_rightViewController.view];
     
 //    _rightView = [[ZYRightView alloc]initWithFrame:CGRectMake((_centerView.frame.origin.x + _centerView.frame.size.width), 0, 560, 748)];
 //    _rightView.backgroundColor = [UIColor grayColor];
@@ -109,6 +111,28 @@
 //    [self.view addSubview:_centerView];
 //    
 //}
+
+- (void)initRightViewWithView: (UIView *)view
+{
+//    UIView *view = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748)];
+//    view.backgroundColor = [UIColor lightGrayColor];
+    if (_rightViewController == nil) {
+        _rightViewController = [[ZYRightViewController alloc]init];
+        _rightViewController.delegate = self;
+    }
+    
+//    [_rightViewController putOut];
+    
+    _rightViewController.putInFrame = view.frame;
+    _rightViewController.view = view;
+    //    _rightViewController.superView = self.view;
+//    [view release];
+    [_rightViewController.view setFrame:CGRectMake(1524, view.frame.origin.y, view.frame.size.width, view.frame.size.height)];
+    [_rightViewController addPanGesture];
+    [self.view addSubview:_rightViewController.view];
+    
+//    [_rightViewController putIn];
+}
 
 //初始化backView
 - (void)initBackView
@@ -305,6 +329,57 @@
     }
 }
 
+- (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"ZYView press button section:%d, row:%d", indexPath.section, indexPath.row);
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 300, 300, 100)];
+    
+    switch (_menuView.currentCellIndex) {
+        case 0:
+        {
+            label.text = [NSString stringWithFormat:@"菜单1 group：%d row:%d", indexPath.section, indexPath.row];
+        }
+            break;
+            
+        case 1:
+        {
+            label.text = [NSString stringWithFormat:@"菜单2 group：%d row:%d", indexPath.section, indexPath.row];
+        }
+            break;
+            
+        case 2:
+        {
+            label.text = [NSString stringWithFormat:@"菜单3 group：%d row:%d", indexPath.section, indexPath.row];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748)];
+    view.backgroundColor = [UIColor lightGrayColor];
+    [view addSubview:label];
+    [label release];
+    if (!(_rightViewController == nil)) {
+        [_rightViewController putOutWithChecking:NO];
+    }
+    [self initRightViewWithView:view];
+    [_rightViewController putIn];
+    [view release];
+
+//    [_rightViewController putIn];
+}
+
+- (void)ZYRightViewPutIn
+{
+    _centerView.isLocked = YES;
+}
+
+- (void)ZYRightViewPutOut
+{
+    _centerView.isLocked = NO;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -496,7 +571,9 @@
             break;
     }
     
+    //切换centerView内容
     [_centerView changeContentViewWithMenuIndex:index];
+    [_rightViewController putOutWithChecking:NO];
     
 //    CGRect frame = _centerView.frame;
 //    [_centerView removeFromSuperview];

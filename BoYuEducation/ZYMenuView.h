@@ -41,5 +41,6 @@
 }
 
 @property (nonatomic, strong) id<ZYMenuViewDelegate> delegate;
+@property (nonatomic, assign) NSInteger currentCellIndex;
 
 @end

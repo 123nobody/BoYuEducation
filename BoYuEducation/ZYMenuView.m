@@ -11,6 +11,7 @@
 @implementation ZYMenuView
 
 @synthesize delegate = _delegate;
+@synthesize currentCellIndex = _currentCellIndex;
 
 - (id)init
 {

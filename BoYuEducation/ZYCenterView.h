@@ -27,7 +27,7 @@
 @protocol ZYCenterViewDelegate <NSObject>
 
 - (void)didMoveCenterViewToDirection: (NSString *)direction;
-//- (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
+- (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
@@ -46,10 +46,15 @@
     //当前显示内容的菜单index
     NSInteger _currentViewIndex;
     
+    //是否锁定位置，用于rightView出现时
+    BOOL _isLocked;
+    
     CGPoint _beginPoint;
 }
 
 @property (nonatomic, strong) id<ZYCenterViewDelegate> delegate;
+
+@property (nonatomic, assign) BOOL isLocked;
 
 - (id)initWithMenuCellIndex: (NSInteger)index;
 - (void)changeContentViewWithMenuIndex: (NSInteger)index;

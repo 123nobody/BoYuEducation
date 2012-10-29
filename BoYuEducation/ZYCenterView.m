@@ -12,6 +12,7 @@
 @implementation ZYCenterView
 
 @synthesize delegate = _delegate;
+@synthesize isLocked = _isLocked;
 
 - (id)init
 {
@@ -33,6 +34,7 @@
         self.exclusiveTouch = YES;
         
         _currentViewIndex = index;
+        _isLocked = NO;
         
         _contentView = [self getContentViewWithMenuCellIndex:_currentViewIndex];
         [self addSubview:_contentView];
@@ -226,7 +228,7 @@
     CGRect frame = self.frame;
     
     [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDuration:0.2];
     
     if ([direction isEqualToString:@"right"]) {
         frame.origin.x = BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT;
@@ -403,7 +405,7 @@
     NSLog(@"press button section:%d, row:%d", indexPath.section, indexPath.row);
     [self moveCenterViewToDirection:@"left"];
 //    [_delegate didMoveCenterViewToDirection:@"left"];
-//    [_delegate centerTableView:(ZYCenterTableView *)tableView didDeselectRowAtIndexPath:indexPath];
+    [_delegate centerTableView:(ZYCenterTableView *)tableView didDeselectRowAtIndexPath:indexPath];
 }
 
 - (void)changeContentViewWithMenuIndex:(NSInteger)index
@@ -489,6 +491,9 @@
 
 - (void)handelPan: (UIPanGestureRecognizer*)gestureRecognizer
 {
+    if (_isLocked) {
+        return;
+    }
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         _beginPoint = [gestureRecognizer locationInView:self];
     }

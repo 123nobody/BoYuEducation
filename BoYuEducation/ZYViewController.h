@@ -15,7 +15,7 @@
 //#import "ZYRightView.h"
 #import "ZYRightViewController.h"
 
-@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYCenterViewDelegate> 
+@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate> 
 {
     NSArray *_cellContents;
     
