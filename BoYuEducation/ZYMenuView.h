@@ -29,6 +29,7 @@
 @protocol ZYMenuViewDelegate <NSObject>
 
 - (void)didSelectMenuCellAtIndex: (NSInteger)index;
+- (void)ZYMenuView: (UIView *)menuView PressSetupButton: (UIButton *)setupButton;
 
 @end
 

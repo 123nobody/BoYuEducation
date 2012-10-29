@@ -98,17 +98,6 @@
     //切换centerView
     [_delegate didSelectMenuCellAtIndex:view.tag];
     
-//    switch (view.tag) {
-//        case 0:
-//        {
-//            NSLog(@"press cell index %d do something.", view.tag);
-//        }
-//            break;
-//            
-//        default:
-//            break;
-//    }
-    
     _currentCellIndex = view.tag;
 }
 
@@ -120,6 +109,7 @@
 - (void)pressSetupButton:sender
 {
     NSLog(@"press setupButton");
+    [_delegate ZYMenuView:self PressSetupButton:(UIButton *)sender];
 }
 
 - (id)initWithFrame:(CGRect)frame

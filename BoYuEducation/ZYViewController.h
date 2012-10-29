@@ -15,7 +15,7 @@
 //#import "ZYRightView.h"
 #import "ZYRightViewController.h"
 
-@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate> 
+@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYMenuViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate> 
 {
     NSArray *_cellContents;
     
@@ -30,6 +30,8 @@
     NSMutableArray *_cellTabViews;
     
     NSInteger _skinId;
+    //模态背景蒙板
+    UIView *_maskView;
 }
 
 //@property(nonatomic, strong) NSArray *cellContents;
