@@ -161,6 +161,11 @@
 
 - (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    CGRect rightViewFrame;
+    UIView *headerView;
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage *closeButtonImage;
+    
     NSLog(@"ZYView press button section:%d, row:%d", indexPath.section, indexPath.row);
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 300, 300, 100)];
     
@@ -168,18 +173,33 @@
         case 0:
         {
             label.text = [NSString stringWithFormat:@"菜单1 group：%d row:%d", indexPath.section, indexPath.row];
+            rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748);
+            headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)];
+            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
+            
+            closeButtonImage = [UIImage imageNamed:@"button-close2.png"];                                         
         }
             break;
             
         case 1:
         {
             label.text = [NSString stringWithFormat:@"菜单2 group：%d row:%d", indexPath.section, indexPath.row];
+            rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + 60), 0, 850, 748);
+            headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)];
+            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
+            
+            closeButtonImage = [UIImage imageNamed:@"button-close2.png"];
         }
             break;
             
         case 2:
         {
             label.text = [NSString stringWithFormat:@"菜单3 group：%d row:%d", indexPath.section, indexPath.row];
+            rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + 60), 0, 850, 748);
+            headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)];
+            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
+            
+            closeButtonImage = [UIImage imageNamed:@"button-close2.png"];
         }
             break;
             
@@ -187,6 +207,11 @@
         case 3:
         {
             label.text = [NSString stringWithFormat:@"菜单4 group：%d row:%d", indexPath.section, indexPath.row];
+            rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748);
+            headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)];
+            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
+            
+            closeButtonImage = [UIImage imageNamed:@"button-close2.png"];
         }
             break;
             
@@ -194,9 +219,21 @@
             break;
     }
     
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748)];
+    UIView *view = [[UIView alloc]initWithFrame:rightViewFrame];
     view.backgroundColor = [UIColor lightGrayColor];
+    //设置圆角
+    view.layer.cornerRadius = 6;
+    view.layer.masksToBounds = YES;
+    
+    [closeButton setFrame:CGRectMake((headerView.frame.size.width - 50), ((headerView.frame.size.height - closeButtonImage.size.height - 8) / 2), closeButtonImage.size.width, closeButtonImage.size.height)];
+    [closeButton setBackgroundImage:closeButtonImage forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(pressCloseButton:) forControlEvents:UIControlEventTouchUpInside];
+    NSLog(@"addTarget!!!!!!");
+    [headerView addSubview:closeButton];
+    [view addSubview:headerView];
     [view addSubview:label];
+    
+    [headerView release];
     [label release];
     if (!(_rightViewController == nil)) {
         [_rightViewController putOutWithChecking:NO];
@@ -216,116 +253,11 @@
     _centerView.isLocked = NO;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//关闭rightView
+- (void)pressCloseButton:sender
 {
-    NSInteger index = indexPath.row;
-    
-    static NSString *CellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    if (index == 0) {
-        [_cellTabViews addObject:[[UIView alloc]init]];
-        return cell;
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [_cellContents objectAtIndex:index];
-    
-    CGRect frame;
-    NSString *titleImageName;
-    
-    if (_cellTabViews.count < _cellContents.count) {
-        frame = CGRectMake(0, (BY_MENUCELL_HEIGHT * (index - 1)), BY_MENUCELL_TAB_WIDTH, BY_MENUCELL_TAB_HEIGHT);
-        UIView *tabView = [[UIView alloc]initWithFrame:frame];
-        titleImageName = [[NSString alloc]initWithFormat:@"title_%da.png", index];
-        tabView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:titleImageName]];
-        
-        [_cellTabViews addObject:tabView];
-        [_menuView addSubview:tabView];
-        
-        [tabView release];
-    }
-    
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, BY_MENUCELL_WIDTH, BY_MENUCELL_HEIGHT)];
-    titleImageName = [NSString stringWithFormat:@"title_%db.png", index];
-    view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:titleImageName]];
-//    NSLog(@"titleImageName:%@", titleImageName);
-    [cell addSubview:view];
-        
-    return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return BY_MENUCELL_TAB_HEIGHT;
-    }
-    return BY_MENUCELL_HEIGHT;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView 
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return _cellContents.count;
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return nil;
-    }
-    NSLog(@"will Select Row %d", [tableView indexPathForSelectedRow].row);
-    if ([tableView indexPathForSelectedRow].row == indexPath.row) {
-        NSLog(@"This row is selecting.");
-        return indexPath;
-    }
-    NSLog(@"selected row %d.", indexPath.row);
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    cell.textLabel.frame = CGRectMake(0, 0, (BY_MENUCELL_WIDTH + BY_MENUCELL_MOVE_LENGHT), BY_MENUCELL_HEIGHT);
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    CGRect frame;
-    
-    frame = cell.frame;
-    frame.origin.x -= BY_MENUCELL_MOVE_LENGHT;
-    [cell setFrame:frame];
-    
-    UIView *cellTabView = (UIView *)[_cellTabViews objectAtIndex:indexPath.row];
-    frame = cellTabView.frame;
-    frame.origin.x -= BY_MENUCELL_MOVE_LENGHT;
-    [cellTabView setFrame:frame];
-    [UIView commitAnimations];
-    
-    return indexPath;
-}
-
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSLog(@"deselected row %d.", indexPath.row);
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    CGRect frame = cell.frame;
-    frame.origin.x += BY_MENUCELL_MOVE_LENGHT;
-    [cell setFrame:frame];
-    
-    UIView *cellTabView = (UIView *)[_cellTabViews objectAtIndex:indexPath.row];
-    CGRect cellTabFrame = cellTabView.frame;
-    cellTabFrame.origin.x += BY_MENUCELL_MOVE_LENGHT;
-    [cellTabView setFrame:cellTabFrame];
-    
-    [UIView commitAnimations];
+    NSLog(@"gggggggggggggg");
+    [_rightViewController putOutWithChecking:NO];
 }
 
 //ZYAppView代理

@@ -355,7 +355,7 @@
     if (_currentViewIndex == 0) {
         frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
     } else {
-        frame = CGRectMake(130, ((cellHeight - 20) / 2), 300, 20);
+        frame = CGRectMake(120, ((cellHeight - 20) / 2), 300, 20);
     }
         
     label = [[UILabel alloc]initWithFrame:frame];
@@ -411,7 +411,6 @@
             break;
     }
     [cell addSubview:label];
-    NSLog(@"addaddaddaddaddadd");
     [label release];
     
 //    [cell addSubview:view];
