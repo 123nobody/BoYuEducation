@@ -86,10 +86,39 @@
     CGRect frame = CGRectMake(0, BY_CENTERVIEW_TOP_HEIGHT, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), (BY_CENTERVIEW_HEIGHT - BY_CENTERVIEW_TOP_HEIGHT - BY_CENTERVIEW_BOTTOM_HEIGHT));
 //    tableView = [[[UITableView alloc]initWithFrame:frame]autorelease];
     
-    ZYCenterTableView *tableView = [[[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStyleGrouped]autorelease];
-    tableView.touchDelegate = self;
+    ZYCenterTableView *tableView;
+    switch (_currentViewIndex) {
+        case 0:
+        {
+            tableView = [[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
+        }
+            break;
+            
+        case 1:
+        {
+            tableView = [[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStylePlain];
+        }
+            break;
+            
+        case 2:
+        {
+            tableView = [[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStylePlain];
+        }
+            break;
+            
+        case 3:
+        {
+            tableView = [[ZYCenterTableView alloc]initWithFrame:frame style:UITableViewStylePlain];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
     tableView.delegate = self;
     tableView.dataSource = self;
+//    tableView.touchDelegate = self;
     
     UIView *tmpView = [[[UIView alloc]init]autorelease];
     tmpView.backgroundColor = [UIColor whiteColor];
@@ -246,54 +275,89 @@
     _tableView.allowsSelection = YES;
 }
 
-- (void)ZYCenterTableViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    NSLog(@"ZYCenterTableViewTouchesBegan");
-    [self touchesBegan:touches withEvent:event];
-}
-
-- (void)ZYCenterTableViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    NSLog(@"ZYCenterTableViewTouchesMoved");
-    [self touchesMoved:touches withEvent:event];
-}
-
-- (void)ZYCenterTableViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-//    NSLog(@"ZYCenterTableViewTouchesEnded");
-    [self touchesEnded:touches withEvent:event];
-}
+//- (void)ZYCenterTableViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    NSLog(@"ZYCenterTableViewTouchesBegan");
+//    [self touchesBegan:touches withEvent:event];
+//}
+//
+//- (void)ZYCenterTableViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    NSLog(@"ZYCenterTableViewTouchesMoved");
+//    [self touchesMoved:touches withEvent:event];
+//}
+//
+//- (void)ZYCenterTableViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+////    NSLog(@"ZYCenterTableViewTouchesEnded");
+//    [self touchesEnded:touches withEvent:event];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    UITableViewCellStyle cellStyle;
+    if (_currentViewIndex == 3) {
+        cellStyle = UITableViewCellStyleSubtitle;
+    } else {
+        cellStyle = UITableViewCellStyleDefault;
+    }
+    
+    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:cellStyle reuseIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
+    
     //清除cell的背景边框
     UIView *tempView = [[[UIView alloc] init] autorelease];
     [cell setBackgroundView:tempView];
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    CGFloat cellHeight;
+    
+    if (_currentViewIndex == 0) {
+        cellHeight = 40.f;
+    } else if (_currentViewIndex == 1 || _currentViewIndex == 2) {
+        cellHeight = 100.f;
+    } else if (_currentViewIndex == 3) {
+        cellHeight = 150.f;
+    }
+    
     CGRect frame;
-    UIView *view;
+//    UIView *view;
     UIImageView *imageView;
     UIImage *image;
     UILabel *label;
     
     frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), 20);
-    view = [[UIView alloc]initWithFrame:frame];
-    view.backgroundColor = [UIColor whiteColor];
     
-    image = [UIImage imageNamed:@"icon01.png"];
+    //如果是第一次，就初始化view，否则取出来处理。
+//    view = [cell viewWithTag:99];
+//    if (view == nil) {
+//        view = [[UIView alloc]initWithFrame:frame];
+//        view.backgroundColor = [UIColor whiteColor];
+//    }
+    
+    if (_currentViewIndex == 0) {
+        image = [UIImage imageNamed:@"icon01.png"];
+    } else {
+        image = [UIImage imageNamed:@"button_01.png"];
+    }
     imageView = [[UIImageView alloc]initWithImage:image];
-    frame = CGRectMake(20, 15, image.size.width, image.size.height);
+    frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
     [imageView setFrame:frame];
-    [view addSubview:imageView];
+//    [view addSubview:imageView];
+    if (_currentViewIndex != 3) {
+        [cell addSubview:imageView];
+    }
     [imageView release];
     
-    frame = CGRectMake(45, 15, 300, 20);
+    if (_currentViewIndex == 0) {
+        frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
+    } else {
+        frame = CGRectMake(130, ((cellHeight - 20) / 2), 300, 20);
+    }
+        
     label = [[UILabel alloc]initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
     
@@ -307,45 +371,88 @@
         case 1:
         {
             label.text = @"倾向时间价值与财务计算器操作";
+            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
+            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
+            [cell addSubview:shadowView];
+            [shadowView release];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
             break;
             
         case 2:
         {
             label.text = @"居住规划与房间投资";
+            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
+            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
+            [cell addSubview:shadowView];
+            [shadowView release];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+            break;
+            
+        case 3:
+        {
+            label.text = @"";
+            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
+            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
+            [cell addSubview:shadowView];
+            [shadowView release];
+            
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            
+            cell.textLabel.text = @"金融资讯";
+            cell.detailTextLabel.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
         }
             break;
             
         default:
             break;
     }
-    [view addSubview:label];
+    [cell addSubview:label];
+    NSLog(@"addaddaddaddaddadd");
     [label release];
     
-    [cell addSubview:view];
-    [view release];
+//    [cell addSubview:view];
+//    [view release];
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_currentViewIndex == 1 || _currentViewIndex == 2) {
+        return 100.f;
+    } else if (_currentViewIndex == 3) {
+        return 150.f;
+    }
     return 40.f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    if (_currentViewIndex == 0) {
+        return 3;
+    }
+    return 10;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    if (_currentViewIndex == 0) {
+        return 3;
+    }
+    return 1;
 }
 
 //Section View
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+//    if (_currentViewIndex != 0) {
+//        return [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)]autorelease];
+//    }
+    
     UIView *headerView;
     CGRect frame;
     UILabel *label;
@@ -368,16 +475,26 @@
     [headerView addSubview:label];
     [label release];
     
+    if (_currentViewIndex != 0) {
+        return nil;
+    } else  {
     return headerView;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40.f;
+    if (_currentViewIndex == 0) {
+        return 40.f;
+    }
+    return 0.f;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
+    if (_currentViewIndex != 0) {
+        return [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)]autorelease];
+    }
     UIView *footerView;
     CGRect frame;
     
@@ -410,12 +527,18 @@
 
 - (void)changeContentViewWithMenuIndex:(NSInteger)index
 {
+    _currentViewIndex = index;
+//    [_contentView removeFromSuperview];
+//    _contentView = [self getContentViewWithMenuCellIndex:index];
+//    [self addSubview:_contentView];
+//    return;
+    
     //移除view
 //    [_topView removeFromSuperview];
-//    [_tableView removeFromSuperview];
+    [_tableView removeFromSuperview];
 //    [_bottomView removeFromSuperview];
 //    
-//    _tableView  = [self getTableView];
+    _tableView  = [self getTableView];
     
     NSLog(@"changeContentView");
     CGRect frame;
@@ -442,9 +565,8 @@
     
     //变更
 //    [_contentView addSubview:_topView];
-//    [_contentView addSubview:_tableView];
+    [_contentView addSubview:_tableView];
 //    [_contentView addSubview:_bottomView];
-    _currentViewIndex = index;
     [_tableView reloadData];
     
     // 结束动画

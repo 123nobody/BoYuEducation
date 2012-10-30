@@ -14,6 +14,7 @@
 #import "ZYGridView.h"
 //#import "ZYRightView.h"
 #import "ZYRightViewController.h"
+#import "ZYSettingViewController.h"
 
 @interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYMenuViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate> 
 {

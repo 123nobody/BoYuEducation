@@ -68,7 +68,9 @@
 		B69DAC3B163665C700CB4AA7 /* ZYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC3A163665C700CB4AA7 /* ZYAppDelegate.m */; };
 		B69DAC3E163665C700CB4AA7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69DAC3C163665C700CB4AA7 /* MainStoryboard.storyboard */; };
 		B69DAC41163665C700CB4AA7 /* ZYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC40163665C700CB4AA7 /* ZYViewController.m */; };
+		B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BA6E3F163F75060019646D /* ZYTableViewCell.m */; };
 		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
+		B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC6608163EACDA00244922 /* ZYSettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -144,8 +146,12 @@
 		B69DAC3D163665C700CB4AA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B69DAC3F163665C700CB4AA7 /* ZYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYViewController.h; sourceTree = "<group>"; };
 		B69DAC40163665C700CB4AA7 /* ZYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYViewController.m; sourceTree = "<group>"; };
+		B6BA6E3E163F75060019646D /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
+		B6BA6E3F163F75060019646D /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
 		B6D652B8163B9E6100F888DF /* ZYRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRightViewController.h; sourceTree = "<group>"; };
 		B6D652B9163B9E6100F888DF /* ZYRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightViewController.m; sourceTree = "<group>"; };
+		B6DC6607163EACDA00244922 /* ZYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSettingViewController.h; sourceTree = "<group>"; };
+		B6DC6608163EACDA00244922 /* ZYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +295,10 @@
 				B6126AF61637AFDC00F2FDF0 /* ZYAppView.m */,
 				B6126AF91637B4C000F2FDF0 /* ZYGridView.h */,
 				B6126AFA1637B4C000F2FDF0 /* ZYGridView.m */,
+				B6DC6607163EACDA00244922 /* ZYSettingViewController.h */,
+				B6DC6608163EACDA00244922 /* ZYSettingViewController.m */,
+				B6BA6E3E163F75060019646D /* ZYTableViewCell.h */,
+				B6BA6E3F163F75060019646D /* ZYTableViewCell.m */,
 				B69DAC3F163665C700CB4AA7 /* ZYViewController.h */,
 				B69DAC40163665C700CB4AA7 /* ZYViewController.m */,
 				B69DAC31163665C700CB4AA7 /* Supporting Files */,
@@ -426,6 +436,8 @@
 				B6647847163A4BCA00EEB5D9 /* ZYCenterTableView.m in Sources */,
 				B619DBD0163A9CFD00D0CEAB /* ZYRightView.m in Sources */,
 				B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */,
+				B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */,
+				B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

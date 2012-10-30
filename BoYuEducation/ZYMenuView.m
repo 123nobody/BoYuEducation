@@ -15,7 +15,7 @@
 
 - (id)init
 {
-    _cellArray = [[NSArray alloc]initWithObjects:@"title_1.png", @"title_2.png", @"title_3.png", nil];
+    _cellArray = [[NSArray alloc]initWithObjects:@"title_1.png", @"title_2.png", @"title_3.png", @"title_2.png", nil];
     _currentCellIndex = 0;
     
     //这种高度为菜单按钮的总高度

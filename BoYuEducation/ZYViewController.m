@@ -183,6 +183,13 @@
         }
             break;
             
+            
+        case 3:
+        {
+            label.text = [NSString stringWithFormat:@"菜单4 group：%d row:%d", indexPath.section, indexPath.row];
+        }
+            break;
+            
         default:
             break;
     }
@@ -387,80 +394,16 @@
 
 - (void)ZYMenuView:(UIView *)menuView PressSetupButton:(UIButton *)setupButton
 {
-    _maskView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1024, 748)];
-    _maskView.backgroundColor = [UIColor blackColor];
-    _maskView.alpha = 0.6f;
-    [self.view addSubview:_maskView];
+    ZYSettingViewController *settingViewController = [[ZYSettingViewController alloc]init];
     
-    UIView *setupView = [[UIView alloc]initWithFrame:CGRectMake(300, 748, 450, 400)];
-    setupView.backgroundColor = [UIColor greenColor];
+    [settingViewController.view setFrame:CGRectMake(0.f, 0.f, 600.f, 556.f)];
     
-    UIButton *closeButton;
-    closeButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [closeButton setFrame:CGRectMake(100, 100, 200, 50)];
-    [closeButton setTitle:@"关闭" forState:UIControlStateNormal];
-    [closeButton addTarget:self action:@selector(pressSetupCloseButton:) forControlEvents:UIControlEventTouchUpInside];
-    [setupView addSubview:closeButton];
-    
-    // 准备动画
-    CATransition *animation = [CATransition animation];
-    //动画播放持续时间
-    [animation setDuration:0.3f];
-    //动画速度,何时快、慢
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    /*动画效果
-     kCATransitionFade      淡出
-     kCATransitionMoveIn    覆盖原图
-     kCATransitionPush      推出
-     kCATransitionReveal    底部显出来
-     */
-    [animation setType:kCATransitionFade];
-    [self.view.layer addAnimation:animation forKey:nil];
-    
-    //变更
-    [self.view addSubview:setupView];
-    
-    //结束动画
-    [UIView commitAnimations];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [setupView setFrame:CGRectMake(300, 150, 450, 400)];
-    [UIView commitAnimations];
-    
-    [setupView release];
+    settingViewController.modalPresentationStyle = UIModalPresentationFormSheet;//有三种状态，自己看看是哪种
+    [self presentModalViewController:settingViewController animated:YES];
+    settingViewController.view.superview.frame = CGRectMake(0.f, 0.f, 600.f, 600.f);//it's important to do this after 
+    settingViewController.view.superview.center = CGPointMake(512, 384);
     
     return;
-}
-
-- (void)pressSetupCloseButton:sender
-{
-    UIButton *button = (UIButton *)sender;
-    NSLog(@"close!!!");
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.3];
-    [button.superview setFrame:CGRectMake(300, 748, 450, 400)];
-    [UIView commitAnimations];
-    
-    // 准备动画
-    CATransition *animation = [CATransition animation];
-    //动画播放持续时间
-    [animation setDuration:0.3f];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    [animation setType:kCATransitionFade];
-    [self.view.layer addAnimation:animation forKey:nil];
-    //变更
-    [_maskView removeFromSuperview];
-    // 结束动画
-    [UIView commitAnimations];
-    
-    [_maskView release];
-}
-
-- (void)pressSetupButton:sender
-{
-    UIButton *button = (UIButton *)sender;
-    [button.superview.superview.superview removeFromSuperview];
 }
 
 - (void)viewDidUnload

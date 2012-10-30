@@ -31,7 +31,7 @@
 
 @end
 
-@interface ZYCenterView : UIView <UITableViewDelegate, UITableViewDataSource, ZYCenterTableViewDelegate>
+@interface ZYCenterView : UIView <UITableViewDelegate, UITableViewDataSource>
 {
     id<ZYCenterViewDelegate> _delegate;
     
