@@ -16,7 +16,7 @@
 #import "ZYRightViewController.h"
 #import "ZYSettingViewController.h"
 
-@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYMenuViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate> 
+@interface ZYViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ZYGridViewDelegate, ZYMenuViewDelegate, ZYCenterViewDelegate, ZYRightViewControllerDelegate, UIScrollViewDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate> 
 {
     NSArray *_cellContents;
     
@@ -25,6 +25,8 @@
     UIView *_backView;
     ZYGridView *_gridView;
     ZYRightViewController *_rightViewController;
+    UIView *_backgroundMaskView;
+    
     
     CGPoint _beginPoint;
     

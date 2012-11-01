@@ -18,6 +18,7 @@
 @synthesize delegate = _delegate;
 @synthesize putInFrame = _putInFrame;
 @synthesize isShow = _isShow;
+@synthesize webView = _webView;
 
 //@synthesize superView = _superView;
 
@@ -34,7 +35,7 @@
 {
     self = [super init];
     if (self) {
-        
+        _isMaxViewState = NO;
     }
     return self;
 }
@@ -43,6 +44,99 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+- (UIView *)getHeaderViewWithRightViewFrame: (CGRect)rightViewFrame MenuIndex: (NSInteger)index
+{
+    NSLog(@"getHeaderView");
+    UIView *headerView;
+    headerView = [[[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)]autorelease];
+    headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
+    
+    UIButton *closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    
+    UIImage *closeButtonImage;
+    closeButtonImage = [UIImage imageNamed:@"button-close2.png"];
+    
+    [closeButton setFrame:CGRectMake((headerView.frame.size.width - 50), ((headerView.frame.size.height - closeButtonImage.size.height - 8) / 2), closeButtonImage.size.width, closeButtonImage.size.height)];
+    [closeButton setBackgroundImage:closeButtonImage forState:UIControlStateNormal];
+    [closeButton addTarget:self action:@selector(pressCloseButton:) forControlEvents:UIControlEventTouchUpInside];
+    closeButton.tag = 1;
+    [headerView addSubview:closeButton];
+    
+    if (index == 3) {
+        UIButton *maxButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *maxButtonImage;
+        maxButtonImage = [UIImage imageNamed:@"narrow.png"];
+        
+        [maxButton setFrame:CGRectMake((headerView.frame.size.width - 90), ((headerView.frame.size.height - maxButtonImage.size.height - 8) / 2), maxButtonImage.size.width, maxButtonImage.size.height)];
+        [maxButton setBackgroundImage:maxButtonImage forState:UIControlStateNormal];
+        [maxButton addTarget:self action:@selector(pressMaxButton:) forControlEvents:UIControlEventTouchUpInside];
+        maxButton.tag = 2;
+        [headerView addSubview:maxButton];
+    }
+    
+    switch (index) {
+        case 0:
+            ;
+            break;
+            
+        case 1:
+            ;
+            break;
+            
+        case 2:
+            ;
+            break;
+            
+        case 3:
+            ;
+            break;
+            
+        default:
+            break;
+    }
+    
+    _headerView = headerView;
+    return headerView;
+}
+
+//关闭rightView
+- (void)pressCloseButton:sender
+{
+    NSLog(@"rightView dismiss!");
+    _isMaxViewState = NO;
+    [self putOutWithChecking:NO];
+}
+
+- (void)pressMaxButton:sender
+{
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:0.5];
+    
+    if (_isMaxViewState) {
+        [self.view setFrame:_putInFrame];
+        [_headerView setFrame:CGRectMake(0, 0, _putInFrame.size.width, 60)];
+        UIView *view;
+        view = [_headerView viewWithTag:1];
+        [view setFrame:CGRectMake((_headerView.frame.size.width - 50), ((_headerView.frame.size.height - view.frame.size.height - 8) / 2), view.frame.size.width, view.frame.size.height)];
+        view = [_headerView viewWithTag:2];
+        [view setFrame:CGRectMake((_headerView.frame.size.width - 90), ((_headerView.frame.size.height - view.frame.size.height - 8) / 2), view.frame.size.width, view.frame.size.height)];
+        
+        [_webView setFrame:CGRectMake(0, _headerView.frame.size.height, _putInFrame.size.width, (_putInFrame.size.height - _headerView.frame.size.height))];
+    } else {
+        [self.view setFrame:CGRectMake(0, 0, 1024, 748)];
+        [_headerView setFrame:CGRectMake(0, 0, 1024, 60)];
+        UIView *view;
+        view = [_headerView viewWithTag:1];
+        [view setFrame:CGRectMake((_headerView.frame.size.width - 50), ((_headerView.frame.size.height - view.frame.size.height - 8) / 2), view.frame.size.width, view.frame.size.height)];
+        view = [_headerView viewWithTag:2];
+        [view setFrame:CGRectMake((_headerView.frame.size.width - 90), ((_headerView.frame.size.height - view.frame.size.height - 8) / 2), view.frame.size.width, view.frame.size.height)];
+        
+        [_webView setFrame:CGRectMake(0, _headerView.frame.size.height, 1024, (_putInFrame.size.height - _headerView.frame.size.height))];
+    }
+    [UIView commitAnimations];
+    _isMaxViewState = !_isMaxViewState;
 }
 
 //添加平移手势
@@ -55,6 +149,9 @@
 
 - (void)handelPan: (UIPanGestureRecognizer*)gestureRecognizer
 {
+    if (_isMaxViewState) {
+        return;
+    }
     if (gestureRecognizer.state == UIGestureRecognizerStateBegan) {
         _beginPoint = [gestureRecognizer locationInView:self.view];
     }

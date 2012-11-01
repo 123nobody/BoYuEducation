@@ -60,6 +60,18 @@
 		B667D866163915B6003262E4 /* title_2.png in Resources */ = {isa = PBXBuildFile; fileRef = B667D863163915B6003262E4 /* title_2.png */; };
 		B667D867163915B6003262E4 /* title_3.png in Resources */ = {isa = PBXBuildFile; fileRef = B667D864163915B6003262E4 /* title_3.png */; };
 		B667D86A1639287E003262E4 /* ZYCenterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B667D8691639287E003262E4 /* ZYCenterView.m */; };
+		B676436D1641F7C0006D1B9F /* 在线调查.png in Resources */ = {isa = PBXBuildFile; fileRef = B676436B1641F7C0006D1B9F /* 在线调查.png */; };
+		B676436E1641F7C0006D1B9F /* 在线考试.png in Resources */ = {isa = PBXBuildFile; fileRef = B676436C1641F7C0006D1B9F /* 在线考试.png */; };
+		B67643711641F951006D1B9F /* title_4.png in Resources */ = {isa = PBXBuildFile; fileRef = B67643701641F951006D1B9F /* title_4.png */; };
+		B676437316423D8F006D1B9F /* button_plus_big.png in Resources */ = {isa = PBXBuildFile; fileRef = B676437216423D8F006D1B9F /* button_plus_big.png */; };
+		B676438A16426459006D1B9F /* NSString+RBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = B676437E16426459006D1B9F /* NSString+RBExtras.m */; };
+		B676438B16426459006D1B9F /* NSURL+RBExtras.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438016426459006D1B9F /* NSURL+RBExtras.m */; };
+		B676438C16426459006D1B9F /* RBBaseFileGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438216426459006D1B9F /* RBBaseFileGenerator.m */; };
+		B676438D16426459006D1B9F /* RBFile.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438416426459006D1B9F /* RBFile.m */; };
+		B676438E16426459006D1B9F /* RBFilePreviewer.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438716426459006D1B9F /* RBFilePreviewer.m */; };
+		B676438F16426459006D1B9F /* UIImage+BBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438916426459006D1B9F /* UIImage+BBlock.m */; };
+		B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */ = {isa = PBXBuildFile; fileRef = B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */; };
+		B676439316426787006D1B9F /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B676439216426787006D1B9F /* QuickLook.framework */; };
 		B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2A163665C700CB4AA7 /* UIKit.framework */; };
 		B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2C163665C700CB4AA7 /* Foundation.framework */; };
 		B69DAC2F163665C700CB4AA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2E163665C700CB4AA7 /* CoreGraphics.framework */; };
@@ -133,6 +145,27 @@
 		B667D864163915B6003262E4 /* title_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_3.png; sourceTree = "<group>"; };
 		B667D8681639287E003262E4 /* ZYCenterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYCenterView.h; sourceTree = "<group>"; };
 		B667D8691639287E003262E4 /* ZYCenterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYCenterView.m; sourceTree = "<group>"; };
+		B676436B1641F7C0006D1B9F /* 在线调查.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "在线调查.png"; sourceTree = "<group>"; };
+		B676436C1641F7C0006D1B9F /* 在线考试.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "在线考试.png"; sourceTree = "<group>"; };
+		B67643701641F951006D1B9F /* title_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title_4.png; sourceTree = "<group>"; };
+		B676437216423D8F006D1B9F /* button_plus_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_plus_big.png; sourceTree = "<group>"; };
+		B676437916425470006D1B9F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Xcode_Workspace/BoYuEducation/BoYuEducation/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		B676437A16425470006D1B9F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "zh-Hans"; path = "/Xcode_Workspace/BoYuEducation/BoYuEducation/zh-Hans.lproj/MainStoryboard.storyboard"; sourceTree = "<absolute>"; };
+		B676437D16426459006D1B9F /* NSString+RBExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+RBExtras.h"; sourceTree = "<group>"; };
+		B676437E16426459006D1B9F /* NSString+RBExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+RBExtras.m"; sourceTree = "<group>"; };
+		B676437F16426459006D1B9F /* NSURL+RBExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+RBExtras.h"; sourceTree = "<group>"; };
+		B676438016426459006D1B9F /* NSURL+RBExtras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+RBExtras.m"; sourceTree = "<group>"; };
+		B676438116426459006D1B9F /* RBBaseFileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBBaseFileGenerator.h; sourceTree = "<group>"; };
+		B676438216426459006D1B9F /* RBBaseFileGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBBaseFileGenerator.m; sourceTree = "<group>"; };
+		B676438316426459006D1B9F /* RBFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBFile.h; sourceTree = "<group>"; };
+		B676438416426459006D1B9F /* RBFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBFile.m; sourceTree = "<group>"; };
+		B676438516426459006D1B9F /* RBFileGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBFileGenerator.h; sourceTree = "<group>"; };
+		B676438616426459006D1B9F /* RBFilePreviewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBFilePreviewer.h; sourceTree = "<group>"; };
+		B676438716426459006D1B9F /* RBFilePreviewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RBFilePreviewer.m; sourceTree = "<group>"; };
+		B676438816426459006D1B9F /* UIImage+BBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BBlock.h"; sourceTree = "<group>"; };
+		B676438916426459006D1B9F /* UIImage+BBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBlock.m"; sourceTree = "<group>"; };
+		B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "TaoBao客户端高性能高稳定性应用框架 .pdf"; sourceTree = "<group>"; };
+		B676439216426787006D1B9F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		B69DAC26163665C700CB4AA7 /* BoYuEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69DAC2A163665C700CB4AA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B69DAC2C163665C700CB4AA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -159,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B676439316426787006D1B9F /* QuickLook.framework in Frameworks */,
 				B667D8501638D6DD003262E4 /* QuartzCore.framework in Frameworks */,
 				B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */,
 				B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */,
@@ -182,6 +216,10 @@
 		B667D7FA1638CA45003262E4 /* 1 */ = {
 			isa = PBXGroup;
 			children = (
+				B676437216423D8F006D1B9F /* button_plus_big.png */,
+				B67643701641F951006D1B9F /* title_4.png */,
+				B676436B1641F7C0006D1B9F /* 在线调查.png */,
+				B676436C1641F7C0006D1B9F /* 在线考试.png */,
 				B667D862163915B6003262E4 /* title_1.png */,
 				B667D863163915B6003262E4 /* title_2.png */,
 				B667D864163915B6003262E4 /* title_3.png */,
@@ -246,6 +284,35 @@
 			path = 3;
 			sourceTree = "<group>";
 		};
+		B676437B16426449006D1B9F /* classes */ = {
+			isa = PBXGroup;
+			children = (
+				B676437C16426459006D1B9F /* RBFilePreviewer */,
+			);
+			name = classes;
+			sourceTree = "<group>";
+		};
+		B676437C16426459006D1B9F /* RBFilePreviewer */ = {
+			isa = PBXGroup;
+			children = (
+				B676437D16426459006D1B9F /* NSString+RBExtras.h */,
+				B676437E16426459006D1B9F /* NSString+RBExtras.m */,
+				B676437F16426459006D1B9F /* NSURL+RBExtras.h */,
+				B676438016426459006D1B9F /* NSURL+RBExtras.m */,
+				B676438116426459006D1B9F /* RBBaseFileGenerator.h */,
+				B676438216426459006D1B9F /* RBBaseFileGenerator.m */,
+				B676438316426459006D1B9F /* RBFile.h */,
+				B676438416426459006D1B9F /* RBFile.m */,
+				B676438516426459006D1B9F /* RBFileGenerator.h */,
+				B676438616426459006D1B9F /* RBFilePreviewer.h */,
+				B676438716426459006D1B9F /* RBFilePreviewer.m */,
+				B676438816426459006D1B9F /* UIImage+BBlock.h */,
+				B676438916426459006D1B9F /* UIImage+BBlock.m */,
+			);
+			name = RBFilePreviewer;
+			path = classes/RBFilePreviewer;
+			sourceTree = "<group>";
+		};
 		B69DAC1B163665C700CB4AA7 = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +333,7 @@
 		B69DAC29163665C700CB4AA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B676439216426787006D1B9F /* QuickLook.framework */,
 				B667D84F1638D6DD003262E4 /* QuartzCore.framework */,
 				B69DAC2A163665C700CB4AA7 /* UIKit.framework */,
 				B69DAC2C163665C700CB4AA7 /* Foundation.framework */,
@@ -277,7 +345,9 @@
 		B69DAC30163665C700CB4AA7 /* BoYuEducation */ = {
 			isa = PBXGroup;
 			children = (
+				B676437B16426449006D1B9F /* classes */,
 				B667D7F91638CA45003262E4 /* images */,
+				B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */,
 				B69DAC39163665C700CB4AA7 /* ZYAppDelegate.h */,
 				B69DAC3A163665C700CB4AA7 /* ZYAppDelegate.m */,
 				B69DAC3C163665C700CB4AA7 /* MainStoryboard.storyboard */,
@@ -416,6 +486,11 @@
 				B667D865163915B6003262E4 /* title_1.png in Resources */,
 				B667D866163915B6003262E4 /* title_2.png in Resources */,
 				B667D867163915B6003262E4 /* title_3.png in Resources */,
+				B676436D1641F7C0006D1B9F /* 在线调查.png in Resources */,
+				B676436E1641F7C0006D1B9F /* 在线考试.png in Resources */,
+				B67643711641F951006D1B9F /* title_4.png in Resources */,
+				B676437316423D8F006D1B9F /* button_plus_big.png in Resources */,
+				B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +513,12 @@
 				B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */,
 				B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */,
 				B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */,
+				B676438A16426459006D1B9F /* NSString+RBExtras.m in Sources */,
+				B676438B16426459006D1B9F /* NSURL+RBExtras.m in Sources */,
+				B676438C16426459006D1B9F /* RBBaseFileGenerator.m in Sources */,
+				B676438D16426459006D1B9F /* RBFile.m in Sources */,
+				B676438E16426459006D1B9F /* RBFilePreviewer.m in Sources */,
+				B676438F16426459006D1B9F /* UIImage+BBlock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +529,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B69DAC34163665C700CB4AA7 /* en */,
+				B676437916425470006D1B9F /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -456,6 +538,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B69DAC3D163665C700CB4AA7 /* en */,
+				B676437A16425470006D1B9F /* zh-Hans */,
 			);
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";

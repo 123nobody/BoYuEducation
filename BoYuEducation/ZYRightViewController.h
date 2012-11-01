@@ -25,15 +25,21 @@
     CGPoint _beginPoint;
     CGRect _putInFrame;
     BOOL _isShow;//为了防止动画出现问题，所以不用isHidden。
+    
+    BOOL _isMaxViewState;
+    UIView *_headerView;
+    UIWebView *_webView;
 }
 
 //@property (nonatomic, strong) UIView *superView;
 @property (nonatomic, strong) id<ZYRightViewControllerDelegate> delegate;
 @property (nonatomic, assign) CGRect putInFrame;
 @property (nonatomic, assign) BOOL isShow;
+@property (nonatomic, strong) UIWebView *webView;
 
 - (void)addPanGesture;
 - (void)putIn;
 - (void)putOutWithChecking: (BOOL)checking;
+- (UIView *)getHeaderViewWithRightViewFrame: (CGRect)rightViewFrame MenuIndex: (NSInteger)index;
 
 @end

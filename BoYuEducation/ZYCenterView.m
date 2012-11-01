@@ -295,14 +295,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCellStyle cellStyle;
-    if (_currentViewIndex == 3) {
-        cellStyle = UITableViewCellStyleSubtitle;
-    } else {
-        cellStyle = UITableViewCellStyleDefault;
-    }
+//    UITableViewCellStyle cellStyle;
+//    if (_currentViewIndex == 3) {
+//        cellStyle = UITableViewCellStyleSubtitle;
+//    } else {
+//        cellStyle = UITableViewCellStyleDefault;
+//    }
     
-    UITableViewCell *cell = [[UITableViewCell alloc]initWithStyle:cellStyle reuseIdentifier:@"cell"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
@@ -340,8 +340,12 @@
     
     if (_currentViewIndex == 0) {
         image = [UIImage imageNamed:@"icon01.png"];
-    } else {
-        image = [UIImage imageNamed:@"button_01.png"];
+    } else if (_currentViewIndex == 1) {
+        image = [UIImage imageNamed:@"在线调查.png"];
+    } else if (_currentViewIndex == 2) {
+        image = [UIImage imageNamed:@"在线考试.png"];
+    } else if (_currentViewIndex == 3) {
+        image = [UIImage imageNamed:@""];
     }
     imageView = [[UIImageView alloc]initWithImage:image];
     frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
@@ -355,7 +359,7 @@
     if (_currentViewIndex == 0) {
         frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
     } else {
-        frame = CGRectMake(120, ((cellHeight - 20) / 2), 300, 20);
+        frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
     }
         
     label = [[UILabel alloc]initWithFrame:frame];
@@ -394,16 +398,27 @@
             
         case 3:
         {
-            label.text = @"";
+            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 13, 400, 20)];
+            titleLabel.text = @"金融资讯";
+            [cell addSubview:titleLabel];
+            [titleLabel release];
+            
+            label.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
+            label.textColor = [UIColor grayColor];
+            label.font = [UIFont systemFontOfSize:14];
+            [label setFrame:CGRectMake(15, 40, 400, 90)];
+            label.lineBreakMode = UILineBreakModeWordWrap; 
+            label.numberOfLines = 0;
+            
             UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
             shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
             [cell addSubview:shadowView];
             [shadowView release];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            
-            cell.textLabel.text = @"金融资讯";
-            cell.detailTextLabel.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
+//            
+//            cell.textLabel.text = @"金融资讯";
+//            cell.detailTextLabel.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
         }
             break;
             
@@ -497,7 +512,7 @@
     UIView *footerView;
     CGRect frame;
     
-    frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), 12);
+    frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), 2);
     footerView = [[UIView alloc]initWithFrame:frame];
     footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
     
@@ -522,6 +537,7 @@
     [self moveCenterViewToDirection:@"left"];
 //    [_delegate didMoveCenterViewToDirection:@"left"];
     [_delegate centerTableView:(ZYCenterTableView *)tableView didDeselectRowAtIndexPath:indexPath];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)changeContentViewWithMenuIndex:(NSInteger)index
@@ -540,12 +556,12 @@
     _tableView  = [self getTableView];
     
     NSLog(@"changeContentView");
-    CGRect frame;
-    frame = self.frame;
-    frame.origin.x = BY_CENTERVIEW_SHADOW_WIDTH;
-    frame.size.width -= BY_CENTERVIEW_SHADOW_WIDTH * 2;
-    UIView *tmpView = [[UIView alloc]initWithFrame:frame];
-    tmpView.backgroundColor = [UIColor whiteColor];
+//    CGRect frame;
+//    frame = self.frame;
+//    frame.origin.x = BY_CENTERVIEW_SHADOW_WIDTH;
+//    frame.size.width -= BY_CENTERVIEW_SHADOW_WIDTH * 2;
+//    UIView *tmpView = [[UIView alloc]initWithFrame:frame];
+//    tmpView.backgroundColor = [UIColor whiteColor];
     
     // 准备动画
     CATransition *animation = [CATransition animation];
