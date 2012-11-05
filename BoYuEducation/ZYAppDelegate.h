@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FMDatabase.h"
 
 @interface ZYAppDelegate : UIResponder <UIApplicationDelegate>
 
+{
+    FMDatabase *_boyuDB;
+}
+
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, strong) FMDatabase *boyuDB;
 
 @end

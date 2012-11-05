@@ -425,6 +425,7 @@
         default:
             break;
     }
+    
     [cell addSubview:label];
     [label release];
     

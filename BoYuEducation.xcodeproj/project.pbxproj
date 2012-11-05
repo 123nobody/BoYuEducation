@@ -72,6 +72,7 @@
 		B676438F16426459006D1B9F /* UIImage+BBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = B676438916426459006D1B9F /* UIImage+BBlock.m */; };
 		B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */ = {isa = PBXBuildFile; fileRef = B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */; };
 		B676439316426787006D1B9F /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B676439216426787006D1B9F /* QuickLook.framework */; };
+		B679616A16479FF6009498EE /* BoYuEdu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B679616916479FF6009498EE /* BoYuEdu.sqlite */; };
 		B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2A163665C700CB4AA7 /* UIKit.framework */; };
 		B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2C163665C700CB4AA7 /* Foundation.framework */; };
 		B69DAC2F163665C700CB4AA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2E163665C700CB4AA7 /* CoreGraphics.framework */; };
@@ -81,8 +82,18 @@
 		B69DAC3E163665C700CB4AA7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69DAC3C163665C700CB4AA7 /* MainStoryboard.storyboard */; };
 		B69DAC41163665C700CB4AA7 /* ZYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC40163665C700CB4AA7 /* ZYViewController.m */; };
 		B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BA6E3F163F75060019646D /* ZYTableViewCell.m */; };
+		B6BF536C16478000001CA513 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536216478000001CA513 /* FMDatabase.m */; };
+		B6BF536D16478000001CA513 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536416478000001CA513 /* FMDatabaseAdditions.m */; };
+		B6BF536E16478000001CA513 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536616478000001CA513 /* FMDatabasePool.m */; };
+		B6BF536F16478000001CA513 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536816478000001CA513 /* FMDatabaseQueue.m */; };
+		B6BF537116478000001CA513 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536B16478000001CA513 /* FMResultSet.m */; };
+		B6BF537C16478A0A001CA513 /* ZYTestDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF537B16478A0A001CA513 /* ZYTestDAO.m */; };
+		B6BF538016478D50001CA513 /* ZYTestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF537F16478D50001CA513 /* ZYTestModel.m */; };
+		B6BF5383164795B0001CA513 /* BaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF5382164795B0001CA513 /* BaseDao.m */; };
 		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
 		B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC6608163EACDA00244922 /* ZYSettingViewController.m */; };
+		B6E9F5671647991500F889BC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E9F5661647991500F889BC /* libz.dylib */; };
+		B6E9F5691647991C00F889BC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -166,6 +177,7 @@
 		B676438916426459006D1B9F /* UIImage+BBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BBlock.m"; sourceTree = "<group>"; };
 		B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "TaoBao客户端高性能高稳定性应用框架 .pdf"; sourceTree = "<group>"; };
 		B676439216426787006D1B9F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		B679616916479FF6009498EE /* BoYuEdu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoYuEdu.sqlite; sourceTree = "<group>"; };
 		B69DAC26163665C700CB4AA7 /* BoYuEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69DAC2A163665C700CB4AA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B69DAC2C163665C700CB4AA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -181,10 +193,28 @@
 		B69DAC40163665C700CB4AA7 /* ZYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYViewController.m; sourceTree = "<group>"; };
 		B6BA6E3E163F75060019646D /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
 		B6BA6E3F163F75060019646D /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
+		B6BF536116478000001CA513 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		B6BF536216478000001CA513 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		B6BF536316478000001CA513 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		B6BF536416478000001CA513 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		B6BF536516478000001CA513 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		B6BF536616478000001CA513 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		B6BF536716478000001CA513 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		B6BF536816478000001CA513 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		B6BF536A16478000001CA513 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		B6BF536B16478000001CA513 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		B6BF537A16478A0A001CA513 /* ZYTestDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYTestDAO.h; path = DAO/ZYTestDAO.h; sourceTree = "<group>"; };
+		B6BF537B16478A0A001CA513 /* ZYTestDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYTestDAO.m; path = DAO/ZYTestDAO.m; sourceTree = "<group>"; };
+		B6BF537E16478D50001CA513 /* ZYTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZYTestModel.h; path = model/ZYTestModel.h; sourceTree = "<group>"; };
+		B6BF537F16478D50001CA513 /* ZYTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZYTestModel.m; path = model/ZYTestModel.m; sourceTree = "<group>"; };
+		B6BF5381164795B0001CA513 /* BaseDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseDao.h; path = DAO/BaseDao.h; sourceTree = "<group>"; };
+		B6BF5382164795B0001CA513 /* BaseDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseDao.m; path = DAO/BaseDao.m; sourceTree = "<group>"; };
 		B6D652B8163B9E6100F888DF /* ZYRightViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYRightViewController.h; sourceTree = "<group>"; };
 		B6D652B9163B9E6100F888DF /* ZYRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightViewController.m; sourceTree = "<group>"; };
 		B6DC6607163EACDA00244922 /* ZYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSettingViewController.h; sourceTree = "<group>"; };
 		B6DC6608163EACDA00244922 /* ZYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSettingViewController.m; sourceTree = "<group>"; };
+		B6E9F5661647991500F889BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +222,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6E9F5691647991C00F889BC /* libsqlite3.0.dylib in Frameworks */,
+				B6E9F5671647991500F889BC /* libz.dylib in Frameworks */,
 				B676439316426787006D1B9F /* QuickLook.framework in Frameworks */,
 				B667D8501638D6DD003262E4 /* QuartzCore.framework in Frameworks */,
 				B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */,
@@ -287,6 +319,7 @@
 		B676437B16426449006D1B9F /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				B6BF536016478000001CA513 /* FMDB */,
 				B676437C16426459006D1B9F /* RBFilePreviewer */,
 			);
 			name = classes;
@@ -333,6 +366,8 @@
 		B69DAC29163665C700CB4AA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */,
+				B6E9F5661647991500F889BC /* libz.dylib */,
 				B676439216426787006D1B9F /* QuickLook.framework */,
 				B667D84F1638D6DD003262E4 /* QuartzCore.framework */,
 				B69DAC2A163665C700CB4AA7 /* UIKit.framework */,
@@ -345,6 +380,8 @@
 		B69DAC30163665C700CB4AA7 /* BoYuEducation */ = {
 			isa = PBXGroup;
 			children = (
+				B6BF537D16478C8B001CA513 /* model */,
+				B6BF53721647887D001CA513 /* DAO */,
 				B676437B16426449006D1B9F /* classes */,
 				B667D7F91638CA45003262E4 /* images */,
 				B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */,
@@ -379,12 +416,51 @@
 		B69DAC31163665C700CB4AA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B679616916479FF6009498EE /* BoYuEdu.sqlite */,
 				B69DAC32163665C700CB4AA7 /* BoYuEducation-Info.plist */,
 				B69DAC33163665C700CB4AA7 /* InfoPlist.strings */,
 				B69DAC36163665C700CB4AA7 /* main.m */,
 				B69DAC38163665C700CB4AA7 /* BoYuEducation-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B6BF536016478000001CA513 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				B6BF536116478000001CA513 /* FMDatabase.h */,
+				B6BF536216478000001CA513 /* FMDatabase.m */,
+				B6BF536316478000001CA513 /* FMDatabaseAdditions.h */,
+				B6BF536416478000001CA513 /* FMDatabaseAdditions.m */,
+				B6BF536516478000001CA513 /* FMDatabasePool.h */,
+				B6BF536616478000001CA513 /* FMDatabasePool.m */,
+				B6BF536716478000001CA513 /* FMDatabaseQueue.h */,
+				B6BF536816478000001CA513 /* FMDatabaseQueue.m */,
+				B6BF536A16478000001CA513 /* FMResultSet.h */,
+				B6BF536B16478000001CA513 /* FMResultSet.m */,
+			);
+			name = FMDB;
+			path = classes/FMDB;
+			sourceTree = "<group>";
+		};
+		B6BF53721647887D001CA513 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				B6BF5381164795B0001CA513 /* BaseDao.h */,
+				B6BF5382164795B0001CA513 /* BaseDao.m */,
+				B6BF537A16478A0A001CA513 /* ZYTestDAO.h */,
+				B6BF537B16478A0A001CA513 /* ZYTestDAO.m */,
+			);
+			name = DAO;
+			sourceTree = "<group>";
+		};
+		B6BF537D16478C8B001CA513 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				B6BF537E16478D50001CA513 /* ZYTestModel.h */,
+				B6BF537F16478D50001CA513 /* ZYTestModel.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,6 +567,7 @@
 				B67643711641F951006D1B9F /* title_4.png in Resources */,
 				B676437316423D8F006D1B9F /* button_plus_big.png in Resources */,
 				B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */,
+				B679616A16479FF6009498EE /* BoYuEdu.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +596,14 @@
 				B676438D16426459006D1B9F /* RBFile.m in Sources */,
 				B676438E16426459006D1B9F /* RBFilePreviewer.m in Sources */,
 				B676438F16426459006D1B9F /* UIImage+BBlock.m in Sources */,
+				B6BF536C16478000001CA513 /* FMDatabase.m in Sources */,
+				B6BF536D16478000001CA513 /* FMDatabaseAdditions.m in Sources */,
+				B6BF536E16478000001CA513 /* FMDatabasePool.m in Sources */,
+				B6BF536F16478000001CA513 /* FMDatabaseQueue.m in Sources */,
+				B6BF537116478000001CA513 /* FMResultSet.m in Sources */,
+				B6BF537C16478A0A001CA513 /* ZYTestDAO.m in Sources */,
+				B6BF538016478D50001CA513 /* ZYTestModel.m in Sources */,
+				B6BF5383164795B0001CA513 /* BaseDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

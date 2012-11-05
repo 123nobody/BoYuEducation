@@ -8,6 +8,7 @@
 
 #import "ZYViewController.h"
 #import "RBFilePreviewer.h"
+#import "ZYTestDao.h"
 
 @interface ZYViewController ()
 
@@ -18,6 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ZYTestDAO *testDao = [[ZYTestDAO alloc]init];
+    NSString *ss = [testDao testing];
+    NSLog(@"NAME:%@", ss);
+    return;
     
     NSLog(@"load example view, frame: %@", NSStringFromCGRect(self.view.frame));
     _skinId = 0;

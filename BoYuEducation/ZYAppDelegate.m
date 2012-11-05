@@ -8,9 +8,15 @@
 
 #import "ZYAppDelegate.h"
 
+@interface ZYAppDelegate (Private)
+- (BOOL)initDatabase;
+
+@end
+
 @implementation ZYAppDelegate
 
 @synthesize window = _window;
+@synthesize boyuDB = _boyuDB;
 
 - (void)dealloc
 {
@@ -21,7 +27,39 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    //初始化数据库,连接数据库
+    if (![self initDatabase]) {
+        NSLog(@"Failed to init Database.");
+    }
     return YES;
+}
+
+// 初始化数据库
+- (BOOL)initDatabase{
+    BOOL success;
+    NSError *error;
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    // 本地可写数库路径
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"BoYuEdu.sqlite"];
+    
+    success = [fm fileExistsAtPath:writableDBPath];
+    if(!success){
+        // 本地可写数库路径不存在，新建
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BoYuEdu.sqlite"];
+        
+        success = [fm copyItemAtPath:defaultDBPath toPath:writableDBPath error:&error];
+        if(!success){
+            NSLog(@"Failed to copy database '%@'.", [error localizedDescription]);
+        }
+        //success = NO;
+    }
+    if(success){
+        //本地可写数库路径存在，读取数据库文件
+        _boyuDB = [FMDatabase databaseWithPath:writableDBPath];
+    }
+    return success;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
