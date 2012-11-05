@@ -65,6 +65,34 @@
     [topView addSubview:view];
     [view release];
     
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 17, 300, 20)];
+    titleLabel.backgroundColor = [UIColor clearColor];
+    titleLabel.textColor = [UIColor whiteColor];
+    titleLabel.font = [UIFont boldSystemFontOfSize:17.f];
+    
+    switch (_currentViewIndex) {
+        case 0:
+            titleLabel.text = @"课程安排";
+            break;
+            
+        case 1:
+            titleLabel.text = @"在线调查";
+            break;
+            
+        case 2:
+            titleLabel.text = @"在线考试";
+            break;
+            
+        case 3:
+            titleLabel.text = @"金融资讯";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [topView addSubview:titleLabel];
+    [titleLabel release];
     
     return topView;
 }
@@ -275,36 +303,20 @@
     _tableView.allowsSelection = YES;
 }
 
-//- (void)ZYCenterTableViewTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-////    NSLog(@"ZYCenterTableViewTouchesBegan");
-//    [self touchesBegan:touches withEvent:event];
-//}
-//
-//- (void)ZYCenterTableViewTouchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-////    NSLog(@"ZYCenterTableViewTouchesMoved");
-//    [self touchesMoved:touches withEvent:event];
-//}
-//
-//- (void)ZYCenterTableViewTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-////    NSLog(@"ZYCenterTableViewTouchesEnded");
-//    [self touchesEnded:touches withEvent:event];
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    UITableViewCellStyle cellStyle;
-//    if (_currentViewIndex == 3) {
-//        cellStyle = UITableViewCellStyleSubtitle;
-//    } else {
-//        cellStyle = UITableViewCellStyleDefault;
-//    }
+{    
+    UIImageView *imageView;
+    UILabel *label;
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        imageView = [[UIImageView alloc]init];
+        imageView.tag = 11;
+        [cell addSubview:imageView];
+        label = [[UILabel alloc]init];
+        label.tag = 22;
+        [cell addSubview:label];
     }
     
     //清除cell的背景边框
@@ -313,72 +325,44 @@
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    //定义一些要用到的控件
     CGFloat cellHeight;
-    
-    if (_currentViewIndex == 0) {
-        cellHeight = 40.f;
-    } else if (_currentViewIndex == 1 || _currentViewIndex == 2) {
-        cellHeight = 100.f;
-    } else if (_currentViewIndex == 3) {
-        cellHeight = 150.f;
-    }
-    
     CGRect frame;
-//    UIView *view;
-    UIImageView *imageView;
     UIImage *image;
-    UILabel *label;
+    imageView = (UIImageView *)[cell viewWithTag:11];
     
-    frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), 20);
-    
-    //如果是第一次，就初始化view，否则取出来处理。
-//    view = [cell viewWithTag:99];
-//    if (view == nil) {
-//        view = [[UIView alloc]initWithFrame:frame];
-//        view.backgroundColor = [UIColor whiteColor];
-//    }
-    
-    if (_currentViewIndex == 0) {
-        image = [UIImage imageNamed:@"icon01.png"];
-    } else if (_currentViewIndex == 1) {
-        image = [UIImage imageNamed:@"在线调查.png"];
-    } else if (_currentViewIndex == 2) {
-        image = [UIImage imageNamed:@"在线考试.png"];
-    } else if (_currentViewIndex == 3) {
-        image = [UIImage imageNamed:@""];
-    }
-    imageView = [[UIImageView alloc]initWithImage:image];
-    frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
-    [imageView setFrame:frame];
-//    [view addSubview:imageView];
-    if (_currentViewIndex != 3) {
-        [cell addSubview:imageView];
-    }
-    [imageView release];
-    
-    if (_currentViewIndex == 0) {
-        frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
-    } else {
-        frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
-    }
-        
-    label = [[UILabel alloc]initWithFrame:frame];
+    label = (UILabel *)[cell viewWithTag:22];
     label.backgroundColor = [UIColor clearColor];
+
     
     switch (_currentViewIndex) {
         case 0:
         {
+            cellHeight = 40.f;
+            //添加cell图片
+            image = [UIImage imageNamed:@"icon01.png"];
+            imageView.image = image;
+            frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
+            [imageView setFrame:frame];
+            
+            frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
+            [label setFrame:frame];
             label.text = @"金融理财概述和CFP制度";
         }
             break;
             
         case 1:
         {
+            cellHeight = 100.f;
+            //添加cell图片
+            image = [UIImage imageNamed:@"在线调查.png"];
+            imageView.image = image;
+            frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
+            [imageView setFrame:frame];
+            
+            frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
+            [label setFrame:frame];
             label.text = @"倾向时间价值与财务计算器操作";
-            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
-            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
-            [cell addSubview:shadowView];
-            [shadowView release];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -386,11 +370,16 @@
             
         case 2:
         {
+            cellHeight = 100.f;
+            //添加cell图片
+            image = [UIImage imageNamed:@"在线考试.png"];
+            imageView.image = image;
+            frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
+            [imageView setFrame:frame];
+            
+            frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
+            [label setFrame:frame];
             label.text = @"居住规划与房间投资";
-            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
-            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
-            [cell addSubview:shadowView];
-            [shadowView release];
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -398,11 +387,24 @@
             
         case 3:
         {
-            UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 13, 400, 20)];
-            titleLabel.text = @"金融资讯";
-            [cell addSubview:titleLabel];
-            [titleLabel release];
+            cellHeight = 150.f;
+            //添加cell图片
+            image = [UIImage imageNamed:@""];
+            imageView.image = image;
+            frame = CGRectMake(20, ((cellHeight - image.size.height) / 2), image.size.width, image.size.height);
+            [imageView setFrame:frame];
             
+            UILabel *titleLabel = (UILabel *)[cell viewWithTag:44];
+            if (titleLabel == nil) {
+                titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(15, 13, 400, 20)];
+                titleLabel.tag = 44;
+                [cell addSubview:titleLabel];
+                [titleLabel release];
+            }
+            titleLabel.text = @"金融资讯";
+            
+            frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
+            [label setFrame:frame];
             label.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:14];
@@ -410,15 +412,7 @@
             label.lineBreakMode = UILineBreakModeWordWrap; 
             label.numberOfLines = 0;
             
-            UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
-            shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
-            [cell addSubview:shadowView];
-            [shadowView release];
-            
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//            
-//            cell.textLabel.text = @"金融资讯";
-//            cell.detailTextLabel.text = @"内容内容内容内容123内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内asda容内容内容内容内容内gfgg787容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内4564容内容内容内容";
         }
             break;
             
@@ -426,11 +420,13 @@
             break;
     }
     
-    [cell addSubview:label];
-    [label release];
-    
-//    [cell addSubview:view];
-//    [view release];
+    if (_currentViewIndex != 0 && [cell viewWithTag:33] == nil) {
+        UIView *shadowView = [[UIView alloc]initWithFrame:CGRectMake(0, (cellHeight - 12), BY_CENTERVIEW_WIDTH, 12)];
+        shadowView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
+        shadowView.tag = 33;
+        [cell addSubview:shadowView];
+        [shadowView release];
+    }
     
     return cell;
 }
@@ -464,9 +460,11 @@
 //Section View
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-//    if (_currentViewIndex != 0) {
-//        return [[[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)]autorelease];
-//    }
+    if (_currentViewIndex != 0) {
+        return nil;
+    }
+    
+    //!@#!@# 修改培训课程的group header标题
     
     UIView *headerView;
     CGRect frame;
@@ -490,11 +488,7 @@
     [headerView addSubview:label];
     [label release];
     
-    if (_currentViewIndex != 0) {
-        return nil;
-    } else  {
     return headerView;
-    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -550,10 +544,11 @@
 //    return;
     
     //移除view
-//    [_topView removeFromSuperview];
+    [_topView removeFromSuperview];
     [_tableView removeFromSuperview];
 //    [_bottomView removeFromSuperview];
-//    
+    //    
+    _topView = [self getTopView];
     _tableView  = [self getTableView];
     
     NSLog(@"changeContentView");
@@ -580,7 +575,7 @@
     [self.layer addAnimation:animation forKey:nil];
     
     //变更
-//    [_contentView addSubview:_topView];
+    [_contentView addSubview:_topView];
     [_contentView addSubview:_tableView];
 //    [_contentView addSubview:_bottomView];
     [_tableView reloadData];

@@ -73,6 +73,23 @@
 		B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */ = {isa = PBXBuildFile; fileRef = B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */; };
 		B676439316426787006D1B9F /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B676439216426787006D1B9F /* QuickLook.framework */; };
 		B679616A16479FF6009498EE /* BoYuEdu.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B679616916479FF6009498EE /* BoYuEdu.sqlite */; };
+		B67961751647A5CD009498EE /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B67961741647A5CD009498EE /* libsqlite3.0.dylib */; };
+		B67961781647D4BC009498EE /* Model_pExchangeRate.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961771647D4BC009498EE /* Model_pExchangeRate.m */; };
+		B679617B1647D579009498EE /* Model_pForwardExchangeRate.m in Sources */ = {isa = PBXBuildFile; fileRef = B679617A1647D579009498EE /* Model_pForwardExchangeRate.m */; };
+		B679617E1647D5C0009498EE /* Model_pFund.m in Sources */ = {isa = PBXBuildFile; fileRef = B679617D1647D5C0009498EE /* Model_pFund.m */; };
+		B67961811647D5FA009498EE /* Model_pInterestRate.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961801647D5FA009498EE /* Model_pInterestRate.m */; };
+		B67961841647D632009498EE /* Model_tAttch.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961831647D632009498EE /* Model_tAttch.m */; };
+		B67961871647D64B009498EE /* Model_tDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961861647D64B009498EE /* Model_tDic.m */; };
+		B679618A1647D672009498EE /* Model_tLesson.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961891647D672009498EE /* Model_tLesson.m */; };
+		B679618D1647D68B009498EE /* Model_tPara.m in Sources */ = {isa = PBXBuildFile; fileRef = B679618C1647D68B009498EE /* Model_tPara.m */; };
+		B67961901647D6A5009498EE /* Model_tSearchAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = B679618F1647D6A4009498EE /* Model_tSearchAnswer.m */; };
+		B67961931647D6C0009498EE /* Model_tSearchOption.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961921647D6C0009498EE /* Model_tSearchOption.m */; };
+		B67961961647D6DA009498EE /* Model_tSearchQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961951647D6DA009498EE /* Model_tSearchQuestion.m */; };
+		B67961991647D6FB009498EE /* Model_tSearchTopic.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961981647D6FB009498EE /* Model_tSearchTopic.m */; };
+		B679619C1647D70F009498EE /* Model_tStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = B679619B1647D70E009498EE /* Model_tStudent.m */; };
+		B679619F1647D724009498EE /* Model_tTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = B679619E1647D723009498EE /* Model_tTeacher.m */; };
+		B67961A21647D737009498EE /* Model_tTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A11647D737009498EE /* Model_tTrain.m */; };
+		B67961A51647D749009498EE /* Model_tTrainday.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A41647D749009498EE /* Model_tTrainday.m */; };
 		B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2A163665C700CB4AA7 /* UIKit.framework */; };
 		B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2C163665C700CB4AA7 /* Foundation.framework */; };
 		B69DAC2F163665C700CB4AA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2E163665C700CB4AA7 /* CoreGraphics.framework */; };
@@ -92,8 +109,6 @@
 		B6BF5383164795B0001CA513 /* BaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF5382164795B0001CA513 /* BaseDao.m */; };
 		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
 		B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC6608163EACDA00244922 /* ZYSettingViewController.m */; };
-		B6E9F5671647991500F889BC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E9F5661647991500F889BC /* libz.dylib */; };
-		B6E9F5691647991C00F889BC /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +193,39 @@
 		B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "TaoBao客户端高性能高稳定性应用框架 .pdf"; sourceTree = "<group>"; };
 		B676439216426787006D1B9F /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		B679616916479FF6009498EE /* BoYuEdu.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoYuEdu.sqlite; sourceTree = "<group>"; };
+		B67961741647A5CD009498EE /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		B67961761647D4BC009498EE /* Model_pExchangeRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_pExchangeRate.h; path = model/Model_pExchangeRate.h; sourceTree = "<group>"; };
+		B67961771647D4BC009498EE /* Model_pExchangeRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_pExchangeRate.m; path = model/Model_pExchangeRate.m; sourceTree = "<group>"; };
+		B67961791647D579009498EE /* Model_pForwardExchangeRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_pForwardExchangeRate.h; path = model/Model_pForwardExchangeRate.h; sourceTree = "<group>"; };
+		B679617A1647D579009498EE /* Model_pForwardExchangeRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_pForwardExchangeRate.m; path = model/Model_pForwardExchangeRate.m; sourceTree = "<group>"; };
+		B679617C1647D5C0009498EE /* Model_pFund.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_pFund.h; path = model/Model_pFund.h; sourceTree = "<group>"; };
+		B679617D1647D5C0009498EE /* Model_pFund.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_pFund.m; path = model/Model_pFund.m; sourceTree = "<group>"; };
+		B679617F1647D5FA009498EE /* Model_pInterestRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_pInterestRate.h; path = model/Model_pInterestRate.h; sourceTree = "<group>"; };
+		B67961801647D5FA009498EE /* Model_pInterestRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_pInterestRate.m; path = model/Model_pInterestRate.m; sourceTree = "<group>"; };
+		B67961821647D632009498EE /* Model_tAttch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tAttch.h; path = model/Model_tAttch.h; sourceTree = "<group>"; };
+		B67961831647D632009498EE /* Model_tAttch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tAttch.m; path = model/Model_tAttch.m; sourceTree = "<group>"; };
+		B67961851647D64B009498EE /* Model_tDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tDic.h; path = model/Model_tDic.h; sourceTree = "<group>"; };
+		B67961861647D64B009498EE /* Model_tDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tDic.m; path = model/Model_tDic.m; sourceTree = "<group>"; };
+		B67961881647D672009498EE /* Model_tLesson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tLesson.h; path = model/Model_tLesson.h; sourceTree = "<group>"; };
+		B67961891647D672009498EE /* Model_tLesson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tLesson.m; path = model/Model_tLesson.m; sourceTree = "<group>"; };
+		B679618B1647D68B009498EE /* Model_tPara.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tPara.h; path = model/Model_tPara.h; sourceTree = "<group>"; };
+		B679618C1647D68B009498EE /* Model_tPara.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tPara.m; path = model/Model_tPara.m; sourceTree = "<group>"; };
+		B679618E1647D6A4009498EE /* Model_tSearchAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tSearchAnswer.h; path = model/Model_tSearchAnswer.h; sourceTree = "<group>"; };
+		B679618F1647D6A4009498EE /* Model_tSearchAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tSearchAnswer.m; path = model/Model_tSearchAnswer.m; sourceTree = "<group>"; };
+		B67961911647D6BF009498EE /* Model_tSearchOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tSearchOption.h; path = model/Model_tSearchOption.h; sourceTree = "<group>"; };
+		B67961921647D6C0009498EE /* Model_tSearchOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tSearchOption.m; path = model/Model_tSearchOption.m; sourceTree = "<group>"; };
+		B67961941647D6DA009498EE /* Model_tSearchQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tSearchQuestion.h; path = model/Model_tSearchQuestion.h; sourceTree = "<group>"; };
+		B67961951647D6DA009498EE /* Model_tSearchQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tSearchQuestion.m; path = model/Model_tSearchQuestion.m; sourceTree = "<group>"; };
+		B67961971647D6FB009498EE /* Model_tSearchTopic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tSearchTopic.h; path = model/Model_tSearchTopic.h; sourceTree = "<group>"; };
+		B67961981647D6FB009498EE /* Model_tSearchTopic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tSearchTopic.m; path = model/Model_tSearchTopic.m; sourceTree = "<group>"; };
+		B679619A1647D70E009498EE /* Model_tStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tStudent.h; path = model/Model_tStudent.h; sourceTree = "<group>"; };
+		B679619B1647D70E009498EE /* Model_tStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tStudent.m; path = model/Model_tStudent.m; sourceTree = "<group>"; };
+		B679619D1647D723009498EE /* Model_tTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tTeacher.h; path = model/Model_tTeacher.h; sourceTree = "<group>"; };
+		B679619E1647D723009498EE /* Model_tTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTeacher.m; path = model/Model_tTeacher.m; sourceTree = "<group>"; };
+		B67961A01647D736009498EE /* Model_tTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tTrain.h; path = model/Model_tTrain.h; sourceTree = "<group>"; };
+		B67961A11647D737009498EE /* Model_tTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrain.m; path = model/Model_tTrain.m; sourceTree = "<group>"; };
+		B67961A31647D748009498EE /* Model_tTrainday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tTrainday.h; path = model/Model_tTrainday.h; sourceTree = "<group>"; };
+		B67961A41647D749009498EE /* Model_tTrainday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrainday.m; path = model/Model_tTrainday.m; sourceTree = "<group>"; };
 		B69DAC26163665C700CB4AA7 /* BoYuEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69DAC2A163665C700CB4AA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B69DAC2C163665C700CB4AA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -213,8 +261,6 @@
 		B6D652B9163B9E6100F888DF /* ZYRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightViewController.m; sourceTree = "<group>"; };
 		B6DC6607163EACDA00244922 /* ZYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSettingViewController.h; sourceTree = "<group>"; };
 		B6DC6608163EACDA00244922 /* ZYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSettingViewController.m; sourceTree = "<group>"; };
-		B6E9F5661647991500F889BC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -222,8 +268,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6E9F5691647991C00F889BC /* libsqlite3.0.dylib in Frameworks */,
-				B6E9F5671647991500F889BC /* libz.dylib in Frameworks */,
+				B67961751647A5CD009498EE /* libsqlite3.0.dylib in Frameworks */,
 				B676439316426787006D1B9F /* QuickLook.framework in Frameworks */,
 				B667D8501638D6DD003262E4 /* QuartzCore.framework in Frameworks */,
 				B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */,
@@ -366,8 +411,7 @@
 		B69DAC29163665C700CB4AA7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B6E9F5681647991C00F889BC /* libsqlite3.0.dylib */,
-				B6E9F5661647991500F889BC /* libz.dylib */,
+				B67961741647A5CD009498EE /* libsqlite3.0.dylib */,
 				B676439216426787006D1B9F /* QuickLook.framework */,
 				B667D84F1638D6DD003262E4 /* QuartzCore.framework */,
 				B69DAC2A163665C700CB4AA7 /* UIKit.framework */,
@@ -459,6 +503,38 @@
 			children = (
 				B6BF537E16478D50001CA513 /* ZYTestModel.h */,
 				B6BF537F16478D50001CA513 /* ZYTestModel.m */,
+				B67961761647D4BC009498EE /* Model_pExchangeRate.h */,
+				B67961771647D4BC009498EE /* Model_pExchangeRate.m */,
+				B67961791647D579009498EE /* Model_pForwardExchangeRate.h */,
+				B679617A1647D579009498EE /* Model_pForwardExchangeRate.m */,
+				B679617C1647D5C0009498EE /* Model_pFund.h */,
+				B679617D1647D5C0009498EE /* Model_pFund.m */,
+				B679617F1647D5FA009498EE /* Model_pInterestRate.h */,
+				B67961801647D5FA009498EE /* Model_pInterestRate.m */,
+				B67961821647D632009498EE /* Model_tAttch.h */,
+				B67961831647D632009498EE /* Model_tAttch.m */,
+				B67961851647D64B009498EE /* Model_tDic.h */,
+				B67961861647D64B009498EE /* Model_tDic.m */,
+				B67961881647D672009498EE /* Model_tLesson.h */,
+				B67961891647D672009498EE /* Model_tLesson.m */,
+				B679618B1647D68B009498EE /* Model_tPara.h */,
+				B679618C1647D68B009498EE /* Model_tPara.m */,
+				B679618E1647D6A4009498EE /* Model_tSearchAnswer.h */,
+				B679618F1647D6A4009498EE /* Model_tSearchAnswer.m */,
+				B67961911647D6BF009498EE /* Model_tSearchOption.h */,
+				B67961921647D6C0009498EE /* Model_tSearchOption.m */,
+				B67961941647D6DA009498EE /* Model_tSearchQuestion.h */,
+				B67961951647D6DA009498EE /* Model_tSearchQuestion.m */,
+				B67961971647D6FB009498EE /* Model_tSearchTopic.h */,
+				B67961981647D6FB009498EE /* Model_tSearchTopic.m */,
+				B679619A1647D70E009498EE /* Model_tStudent.h */,
+				B679619B1647D70E009498EE /* Model_tStudent.m */,
+				B679619D1647D723009498EE /* Model_tTeacher.h */,
+				B679619E1647D723009498EE /* Model_tTeacher.m */,
+				B67961A01647D736009498EE /* Model_tTrain.h */,
+				B67961A11647D737009498EE /* Model_tTrain.m */,
+				B67961A31647D748009498EE /* Model_tTrainday.h */,
+				B67961A41647D749009498EE /* Model_tTrainday.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -604,6 +680,22 @@
 				B6BF537C16478A0A001CA513 /* ZYTestDAO.m in Sources */,
 				B6BF538016478D50001CA513 /* ZYTestModel.m in Sources */,
 				B6BF5383164795B0001CA513 /* BaseDao.m in Sources */,
+				B67961781647D4BC009498EE /* Model_pExchangeRate.m in Sources */,
+				B679617B1647D579009498EE /* Model_pForwardExchangeRate.m in Sources */,
+				B679617E1647D5C0009498EE /* Model_pFund.m in Sources */,
+				B67961811647D5FA009498EE /* Model_pInterestRate.m in Sources */,
+				B67961841647D632009498EE /* Model_tAttch.m in Sources */,
+				B67961871647D64B009498EE /* Model_tDic.m in Sources */,
+				B679618A1647D672009498EE /* Model_tLesson.m in Sources */,
+				B679618D1647D68B009498EE /* Model_tPara.m in Sources */,
+				B67961901647D6A5009498EE /* Model_tSearchAnswer.m in Sources */,
+				B67961931647D6C0009498EE /* Model_tSearchOption.m in Sources */,
+				B67961961647D6DA009498EE /* Model_tSearchQuestion.m in Sources */,
+				B67961991647D6FB009498EE /* Model_tSearchTopic.m in Sources */,
+				B679619C1647D70F009498EE /* Model_tStudent.m in Sources */,
+				B679619F1647D724009498EE /* Model_tTeacher.m in Sources */,
+				B67961A21647D737009498EE /* Model_tTrain.m in Sources */,
+				B67961A51647D749009498EE /* Model_tTrainday.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
