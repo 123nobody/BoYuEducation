@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "ZYMenuView.h"
 #import "ZYCenterTableView.h"
+#import "DAO_tTrain.h"
+#import "DAO_tTrainday.h"
+#import "DAO_tLesson.h"
+#import "ZYDataCache.h"
 
 //centerView宽高
 #define BY_CENTERVIEW_HEIGHT 748.f
@@ -50,9 +54,12 @@
     BOOL _isLocked;
     
     CGPoint _beginPoint;
+    
+    ZYDataCache *_dataCache;
 }
 
 @property (nonatomic, strong) id<ZYCenterViewDelegate> delegate;
+@property (nonatomic, strong) ZYDataCache *dataCache;
 
 @property (nonatomic, assign) BOOL isLocked;
 

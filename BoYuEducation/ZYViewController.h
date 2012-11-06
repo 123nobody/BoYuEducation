@@ -35,6 +35,8 @@
     NSInteger _skinId;
     //模态背景蒙板
     UIView *_maskView;
+    
+    NSUserDefaults *_userDefaults;
 }
 
 //@property(nonatomic, strong) NSArray *cellContents;

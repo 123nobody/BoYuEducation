@@ -6,6 +6,8 @@
 //  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
 //
 
+//tag = 888 是背景全屏透明button的标识
+
 #import "ZYViewController.h"
 #import "RBFilePreviewer.h"
 
@@ -20,7 +22,10 @@
     [super viewDidLoad];
     
     NSLog(@"load example view, frame: %@", NSStringFromCGRect(self.view.frame));
-    _skinId = 0;
+    
+    _userDefaults = [NSUserDefaults standardUserDefaults];
+//    [_userDefaults setInteger:0 forKey:@"skinId"];
+    _skinId = [_userDefaults integerForKey:@"skinId"];
     
     UIView *logoView = [[UIView alloc]initWithFrame:CGRectMake(25, 15, 164, 60)];
     UIImage *logoImage = [UIImage imageNamed:@"logo.png"];
@@ -335,7 +340,7 @@
     
     
     [_rightViewController putIn];
-    NSLog(@"count:%d", [_rightViewController.view subviews].count);
+//    NSLog(@"count:%d", [_rightViewController.view subviews].count);
     [view release];
 }
 
@@ -359,7 +364,7 @@
         NSURL *url = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:file ofType:nil]];
         [urls addObject:url];
     }
-    
+    [documents release];
     return urls;
 }
 
@@ -372,37 +377,20 @@
 {
     RBFilePreviewer * previewer = [[RBFilePreviewer alloc] initWithFiles:[self documentsAsURLs]];
     [previewer setCurrentPreviewItemIndex:0];
-    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
-                                                                             target:self
-                                                                             action:@selector(pressFileCloseButton:)];
+    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(pressFileCloseButton:)];
     [previewer setRightBarButtonItem:button];
     [button release];
     
-    
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:previewer];
+    [previewer release];
+//    UIViewController *fileVC = [[[UIViewController alloc]init]autorelease];
+//    [fileVC.view setFrame:CGRectMake(0, 0, 1024, 348)];
+//    [fileVC.view addSubview:navController.view];
     
+//    [self presentModalViewController:fileVC animated:YES];
     [self presentModalViewController:navController animated:YES];
     [navController release];
     return;
-    
-    
-    
-//    UINavigationController *navigationController = [[UINavigationController alloc]initWithRootViewController:self];
-    
-    UITableViewController *fileViewController = [[UITableViewController alloc]init];
-    [[fileViewController navigationItem] setTitle:@"RBFilePreviewer"];
-    [fileViewController.view setFrame:CGRectMake(100, 100, 824, 648)];
-    [self.view addSubview:fileViewController.view];
-    
-    [[fileViewController navigationController] pushViewController:previewer animated:YES];
-    
-//    [fileView addSubview:navigationController.view];
-    
-//    [self.view addSubview:fileView];
-    [previewer release];
-//    [fileView release];
-    [fileViewController release];
-    NSLog(@"filefilefile");
 }
 
 //ZYAppView代理
@@ -417,12 +405,12 @@
 
 - (void)pushBackgound
 {
-    [[self.view viewWithTag:22] setHidden:![self.view viewWithTag:22].isHidden];
-    if ([self.view viewWithTag:22] == nil) {
+    [[self.view viewWithTag:888] setHidden:![self.view viewWithTag:888].isHidden];
+    if ([self.view viewWithTag:888] == nil) {
         UIButton *fullViewButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [fullViewButton setFrame:CGRectMake(0, 0, 1024, 748)];
         [fullViewButton setBackgroundColor:[UIColor clearColor]];
-        fullViewButton.tag = 22;
+        fullViewButton.tag = 888;
         [fullViewButton addTarget:self action:@selector(pressBackgroundButton:) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:fullViewButton];
     }
@@ -515,6 +503,8 @@
         [button_add setBackgroundImage:image forState:UIControlStateNormal];
         [button_add addTarget:self action:@selector(pressBackgroundButton:) forControlEvents:UIControlEventTouchUpInside];
         [_backgroundMaskView addSubview:button_add];
+        
+        [scrollView release];
     } else {
         bgMaskView = [_backgroundMaskView viewWithTag:33];
     }
@@ -554,7 +544,7 @@
         [_backgroundMaskView setFrame:CGRectMake(0, 868, 1024, 140)];
         _backgroundMaskView.tag = 0;
     }
-    
+    [bgMaskView release];
     // 结束动画
     [UIView commitAnimations];
 }
@@ -563,7 +553,7 @@
 {
     UIButton *button = (UIButton *)sender;
     NSLog(@"btn.tag = %d", button.tag);
-    if (button.tag == 22) {
+    if (button.tag == 888) {
 //        [button removeFromSuperview];
         [self pushBackgound];
         return;
@@ -576,8 +566,10 @@
         
         UIPopoverController *popoverController = [[UIPopoverController alloc] initWithContentViewController:imagePickerController];
         [popoverController presentPopoverFromRect:CGRectMake(0, 0, 0, 0) inView:button permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        [popoverController release];
         return;
     }
+    [_userDefaults setInteger:button.tag forKey:@"skinId"];
     [self changeSkinId:button.tag];
 }
 
@@ -605,7 +597,10 @@
     [animation setType:kCATransitionFade];
     [self.view.layer addAnimation:animation forKey:nil];
     
+    [_userDefaults setInteger:skinId forKey:@"skinId"];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:[skinNameArray objectAtIndex:skinId]]];
+    [skinNameArray release];
     // 结束动画
     [UIView commitAnimations];
 }
@@ -652,6 +647,7 @@
     settingViewController.view.superview.frame = CGRectMake(0.f, 0.f, 600.f, 600.f);//it's important to do this after 
     settingViewController.view.superview.center = CGPointMake(512, 384);
     
+    [settingViewController release];
     return;
 }
 //////rightView tableView 代理
@@ -704,7 +700,7 @@
                 
                 //文件背景蓝
                 image = [UIImage imageNamed:@"file_br.png"];
-                imageView = [[UIImageView alloc]initWithImage:image];
+//                imageView = [[UIImageView alloc]initWithImage:image];
                 frame = CGRectMake(20, 170, image.size.width, image.size.height);
                 UIButton *fileButton = [UIButton buttonWithType:UIButtonTypeCustom];
                 [fileButton setBackgroundImage:image forState:UIControlStateNormal];
@@ -882,8 +878,11 @@
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+//    [_menuView release];
+//    [_menuView dealloc];
     [_menuView release];
-    [_menuView dealloc];
+    _menuView  = nil;
+    
     [_cellContents release];
 //    [_cellContents dealloc];
     [_cellTabViews release];
@@ -897,6 +896,12 @@
     
     [_backgroundMaskView release];
     
+}
+
+-(void)dealloc {
+    [_menuView release];
+    _menuView  = nil;
+    [super dealloc];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

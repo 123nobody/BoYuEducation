@@ -13,6 +13,7 @@
 
 @synthesize delegate = _delegate;
 @synthesize isLocked = _isLocked;
+@synthesize dataCache = _dataCache;
 
 - (id)init
 {
@@ -42,6 +43,9 @@
         [self addSubview:_leftShadowView];
         _rightShadowView = [self getRightShadowView];
         [self addSubview:_rightShadowView];
+        
+        self.dataCache = [[ZYDataCache alloc]init];
+//        NSMutableDictionary *dic = [dataCache getMenu_1_Dic];
     }
     
     return self;
@@ -72,7 +76,12 @@
     
     switch (_currentViewIndex) {
         case 0:
-            titleLabel.text = @"课程安排";
+        {
+            DAO_tTrain *trainDao = [[DAO_tTrain alloc]init];
+            titleLabel.text = [trainDao selectTrainName];
+            [trainDao release];
+//            titleLabel.text = @"课程安排";
+        }
             break;
             
         case 1:
@@ -347,7 +356,18 @@
             
             frame = CGRectMake(45, ((cellHeight - 20) / 2), 300, 20);
             [label setFrame:frame];
-            label.text = @"金融理财概述和CFP制度";
+            
+//            DAO_tLesson *lessonDAO = [[DAO_tLesson alloc]init];
+//            label.text = [lessonDAO nameOfLessonsWithIndexPath:indexPath];
+//            NSLog(@"dd %@",label.text);
+//            [lessonDAO release];
+            
+            NSString *key = [[self.dataCache.menu_1_Dic allKeys] objectAtIndex:indexPath.section];
+            NSArray *titles = [self.dataCache.menu_1_Dic objectForKey:key];
+            label.text = [titles objectAtIndex:indexPath.row];
+            
+            
+//            label.text = @"金融理财概述和CFP制度";
         }
             break;
             
@@ -443,16 +463,47 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (_currentViewIndex == 0) {
-        return 3;
+    int num = 2;
+    switch (_currentViewIndex) {
+        case 0:
+        {
+            DAO_tLesson *lessonDAO = [[DAO_tLesson alloc]init];
+            num = [lessonDAO numberOfLessonsWithTraindayId:(section + 1)];//section从0开始，traindayid从1开始。
+            [lessonDAO release];
+        }
+            break;
+            
+        case 1:
+        {
+            
+        }
+            break;
+            
+        case 2:
+        {
+            
+        }
+            break;
+            
+        case 3:
+        {
+            
+        }
+            break;
+            
+        default:
+            break;
     }
-    return 10;
+    
+    return num;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (_currentViewIndex == 0) {
-        return 3;
+        DAO_tTrainday *traindayDAO = [[DAO_tTrainday alloc]init];
+        int count = [traindayDAO count];
+        return count;
     }
     return 1;
 }
@@ -484,7 +535,13 @@
     frame = CGRectMake(330, 10, 80, 20);
     label = [[UILabel alloc]initWithFrame:frame];
     label.backgroundColor = [UIColor clearColor];
-    label.text = @"第一天";
+    
+    DAO_tTrainday *traindayDAO = [[DAO_tTrainday alloc]init];
+    NSArray *dayNames = [traindayDAO selectDayNames];
+    [traindayDAO release];
+    label.text = [dayNames objectAtIndex:section];
+    
+//    label.text = @"第一天";
     [headerView addSubview:label];
     [label release];
     
@@ -508,7 +565,7 @@
     CGRect frame;
     
     frame = CGRectMake(0, 0, (BY_CENTERVIEW_WIDTH - BY_CENTERVIEW_SHADOW_WIDTH * 2), 2);
-    footerView = [[UIView alloc]initWithFrame:frame];
+    footerView = [[[UIView alloc]initWithFrame:frame]autorelease];
     footerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background01_column2.png"]];
     
     return footerView;

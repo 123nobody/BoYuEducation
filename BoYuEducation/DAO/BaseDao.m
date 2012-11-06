@@ -13,14 +13,15 @@
 
 @synthesize db = _db;
 
-
 - (id)init{
     if(self = [super init]){
         // 打开的数据库
         
         ZYAppDelegate *appDelegate = (ZYAppDelegate *)[[UIApplication sharedApplication] delegate];
-        _db = appDelegate.boyuDB;
+        self.db = appDelegate.boyuDB;
+//        _db = [appDelegate.boyuDB retain];
     }
+    [self.db open];
     return self;
 }
 

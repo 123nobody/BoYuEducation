@@ -13,7 +13,7 @@
 
 - (NSString *)testing
 {
-    NSString *s;
+    NSString *s = nil;
     
     ZYTestModel *testModel = nil;
     
@@ -32,6 +32,7 @@
         NSLog(@"name = %@", testModel.name);
         [testModel release];
         s = testModel.name;
+        [testModel release];
     }
     [rs close];
     [self.db close];
