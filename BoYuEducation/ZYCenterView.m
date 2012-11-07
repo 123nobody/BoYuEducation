@@ -326,6 +326,7 @@
         label = [[UILabel alloc]init];
         label.tag = 22;
         [cell addSubview:label];
+        [label release];
     }
     
     //清除cell的背景边框
@@ -382,7 +383,10 @@
             
             frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
             [label setFrame:frame];
-            label.text = @"倾向时间价值与财务计算器操作";
+            
+            label.text = [self.dataCache.menu_2_Titles objectAtIndex:indexPath.row];
+            
+//            label.text = @"倾向时间价值与财务计算器操作";
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -399,7 +403,10 @@
             
             frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
             [label setFrame:frame];
-            label.text = @"居住规划与房间投资";
+            
+            label.text = [self.dataCache.menu_3_Titles objectAtIndex:indexPath.row];
+            
+//            label.text = @"居住规划与房间投资";
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
@@ -421,7 +428,10 @@
                 [cell addSubview:titleLabel];
                 [titleLabel release];
             }
-            titleLabel.text = @"金融资讯";
+            
+            titleLabel.text = [self.dataCache.menu_4_Titles objectAtIndex:indexPath.row];
+            
+//            titleLabel.text = @"金融资讯";
             
             frame = CGRectMake(100, ((cellHeight - 20) / 2), 300, 20);
             [label setFrame:frame];
@@ -429,7 +439,7 @@
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:14];
             [label setFrame:CGRectMake(15, 40, 400, 90)];
-            label.lineBreakMode = UILineBreakModeWordWrap; 
+            label.lineBreakMode = UILineBreakModeWordWrap;
             label.numberOfLines = 0;
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -503,6 +513,7 @@
     if (_currentViewIndex == 0) {
         DAO_tTrainday *traindayDAO = [[DAO_tTrainday alloc]init];
         int count = [traindayDAO count];
+        [traindayDAO release];
         return count;
     }
     return 1;

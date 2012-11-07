@@ -61,7 +61,9 @@
 {
     NSArray *keys = [[NSArray alloc]initWithObjects:@"fileName", @"fileSize", @"transSize", @"auxiliary", nil];
     NSArray *array = [[NSArray alloc]initWithObjects:_fileName, [NSNumber numberWithLong:_fileSize], [NSNumber numberWithLong:_transSize], _auxiliary, nil];
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjects:array forKeys:keys];
+    NSDictionary *dic = [[[NSDictionary alloc]initWithObjects:array forKeys:keys]autorelease];
+    [array release];
+    [keys release];
     return dic;
 }
 
@@ -69,7 +71,9 @@
 {
     NSArray *keys = [[NSArray alloc]initWithObjects:@"fileName", @"fileSize", @"transSize", @"auxiliary", @"filePath", @"isFinished", nil];
     NSArray *array = [[NSArray alloc]initWithObjects:_fileName, [NSNumber numberWithLong:_fileSize], [NSNumber numberWithLong:_transSize], _auxiliary, _filePath, _isFinished, nil];
-    NSDictionary *dic = [[NSDictionary alloc]initWithObjects:array forKeys:keys];
+    NSDictionary *dic = [[[NSDictionary alloc]initWithObjects:array forKeys:keys]autorelease];
+    [array release];
+    [keys release];
     return dic;
 }
 

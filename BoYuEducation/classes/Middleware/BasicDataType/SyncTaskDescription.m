@@ -65,10 +65,14 @@
             [tmpFileArray addObject:[fileDescription getDictionaryForClient]];
             [tmpFileKeys addObject:[Toolkit getFileNameByPath:syncFilePath]];
         }
+        [syncFilePathArray release];
         
         tmpFileDic = [[NSDictionary alloc]initWithObjects:tmpFileArray forKeys:tmpFileKeys];
+        [tmpFileArray release];
+        [tmpFileKeys release];
         
-        _syncFileDic        = tmpFileDic;
+        _syncFileDic = tmpFileDic;
+        [tmpFileDic release];
     }
     return self;
 }
