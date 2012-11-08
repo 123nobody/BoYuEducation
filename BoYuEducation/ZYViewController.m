@@ -52,9 +52,10 @@
 
 - (void)initRightViewWithView: (UIView *)view
 {
-    if (_rightViewController == nil) {
-        _rightViewController = [[ZYRightViewController alloc]init];
+    if (_rightViewController) {
+        [_rightViewController release];
     }
+    _rightViewController = [[ZYRightViewController alloc]init];
     _rightViewController.delegate = self;
     
 //    [_rightViewController putOut];
@@ -168,26 +169,66 @@
 
 - (void)centerTableView:(ZYCenterTableView *)centerTableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIView *view = [_rightViewController.view viewWithTag:555];
+    if (!view) {
+        [view removeFromSuperview];
+    }
+    view = [[UIView alloc]init];
+    view.tag = 555;
+    
     CGRect rightViewFrame;
     UIView *headerView;
     UITableView *tableView;
-    UIView *view = [[UIView alloc]init];
+    int cellTag = [centerTableView cellForRowAtIndexPath:indexPath].tag;
+    NSLog(@"selected cell.tag = %d", cellTag);
     
-    if (_rightViewController == nil) {
+    if (!_rightViewController) {
         _rightViewController = [[ZYRightViewController alloc]init];
     }
     
     NSLog(@"ZYView press button section:%d, row:%d", indexPath.section, indexPath.row);
-//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(30, 300, 300, 100)];
     
     switch (_menuView.currentCellIndex) {
         case 0:
         {
-//            label.text = [NSString stringWithFormat:@"菜单1 group：%d row:%d", indexPath.section, indexPath.row];
             rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + BY_CENTERVIEW_WIDTH - 10), 0, 470, 748);
             
             headerView = [_rightViewController getHeaderViewWithRightViewFrame:rightViewFrame MenuIndex:_menuView.currentCellIndex];
-            tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height)) style:UITableViewStylePlain];
+            
+            tableView = nil;
+            
+            UIScrollView *lessonScrolView = [[UIScrollView alloc]init];
+            [lessonScrolView setFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - 20))];
+            lessonScrolView.directionalLockEnabled = YES;
+            lessonScrolView.backgroundColor = [UIColor whiteColor];
+            lessonScrolView.showsVerticalScrollIndicator = YES;
+            lessonScrolView.showsHorizontalScrollIndicator = NO;
+            
+            ZYLessonView *lessonView;
+            
+            NSArray *lessonModelArray = [[NSArray alloc]initWithObjects:@"", @"", nil];
+            CGFloat height = 0;
+            for (int i = 0; i < lessonModelArray.count; i++) {
+                NSMutableArray *fileNameArray = [[NSMutableArray alloc]initWithObjects:@"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", nil];
+                
+                lessonView = [[ZYLessonView alloc]initWithTarget:self 
+                                                     teacherName:@"教师名" 
+                                                      lessonName:@"金融理财概述和CFP制度123" 
+                                                      lessonTime:@"09:00 ~ 10:30" 
+                                                         content:@"这里是课程介绍.这里是课程介绍1234567890课程介绍1234567890课程介绍1234567890。" 
+                                                   fileNameArray:fileNameArray];
+                
+                [lessonView setFrame:CGRectMake(lessonView.frame.origin.x, height, lessonView.frame.size.width, lessonView.frame.size.height)];
+                height += lessonView.frame.size.height;
+                
+                [lessonScrolView addSubview:lessonView];
+                [lessonView release];
+            }
+            [lessonScrolView setContentSize:CGSizeMake(450, (height + headerView.frame.size.height))];
+            [lessonModelArray release];
+            
+            [view addSubview:lessonScrolView];
+            [lessonScrolView release];
         }
             break;
             
@@ -327,13 +368,14 @@
         _rightViewController.webView = webView;     
         [webView release];
     }
+    
     [tableView release];
     
 //    [view addSubview:label];
 //    [label release];
     
 //    [headerView release];
-    if (!(_rightViewController == nil)) {
+    if (_rightViewController) {
         [_rightViewController putOutWithChecking:NO];
     }
     [self initRightViewWithView:view];
@@ -354,8 +396,8 @@
     _centerView.isLocked = NO;
 }
 
-- (NSArray *)documentsAsURLs {
-    NSArray *documents = [[NSArray alloc]initWithObjects:@"TaoBao客户端高性能高稳定性应用框架 .pdf", nil];
+- (NSArray *)documentsAsURLsWithName: (NSString *)fileName {
+    NSArray *documents = [[NSArray alloc]initWithObjects:fileName, nil];
     
     NSMutableArray *urls = [NSMutableArray array];
     
@@ -375,10 +417,12 @@
 
 - (void)pressFileButton:sender
 {
-    RBFilePreviewer * previewer = [[RBFilePreviewer alloc] initWithFiles:[self documentsAsURLs]];
+    UIButton *button = (UIButton *)sender;
+    NSString *fileName = button.accessibilityValue;
+    RBFilePreviewer * previewer = [[RBFilePreviewer alloc] initWithFiles:[self documentsAsURLsWithName:fileName]];
     [previewer setCurrentPreviewItemIndex:0];
-    UIBarButtonItem * button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(pressFileCloseButton:)];
-    [previewer setRightBarButtonItem:button];
+    UIBarButtonItem * closeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(pressFileCloseButton:)];
+    [previewer setRightBarButtonItem:closeButton];
     [button release];
     
     UINavigationController * navController = [[UINavigationController alloc] initWithRootViewController:previewer];
@@ -654,15 +698,56 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    ZYLessonCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+        switch (_menuView.currentCellIndex) {
+            case 0:
+            {
+                cell = [[[ZYLessonCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier tableView:tableView]autorelease];
+//                int height = cell.backView.frame.size.height + 14;
+//                CGRect frame =  cell.frame;
+//                frame.size.height = height;
+//                [cell setFrame:frame];
+            }
+                break;
+                
+            case 1:
+            {
+                cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            }
+                break;
+                
+            case 2:
+            {
+                cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            }
+                break;
+                
+            case 3:
+            {
+                cell = [[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]autorelease];
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
     }
     UIView *cellView = [cell viewWithTag:1];
     
     switch (_menuView.currentCellIndex) {
         case 0:
         {
+            
+            cell.teacherNameLabel.text = @"教师名";
+            cell.lessonNameLabel.text = @"金融理财概述和CFP制度123";
+            cell.lessonTimeLabel.text = @"09:00 ~ 10:30";
+            cell.contentLabel.text = @"这里是课程介绍.";
+            NSMutableArray *fileNameArray = [[NSMutableArray alloc]initWithObjects:@"金融理财概述和CFP制度.xls", @"asdasd.xls", @"金融理财概述和CFP制度.xls", @"asdasd.xls", @"金融理财概述和CFP制度.xls", @"asdasd.xls", @"金融理财概述和CFP制度.xls", @"asdasd.xls", nil];
+//            NSMutableArray *fileNameArray = [[NSMutableArray alloc]initWithObjects:@"金融理财概述和CFP制度.xls", nil];
+            [cell addFilesWithFileNameArray:fileNameArray target:self];
+            /*
             if (cellView != nil) {
                 //按tag取view，改数据。
                 return cell;
@@ -764,7 +849,7 @@
                 [cellView release];
                 [bottomShadowView release];
                 
-            }
+            }*/
 
         }
             break;
@@ -858,15 +943,38 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_menuView.currentCellIndex == 1) {
-        return 200.f;
+    if (_menuView.currentCellIndex == 0) {
+//        return 250;
+        int filesNumber;// = [tableView cellForRowAtIndexPath:indexPath].tag;
+        filesNumber = 8;
+//        ZYLessonCell *cell = (ZYLessonCell *)[tableView cellForRowAtIndexPath:indexPath];
+//        filesNumber = cell.tag;
+        NSLog(@"filesNumber = %d", filesNumber);
+        return (250.f + (filesNumber - 1) * 44);
     }
-    return 250.f;
+    return 200.f;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    switch (_menuView.currentCellIndex) {
+        case 0:
+        {
+            DAO_tLesson *lessonDAO = [[DAO_tLesson alloc]init];
+            int num = [lessonDAO numberOfLessonsWithTraindayId:(section + 1)];//section从0开始，traindayid从1开始。
+            [lessonDAO release];
+            return num;
+        }
+            break;
+            
+        case 1:
+            //返回调查的题目数。
+            return 3;
+            break;
+            
+        default:
+            return 0;
+    }
 }
 
 //- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

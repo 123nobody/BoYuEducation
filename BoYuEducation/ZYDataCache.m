@@ -12,7 +12,9 @@
 
 @synthesize trainId = _trainId;
 
-@synthesize menu_1_Dic = _menu_1_Dic;
+//@synthesize menu_1_Dic = _menu_1_Dic;
+@synthesize menu_1_Titles = _menu_1_Titles;
+//@synthesize menu_1_Ids = _menu_1_Ids;
 @synthesize menu_2_Titles = _menu_2_Titles;
 @synthesize menu_2_Ids = _menu_2_Ids;
 @synthesize menu_3_Titles = _menu_3_Titles;
@@ -34,7 +36,8 @@
         self.trainId = [trainDAO selectTrainId];
         [trainDAO release];
         
-        self.menu_1_Dic = [self getMenu_1_Dic];
+//        self.menu_1_Dic = [self getMenu_1_Dic];
+        [self initMenu_1_TitlesAndIds];
         [self initMenu_2_TitlesAndIds];
         [self initMenu_3_TitlesAndIds];
         [self initMenu_4_TitlesAndIds];
@@ -43,14 +46,17 @@
     return self;
 }
 
-- (NSMutableDictionary *)getMenu_1_Dic
+- (void)initMenu_1_TitlesAndIds
 {
-    NSMutableDictionary *dic = [[[NSMutableDictionary alloc]init]autorelease];
+//    NSMutableDictionary *dic = [[[NSMutableDictionary alloc]init]autorelease];
     
 //    //取得培训id
 //    DAO_tTrain *trainDAO = [[DAO_tTrain alloc]init];
 //    int trainId = [trainDAO selectTrainId];
 //    [trainDAO release];
+    
+    _menu_1_Titles = [[NSMutableDictionary alloc]init];
+//    _menu_1_Ids = [[NSMutableDictionary alloc]init];
     
     [self.db open];
     NSString *sql = [NSString stringWithFormat:@"SELECT d.id, l.lessonName FROM t_trainday d left outer join t_lesson l ON d.id = l.traindayid WHERE d.trainid = %d ORDER BY d.id,l.id", self.trainId];
@@ -64,20 +70,18 @@
     NSMutableArray *titleArray;
     while ([rs next]) {
         key = [NSString stringWithFormat:@"%d", [rs intForColumn:@"ID"]];
-        if ([dic objectForKey:key]) {
-            titleArray = [dic objectForKey:key];
+        if ([_menu_1_Titles objectForKey:key]) {
+            titleArray = [_menu_1_Titles objectForKey:key];
             title = [rs stringForColumn:@"lessonName"];
             [titleArray addObject:title];
         } else {
             title = [rs stringForColumn:@"lessonName"];
             titleArray = [[NSMutableArray alloc]initWithObjects:title, nil];
-            [dic setObject:titleArray forKey:key];
+            [_menu_1_Titles setObject:titleArray forKey:key];
         }
     }
     [rs close];
     [self.db close];
-    
-    return dic;
 }
 
 - (void)initMenu_2_TitlesAndIds
@@ -165,8 +169,10 @@
 
 - (void)dealloc
 {
-    [_menu_1_Dic release];
-    _menu_1_Dic = nil;
+    [_menu_1_Titles release];
+    _menu_1_Titles = nil;
+//    [_menu_1_Ids release];
+//    _menu_1_Ids = nil;
     
     [_menu_2_Titles release];
     _menu_2_Titles = nil;

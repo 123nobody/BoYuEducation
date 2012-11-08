@@ -363,9 +363,10 @@
 //            NSLog(@"dd %@",label.text);
 //            [lessonDAO release];
             
-            NSString *key = [[self.dataCache.menu_1_Dic allKeys] objectAtIndex:indexPath.section];
-            NSArray *titles = [self.dataCache.menu_1_Dic objectForKey:key];
+            NSString *key = [[self.dataCache.menu_1_Titles allKeys] objectAtIndex:indexPath.section];
+            NSArray *titles = [self.dataCache.menu_1_Titles objectForKey:key];
             label.text = [titles objectAtIndex:indexPath.row];
+            cell.tag = [key intValue];
             
             
 //            label.text = @"金融理财概述和CFP制度";
@@ -385,7 +386,7 @@
             [label setFrame:frame];
             
             label.text = [self.dataCache.menu_2_Titles objectAtIndex:indexPath.row];
-            
+            cell.tag = [[self.dataCache.menu_2_Ids objectAtIndex:indexPath.row] intValue];
 //            label.text = @"倾向时间价值与财务计算器操作";
             
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -405,6 +406,7 @@
             [label setFrame:frame];
             
             label.text = [self.dataCache.menu_3_Titles objectAtIndex:indexPath.row];
+            cell.tag = [[self.dataCache.menu_3_Ids objectAtIndex:indexPath.row] intValue];
             
 //            label.text = @"居住规划与房间投资";
             
@@ -430,6 +432,7 @@
             }
             
             titleLabel.text = [self.dataCache.menu_4_Titles objectAtIndex:indexPath.row];
+            cell.tag = [[self.dataCache.menu_4_Ids objectAtIndex:indexPath.row] intValue];
             
 //            titleLabel.text = @"金融资讯";
             
@@ -600,7 +603,8 @@
     [self moveCenterViewToDirection:@"left"];
 //    [_delegate didMoveCenterViewToDirection:@"left"];
     [_delegate centerTableView:(ZYCenterTableView *)tableView didDeselectRowAtIndexPath:indexPath];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)changeContentViewWithMenuIndex:(NSInteger)index

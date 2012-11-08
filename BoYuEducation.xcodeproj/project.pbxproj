@@ -133,6 +133,7 @@
 		B679619F1647D724009498EE /* Model_tTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = B679619E1647D723009498EE /* Model_tTeacher.m */; };
 		B67961A21647D737009498EE /* Model_tTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A11647D737009498EE /* Model_tTrain.m */; };
 		B67961A51647D749009498EE /* Model_tTrainday.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A41647D749009498EE /* Model_tTrainday.m */; };
+		B6895A78164B7D7200A4FC37 /* ZYLessonView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6895A77164B7D7200A4FC37 /* ZYLessonView.m */; };
 		B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2A163665C700CB4AA7 /* UIKit.framework */; };
 		B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2C163665C700CB4AA7 /* Foundation.framework */; };
 		B69DAC2F163665C700CB4AA7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2E163665C700CB4AA7 /* CoreGraphics.framework */; };
@@ -141,7 +142,7 @@
 		B69DAC3B163665C700CB4AA7 /* ZYAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC3A163665C700CB4AA7 /* ZYAppDelegate.m */; };
 		B69DAC3E163665C700CB4AA7 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B69DAC3C163665C700CB4AA7 /* MainStoryboard.storyboard */; };
 		B69DAC41163665C700CB4AA7 /* ZYViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B69DAC40163665C700CB4AA7 /* ZYViewController.m */; };
-		B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BA6E3F163F75060019646D /* ZYTableViewCell.m */; };
+		B6B50F56164A2CA7002C2AF0 /* ZYLessonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B6B50F55164A2CA7002C2AF0 /* ZYLessonCell.m */; };
 		B6BF536C16478000001CA513 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536216478000001CA513 /* FMDatabase.m */; };
 		B6BF536D16478000001CA513 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536416478000001CA513 /* FMDatabaseAdditions.m */; };
 		B6BF536E16478000001CA513 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF536616478000001CA513 /* FMDatabasePool.m */; };
@@ -152,6 +153,7 @@
 		B6BF5383164795B0001CA513 /* BaseDao.m in Sources */ = {isa = PBXBuildFile; fileRef = B6BF5382164795B0001CA513 /* BaseDao.m */; };
 		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
 		B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC6608163EACDA00244922 /* ZYSettingViewController.m */; };
+		B6E4D144164B935B00100B66 /* 推荐系统@淘宝 .pdf in Resources */ = {isa = PBXBuildFile; fileRef = B6E4D143164B935B00100B66 /* 推荐系统@淘宝 .pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -358,6 +360,8 @@
 		B67961A11647D737009498EE /* Model_tTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrain.m; path = model/Model_tTrain.m; sourceTree = "<group>"; };
 		B67961A31647D748009498EE /* Model_tTrainday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tTrainday.h; path = model/Model_tTrainday.h; sourceTree = "<group>"; };
 		B67961A41647D749009498EE /* Model_tTrainday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrainday.m; path = model/Model_tTrainday.m; sourceTree = "<group>"; };
+		B6895A76164B7D7200A4FC37 /* ZYLessonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLessonView.h; sourceTree = "<group>"; };
+		B6895A77164B7D7200A4FC37 /* ZYLessonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLessonView.m; sourceTree = "<group>"; };
 		B69DAC26163665C700CB4AA7 /* BoYuEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B69DAC2A163665C700CB4AA7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B69DAC2C163665C700CB4AA7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -371,8 +375,8 @@
 		B69DAC3D163665C700CB4AA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		B69DAC3F163665C700CB4AA7 /* ZYViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZYViewController.h; sourceTree = "<group>"; };
 		B69DAC40163665C700CB4AA7 /* ZYViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZYViewController.m; sourceTree = "<group>"; };
-		B6BA6E3E163F75060019646D /* ZYTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTableViewCell.h; sourceTree = "<group>"; };
-		B6BA6E3F163F75060019646D /* ZYTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTableViewCell.m; sourceTree = "<group>"; };
+		B6B50F54164A2CA7002C2AF0 /* ZYLessonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLessonCell.h; sourceTree = "<group>"; };
+		B6B50F55164A2CA7002C2AF0 /* ZYLessonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLessonCell.m; sourceTree = "<group>"; };
 		B6BF536116478000001CA513 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
 		B6BF536216478000001CA513 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
 		B6BF536316478000001CA513 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
@@ -393,6 +397,7 @@
 		B6D652B9163B9E6100F888DF /* ZYRightViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYRightViewController.m; sourceTree = "<group>"; };
 		B6DC6607163EACDA00244922 /* ZYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSettingViewController.h; sourceTree = "<group>"; };
 		B6DC6608163EACDA00244922 /* ZYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSettingViewController.m; sourceTree = "<group>"; };
+		B6E4D143164B935B00100B66 /* 推荐系统@淘宝 .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "推荐系统@淘宝 .pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -701,6 +706,7 @@
 				B676437B16426449006D1B9F /* classes */,
 				B667D7F91638CA45003262E4 /* images */,
 				B6764390164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf */,
+				B6E4D143164B935B00100B66 /* 推荐系统@淘宝 .pdf */,
 				B62776E316492B3A0049E608 /* ZYDataCache.h */,
 				B62776E416492B3B0049E608 /* ZYDataCache.m */,
 				B69DAC39163665C700CB4AA7 /* ZYAppDelegate.h */,
@@ -722,8 +728,10 @@
 				B6126AFA1637B4C000F2FDF0 /* ZYGridView.m */,
 				B6DC6607163EACDA00244922 /* ZYSettingViewController.h */,
 				B6DC6608163EACDA00244922 /* ZYSettingViewController.m */,
-				B6BA6E3E163F75060019646D /* ZYTableViewCell.h */,
-				B6BA6E3F163F75060019646D /* ZYTableViewCell.m */,
+				B6B50F54164A2CA7002C2AF0 /* ZYLessonCell.h */,
+				B6B50F55164A2CA7002C2AF0 /* ZYLessonCell.m */,
+				B6895A76164B7D7200A4FC37 /* ZYLessonView.h */,
+				B6895A77164B7D7200A4FC37 /* ZYLessonView.m */,
 				B69DAC3F163665C700CB4AA7 /* ZYViewController.h */,
 				B69DAC40163665C700CB4AA7 /* ZYViewController.m */,
 				B69DAC31163665C700CB4AA7 /* Supporting Files */,
@@ -926,6 +934,7 @@
 				B676437316423D8F006D1B9F /* button_plus_big.png in Resources */,
 				B6764391164265BB006D1B9F /* TaoBao客户端高性能高稳定性应用框架 .pdf in Resources */,
 				B679616A16479FF6009498EE /* BoYuEdu.sqlite in Resources */,
+				B6E4D144164B935B00100B66 /* 推荐系统@淘宝 .pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,7 +956,6 @@
 				B619DBD0163A9CFD00D0CEAB /* ZYRightView.m in Sources */,
 				B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */,
 				B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */,
-				B6BA6E40163F75060019646D /* ZYTableViewCell.m in Sources */,
 				B676438A16426459006D1B9F /* NSString+RBExtras.m in Sources */,
 				B676438B16426459006D1B9F /* NSURL+RBExtras.m in Sources */,
 				B676438C16426459006D1B9F /* RBBaseFileGenerator.m in Sources */,
@@ -1017,6 +1025,8 @@
 				B62776E21648FA170049E608 /* DAO_tLesson.m in Sources */,
 				B62776E516492B3B0049E608 /* ZYDataCache.m in Sources */,
 				B62776E8164930AD0049E608 /* DAO_tSearchQuestion.m in Sources */,
+				B6B50F56164A2CA7002C2AF0 /* ZYLessonCell.m in Sources */,
+				B6895A78164B7D7200A4FC37 /* ZYLessonView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

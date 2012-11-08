@@ -13,7 +13,9 @@
 {
     NSInteger _trainId;
     
-    NSMutableDictionary *_menu_1_Dic;
+//    NSMutableDictionary *_menu_1_Dic;
+    NSMutableDictionary *_menu_1_Titles;
+//    NSMutableDictionary *_menu_1_Ids;
     NSMutableArray *_menu_2_Titles;
     NSMutableArray *_menu_2_Ids;
     NSMutableArray *_menu_3_Titles;
@@ -24,7 +26,9 @@
 
 @property (nonatomic, assign) NSInteger trainId;
 
-@property (nonatomic, strong) NSMutableDictionary *menu_1_Dic;
+//@property (nonatomic, strong) NSMutableDictionary *menu_1_Dic;
+@property (nonatomic, strong) NSMutableDictionary *menu_1_Titles;
+//@property (nonatomic, strong) NSMutableDictionary *menu_1_Ids;
 @property (nonatomic, strong) NSMutableArray *menu_2_Titles;
 @property (nonatomic, strong) NSMutableArray *menu_2_Ids;
 @property (nonatomic, strong) NSMutableArray *menu_3_Titles;

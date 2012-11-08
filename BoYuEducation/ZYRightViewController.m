@@ -177,7 +177,6 @@
     if (_isShow) {
         return;
     }
-    _isShow = YES;
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3];
     
@@ -185,6 +184,7 @@
     
     [UIView commitAnimations];
     [_delegate ZYRightViewPutIn];
+    _isShow = YES;
 }
 
 //当点击菜单时，应强制putout
@@ -196,49 +196,21 @@
     CGRect frame = self.view.frame;
     if (checking && (frame.origin.x < (_putInFrame.origin.x + 50))) {
         [UIView beginAnimations:nil context:nil];
-        [UIView setAnimationDuration:0.2];
-    
-//        //变更
+        [UIView setAnimationDuration:0.3];
+        //变更
         frame.origin.x = _putInFrame.origin.x;
         [self.view setFrame:frame];
-//        // 结束动画
         [UIView commitAnimations];
-        return;
+//        return;
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.2];
+        frame.origin.x = 1524;
+        [self.view setFrame:frame];
+        [UIView commitAnimations];
+        _isShow = NO;
+        [_delegate ZYRightViewPutOut];
     }
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    frame.origin.x = 1524;
-    [self.view setFrame:frame];
-    [UIView commitAnimations];
-    
-    // 准备动画
-    CATransition *animation = [CATransition animation];
-    //动画播放持续时间
-    [animation setDuration:0.1f];
-    //动画速度,何时快、慢
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
-    /*动画效果
-     kCATransitionFade      淡出
-     kCATransitionMoveIn    覆盖原图
-     kCATransitionPush      推出
-     kCATransitionReveal    底部显出来
-     */
-    [animation setType:kCATransitionFade];
-    [self.view.layer addAnimation:animation forKey:nil];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    //变更
-    [self.view setFrame:frame];
-    
-    // 结束动画
-    [UIView commitAnimations];
-    
-    _isShow = NO;
-    
-    [_delegate ZYRightViewPutOut];
 }
 
 - (void)viewDidUnload
