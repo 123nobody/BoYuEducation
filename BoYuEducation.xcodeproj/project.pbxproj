@@ -133,6 +133,7 @@
 		B679619F1647D724009498EE /* Model_tTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = B679619E1647D723009498EE /* Model_tTeacher.m */; };
 		B67961A21647D737009498EE /* Model_tTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A11647D737009498EE /* Model_tTrain.m */; };
 		B67961A51647D749009498EE /* Model_tTrainday.m in Sources */ = {isa = PBXBuildFile; fileRef = B67961A41647D749009498EE /* Model_tTrainday.m */; };
+		B682D97E164C8AE60082BD69 /* ZYTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B682D97D164C8AE60082BD69 /* ZYTestViewController.m */; };
 		B6895A78164B7D7200A4FC37 /* ZYLessonView.m in Sources */ = {isa = PBXBuildFile; fileRef = B6895A77164B7D7200A4FC37 /* ZYLessonView.m */; };
 		B69DAC2B163665C700CB4AA7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2A163665C700CB4AA7 /* UIKit.framework */; };
 		B69DAC2D163665C700CB4AA7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B69DAC2C163665C700CB4AA7 /* Foundation.framework */; };
@@ -154,6 +155,8 @@
 		B6D652BA163B9E6100F888DF /* ZYRightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D652B9163B9E6100F888DF /* ZYRightViewController.m */; };
 		B6DC6609163EACDA00244922 /* ZYSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6DC6608163EACDA00244922 /* ZYSettingViewController.m */; };
 		B6E4D144164B935B00100B66 /* 推荐系统@淘宝 .pdf in Resources */ = {isa = PBXBuildFile; fileRef = B6E4D143164B935B00100B66 /* 推荐系统@淘宝 .pdf */; };
+		B6E4D148164BAEFA00100B66 /* DAO_tTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E4D147164BAEFA00100B66 /* DAO_tTeacher.m */; };
+		B6E4D14B164BB00A00100B66 /* DAO_tAttch.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E4D14A164BB00A00100B66 /* DAO_tAttch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -360,6 +363,8 @@
 		B67961A11647D737009498EE /* Model_tTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrain.m; path = model/Model_tTrain.m; sourceTree = "<group>"; };
 		B67961A31647D748009498EE /* Model_tTrainday.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Model_tTrainday.h; path = model/Model_tTrainday.h; sourceTree = "<group>"; };
 		B67961A41647D749009498EE /* Model_tTrainday.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Model_tTrainday.m; path = model/Model_tTrainday.m; sourceTree = "<group>"; };
+		B682D97C164C8AE60082BD69 /* ZYTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYTestViewController.h; sourceTree = "<group>"; };
+		B682D97D164C8AE60082BD69 /* ZYTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYTestViewController.m; sourceTree = "<group>"; };
 		B6895A76164B7D7200A4FC37 /* ZYLessonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLessonView.h; sourceTree = "<group>"; };
 		B6895A77164B7D7200A4FC37 /* ZYLessonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLessonView.m; sourceTree = "<group>"; };
 		B69DAC26163665C700CB4AA7 /* BoYuEducation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BoYuEducation.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -398,6 +403,10 @@
 		B6DC6607163EACDA00244922 /* ZYSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYSettingViewController.h; sourceTree = "<group>"; };
 		B6DC6608163EACDA00244922 /* ZYSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYSettingViewController.m; sourceTree = "<group>"; };
 		B6E4D143164B935B00100B66 /* 推荐系统@淘宝 .pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "推荐系统@淘宝 .pdf"; sourceTree = "<group>"; };
+		B6E4D146164BAEFA00100B66 /* DAO_tTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAO_tTeacher.h; path = DAO/DAO_tTeacher.h; sourceTree = "<group>"; };
+		B6E4D147164BAEFA00100B66 /* DAO_tTeacher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAO_tTeacher.m; path = DAO/DAO_tTeacher.m; sourceTree = "<group>"; };
+		B6E4D149164BB00A00100B66 /* DAO_tAttch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAO_tAttch.h; path = DAO/DAO_tAttch.h; sourceTree = "<group>"; };
+		B6E4D14A164BB00A00100B66 /* DAO_tAttch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAO_tAttch.m; path = DAO/DAO_tAttch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -732,6 +741,8 @@
 				B6B50F55164A2CA7002C2AF0 /* ZYLessonCell.m */,
 				B6895A76164B7D7200A4FC37 /* ZYLessonView.h */,
 				B6895A77164B7D7200A4FC37 /* ZYLessonView.m */,
+				B682D97C164C8AE60082BD69 /* ZYTestViewController.h */,
+				B682D97D164C8AE60082BD69 /* ZYTestViewController.m */,
 				B69DAC3F163665C700CB4AA7 /* ZYViewController.h */,
 				B69DAC40163665C700CB4AA7 /* ZYViewController.m */,
 				B69DAC31163665C700CB4AA7 /* Supporting Files */,
@@ -784,6 +795,10 @@
 				B62776E11648FA170049E608 /* DAO_tLesson.m */,
 				B62776E6164930AC0049E608 /* DAO_tSearchQuestion.h */,
 				B62776E7164930AD0049E608 /* DAO_tSearchQuestion.m */,
+				B6E4D146164BAEFA00100B66 /* DAO_tTeacher.h */,
+				B6E4D147164BAEFA00100B66 /* DAO_tTeacher.m */,
+				B6E4D149164BB00A00100B66 /* DAO_tAttch.h */,
+				B6E4D14A164BB00A00100B66 /* DAO_tAttch.m */,
 			);
 			name = DAO;
 			sourceTree = "<group>";
@@ -1027,6 +1042,9 @@
 				B62776E8164930AD0049E608 /* DAO_tSearchQuestion.m in Sources */,
 				B6B50F56164A2CA7002C2AF0 /* ZYLessonCell.m in Sources */,
 				B6895A78164B7D7200A4FC37 /* ZYLessonView.m in Sources */,
+				B6E4D148164BAEFA00100B66 /* DAO_tTeacher.m in Sources */,
+				B6E4D14B164BB00A00100B66 /* DAO_tAttch.m in Sources */,
+				B682D97E164C8AE60082BD69 /* ZYTestViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

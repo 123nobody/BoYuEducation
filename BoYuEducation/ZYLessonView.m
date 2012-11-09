@@ -92,6 +92,7 @@
         [_contentLabel setFrame:CGRectMake(25, (frame.origin.y + frame.size.height + 10), labelsize.width, labelsize.height)];
         _contentLabel.backgroundColor = [UIColor clearColor];
         _contentLabel.text = content;
+//        _contentLabel.text = @"123123123123";
         [self.backView addSubview:_contentLabel];
         
         //课件
@@ -112,20 +113,22 @@
             fileButton = [UIButton buttonWithType:UIButtonTypeCustom];
             [fileButton setBackgroundImage:image forState:UIControlStateNormal];
             fileButton.accessibilityValue = fileName;
+            [fileButton setTitle:fileName forState:UIControlStateNormal];
+            [fileButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
             [fileButton setFrame:frame];
             //需要把点击事件抛出去 用代理
             [fileButton addTarget:target action:@selector(pressFileButton:) forControlEvents:UIControlEventTouchUpInside];
             [self.backView addSubview:fileButton];
             
             //课件
-            frame = CGRectMake(60, frame.origin.y, 400, 30);
-            label = [[UILabel alloc]initWithFrame:frame];
-            label.text = fileName;
-            label.textAlignment = UITextAlignmentLeft;
-            label.backgroundColor = [UIColor clearColor];
-            [self.backView addSubview:label];
-            endHeight = label.frame.origin.y + label.frame.size.height + 20;
-            [label release];
+//            frame = CGRectMake(60, frame.origin.y, 400, 30);
+//            label = [[UILabel alloc]initWithFrame:frame];
+//            label.text = fileName;
+//            label.textAlignment = UITextAlignmentLeft;
+//            label.backgroundColor = [UIColor clearColor];
+//            [self.backView addSubview:label];
+//            [label release];
+            endHeight = fileButton.frame.origin.y + fileButton.frame.size.height + 20;
         }
         
 //        [filesView setFrame:CGRectMake(0, 175, _backView.frame.size.width, ((image.size.height + 10) * count - 10))];

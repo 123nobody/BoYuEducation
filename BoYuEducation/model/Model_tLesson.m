@@ -12,11 +12,15 @@
 
 @synthesize _id = _id;
 
-@synthesize trainid = _trainid;
-@synthesize traindayid = _traindayid;
+@synthesize teacherid = _teacherid;
+@synthesize teacherName = _teacherName;
 @synthesize lessonName = _lessonName;
 @synthesize lessonTime = _lessonTime;
-@synthesize teacherid = _teacherid;
+@synthesize content = _content;
+@synthesize fileNameArray = _fileNameArray;
+
+@synthesize trainid = _trainid;
+@synthesize traindayid = _traindayid;
 
 @synthesize modifyTime = _modifyTime;
 @synthesize isDelete = _isDelete;

@@ -178,7 +178,7 @@
     
     CGRect rightViewFrame;
     UIView *headerView;
-    UITableView *tableView;
+//    UITableView *tableView123123;
     int cellTag = [centerTableView cellForRowAtIndexPath:indexPath].tag;
     NSLog(@"selected cell.tag = %d", cellTag);
     
@@ -195,7 +195,7 @@
             
             headerView = [_rightViewController getHeaderViewWithRightViewFrame:rightViewFrame MenuIndex:_menuView.currentCellIndex];
             
-            tableView = nil;
+//            tableView = nil;
             
             UIScrollView *lessonScrolView = [[UIScrollView alloc]init];
             [lessonScrolView setFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - 20))];
@@ -206,17 +206,33 @@
             
             ZYLessonView *lessonView;
             
-            NSArray *lessonModelArray = [[NSArray alloc]initWithObjects:@"", @"", nil];
+//            NSArray *lessonModelArray = [[NSArray alloc]initWithObjects:@"", @"", nil];
+            
+            DAO_tLesson *lessonDAO = [[DAO_tLesson alloc]init];
+            NSArray *lessonModelArray = [lessonDAO selectLessonModelsByTraindayId:cellTag];
             CGFloat height = 0;
+            Model_tLesson *lessonModel;
             for (int i = 0; i < lessonModelArray.count; i++) {
-                NSMutableArray *fileNameArray = [[NSMutableArray alloc]initWithObjects:@"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", nil];
+                lessonModel = [lessonModelArray objectAtIndex:i];
                 
+//                NSMutableArray *fileNameArray;
+//                fileNameArray = [NSArray arrayWithArray:lessonModel.fileNameArray];
+//                fileNameArray = [[NSMutableArray alloc]initWithObjects:@"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", @"TaoBao客户端高性能高稳定性应用框架 .pdf", @"推荐系统@淘宝 .pdf", nil];
+                
+//                lessonView = [[ZYLessonView alloc]initWithTarget:self 
+//                                                     teacherName:@"教师名" 
+//                                                      lessonName:@"金融理财概述和CFP制度123" 
+//                                                      lessonTime:@"09:00 ~ 10:30" 
+//                                                         content:@"这里是课程介绍.这里是课程介绍1234567890课程介绍1234567890课程介绍1234567890。" 
+//                                                   fileNameArray:fileNameArray];
+                
+                NSLog(@"content123123:%@", lessonModel.content);
                 lessonView = [[ZYLessonView alloc]initWithTarget:self 
-                                                     teacherName:@"教师名" 
-                                                      lessonName:@"金融理财概述和CFP制度123" 
-                                                      lessonTime:@"09:00 ~ 10:30" 
-                                                         content:@"这里是课程介绍.这里是课程介绍1234567890课程介绍1234567890课程介绍1234567890。" 
-                                                   fileNameArray:fileNameArray];
+                                                     teacherName:lessonModel.teacherName 
+                                                      lessonName:lessonModel.lessonName 
+                                                      lessonTime:lessonModel.lessonTime 
+                                                         content:lessonModel.content 
+                                                   fileNameArray:lessonModel.fileNameArray];
                 
                 [lessonView setFrame:CGRectMake(lessonView.frame.origin.x, height, lessonView.frame.size.width, lessonView.frame.size.height)];
                 height += lessonView.frame.size.height;
@@ -225,7 +241,7 @@
                 [lessonView release];
             }
             [lessonScrolView setContentSize:CGSizeMake(450, (height + headerView.frame.size.height))];
-            [lessonModelArray release];
+//            [lessonModelArray release];
             
             [view addSubview:lessonScrolView];
             [lessonScrolView release];
@@ -234,6 +250,7 @@
             
         case 1:
         {
+            UITableView *tableView;
 //            label.text = [NSString stringWithFormat:@"菜单2 group：%d row:%d", indexPath.section, indexPath.row];
             rightViewFrame = CGRectMake((BY_MENUVIEW_MARGIN_LEFT + BY_MENUCELL_MARGIN_LEFT + BY_MENUCELL_WIDTH - BY_CENTERVIEW_OVER_LENGHT - BY_CENTERVIEW_MOVE_LENGHT + 60), 0, 850, 748);
 //            headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, rightViewFrame.size.width, 60)];
@@ -244,6 +261,20 @@
 //            tableView.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
             tableView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
 //            tableView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"background02.png"]];
+            
+            
+            tableView.delegate = self;
+            tableView.dataSource = self;
+            //去除cell分割线
+            tableView.separatorStyle = NO;
+            
+            tableView.backgroundView = [[[UIView alloc]init]autorelease];
+            tableView.backgroundView.backgroundColor = [UIColor clearColor];
+            tableView.layer.cornerRadius = 6;
+            tableView.layer.masksToBounds = YES;
+            
+            [view addSubview:tableView];
+            [tableView release];
             
             UIButton *commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
             UIImage *image = [UIImage imageNamed:@"approval.png"];
@@ -261,7 +292,7 @@
 //            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
             
             headerView = [_rightViewController getHeaderViewWithRightViewFrame:rightViewFrame MenuIndex:_menuView.currentCellIndex];
-            tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height)) style:UITableViewStylePlain];
+//            tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height)) style:UITableViewStylePlain];
         }
             break;
             
@@ -274,7 +305,7 @@
 //            headerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"title_br.png"]];
             
             headerView = [_rightViewController getHeaderViewWithRightViewFrame:rightViewFrame MenuIndex:_menuView.currentCellIndex];
-            tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height)) style:UITableViewStylePlain];
+//            tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height)) style:UITableViewStylePlain];
         }
             break;
             
@@ -290,19 +321,10 @@
     
     [view addSubview:headerView];
     
-    if (_menuView.currentCellIndex == 0 || _menuView.currentCellIndex == 1) {
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        //去除cell分割线
-        tableView.separatorStyle = NO;
+    if (_menuView.currentCellIndex == 1) {
         
-        tableView.backgroundView = [[[UIView alloc]init]autorelease];
-        tableView.backgroundView.backgroundColor = [UIColor clearColor];
-        tableView.layer.cornerRadius = 6;
-        tableView.layer.masksToBounds = YES;
-        
-        [view addSubview:tableView];
     } else if (_menuView.currentCellIndex == 2) {
+        /*
         UIView *testView = [[UIView alloc]initWithFrame:CGRectMake(15, (headerView.frame.size.height + 10), (rightViewFrame.size.width - 15 * 2), (rightViewFrame.size.height - headerView.frame.size.height - 100))];
         testView.backgroundColor = [UIColor colorWithWhite:0.96 alpha:1.0];
         testView.layer.cornerRadius = 6;
@@ -357,7 +379,7 @@
         [commitButton setBackgroundImage:image forState:UIControlStateNormal];
         [commitButton setFrame:CGRectMake(((rightViewFrame.size.width - image.size.width) / 2), (rightViewFrame.size.height - 70), image.size.width, image.size.height)];
         [view addSubview:commitButton];
-        
+        */
         
     } else if (_menuView.currentCellIndex == 3) {
         UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, headerView.frame.size.height, rightViewFrame.size.width, (rightViewFrame.size.height - headerView.frame.size.height))];
@@ -369,7 +391,6 @@
         [webView release];
     }
     
-    [tableView release];
     
 //    [view addSubview:label];
 //    [label release];

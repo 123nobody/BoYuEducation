@@ -7,6 +7,9 @@
 //
 
 #import "BaseDao.h"
+#import "Model_tLesson.h"
+#import "DAO_tAttch.h"
+#import "DAO_tTeacher.h"
 #import "DAO_tTrain.h"
 #import "DAO_tTrainday.h"
 
@@ -14,5 +17,8 @@
 
 - (NSInteger)numberOfLessonsWithTraindayId: (NSInteger)traindayid;
 - (NSString *)nameOfLessonsWithIndexPath: (NSIndexPath *)indexPath;
+
+- (Model_tLesson *)selectLessonModelByLessonId: (NSInteger)lessonId;
+- (NSMutableArray *)selectLessonModelsByTraindayId: (NSInteger)traindayId;
 
 @end

@@ -69,4 +69,68 @@
     return name;
 }
 
+- (Model_tLesson *)selectLessonModelByLessonId:(NSInteger)lessonId
+{
+    Model_tLesson *lessonModel = [[[Model_tLesson alloc]init]autorelease];
+    int teacherId;
+    
+    [self.db open];
+    NSString *sql = [NSString stringWithFormat:@"SELECT *  FROM t_lesson WHERE ID = %d", lessonId];
+    //    NSLog(@"sql = %@", sql);
+    FMResultSet *rs = [self.db executeQuery:sql];
+    if (rs.columnCount == 0) {
+        NSLog(@"selectLessonModelByLessonId is nil!");
+    }
+    
+    while ([rs next]) {
+        lessonModel._id = [rs intForColumn:@"ID"];
+        lessonModel.lessonName = [rs stringForColumn:@"lessonName"];
+        lessonModel.lessonTime = [rs stringForColumn:@"lessonTime"];
+        lessonModel.content = [rs stringForColumn:@"content"];
+        
+        teacherId = [rs intForColumn:@"teacherId"];
+        DAO_tTeacher *teacherDAO = [[DAO_tTeacher alloc]init];
+        lessonModel.teacherName = [teacherDAO selectTeacherNameByTeacherId:teacherId];
+        [teacherDAO release];
+        
+        DAO_tAttch *attchDAO = [[DAO_tAttch alloc]init];
+        lessonModel.fileNameArray = [attchDAO selectFileNameArrayByLessonId:lessonModel._id];
+        [attchDAO release];
+        
+        lessonModel.trainid = [rs intForColumn:@"trainid"];
+        lessonModel.traindayid = [rs intForColumn:@"traindayid"];
+        lessonModel.modifyTime = [rs stringForColumn:@"modifyTime"];
+        lessonModel.isDelete = [rs intForColumn:@"isDelete"];
+        
+    }
+    [rs close];
+    [self.db close];
+    
+    return lessonModel;
+}
+
+- (NSMutableArray *)selectLessonModelsByTraindayId:(NSInteger)traindayId
+{
+    NSMutableArray *lessonModelsArray = [[[NSMutableArray alloc]init]autorelease];
+    
+    [self.db open];
+    NSString *sql = [NSString stringWithFormat:@"SELECT ID FROM t_lesson WHERE traindayid = %d", traindayId];
+    //    NSLog(@"sql = %@", sql);
+    FMResultSet *rs = [self.db executeQuery:sql];
+    if (rs.columnCount == 0) {
+        NSLog(@"selectLessonModelsByTraindayId is nil!");
+    }
+    Model_tLesson *lessonModel;
+    while ([rs next]) {
+        int lessonid = [rs intForColumn:@"ID"];
+        lessonModel = [self selectLessonModelByLessonId:lessonid];
+        
+        [lessonModelsArray addObject:lessonModel];
+    }
+    [rs close];
+    [self.db close];
+    
+    return lessonModelsArray;
+}
+
 @end
